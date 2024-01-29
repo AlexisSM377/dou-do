@@ -25,7 +25,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'last_name' => fake()->words(2),
+            'last_name' => fake()->sentence(2),
             'email' => fake()->unique()->safeEmail(),
             'password' => bcrypt('admin1234'),
             'birthdate' => fake()->dateTimeBetween('-30 year', '- 1 year'),

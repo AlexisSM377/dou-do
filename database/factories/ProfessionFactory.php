@@ -17,7 +17,7 @@ class ProfessionFactory extends Factory
     public function definition(): array
     {
         return [
-            'profession' => fake()->words(3),
+            'profession' => fake()->sentence(3),
         ];
     }
 }

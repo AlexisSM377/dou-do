@@ -18,7 +18,7 @@ class SummaryFactory extends Factory
     {
         return [
             'user_id' => fake()->numberBetween(1, 5),
-            'title' => fake()->words(3),
+            'title' => fake()->sentence(3),
             'description' => fake()->paragraph(),
             'tasks_completed' => fake()->numberBetween(1, 15),
             'friends_made' => fake()->numberBetween(1, 10),

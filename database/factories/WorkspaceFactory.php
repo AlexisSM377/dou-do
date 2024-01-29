@@ -17,7 +17,7 @@ class WorkspaceFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->words(3),
+            'name' => fake()->sentence(3),
             'description' => fake()->paragraph(),
             'color' => fake()->word(),
             'advance' => fake()->randomNumber(1, 100),
