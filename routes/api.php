@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FriendController;
+use App\Http\Controllers\FriendRequestController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\ProfessionController;
@@ -33,5 +35,6 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers'], function
     Route::resource('professions', ProfessionController::class);
     Route::resource('priorities', PriorityController::class);
     Route::resource('summaries', SummaryController::class);
-    
+    Route::resource('friends', FriendController::class);
+    Route::resource('friend-request', FriendRequestController::class);
 });
