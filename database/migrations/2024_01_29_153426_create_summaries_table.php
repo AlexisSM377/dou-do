@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('summaries', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->string('title');
+            $table->string('description');
+            $table->tinyInteger('tasks_completed');
+            $table->tinyInteger('friends_made');
             $table->timestamps();
         });
     }
