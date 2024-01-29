@@ -1,12 +1,12 @@
 <?php
 
-use App\Models\Notification;
-use App\Models\Priority;
-use App\Models\Profession;
-use App\Models\Summary;
-use App\Models\Task;
-use App\Models\User;
-use App\Models\Workspace;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PriorityController;
+use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\SummaryController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkspaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +26,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers'], function(){
-    Route::resource('users', User::class);
-    Route::resource('workspaces', Workspace::class);
-    Route::resource('tasks', Task::class);
-    Route::resource('notifications', Notification::class);
-    Route::resource('professions', Profession::class);
-    Route::resource('priorities', Priority::class);
-    Route::resource('summaries', Summary::class);
+    Route::resource('users', UserController::class);
+    Route::resource('workspaces', WorkspaceController::class);
+    Route::resource('tasks', TaskController::class);
+    Route::resource('notifications', NotificationController::class);
+    Route::resource('professions', ProfessionController::class);
+    Route::resource('priorities', PriorityController::class);
+    Route::resource('summaries', SummaryController::class);
+    
 });
