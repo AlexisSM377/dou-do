@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Profession::class);
     }
+
+    public function summaries()
+    {
+        return $this->hasMany(Summary::class);
+    }
 }
