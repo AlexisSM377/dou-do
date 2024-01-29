@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Task::class);
     }
+
+    public function workspaces()
+    {
+        return $this->belongsToMany(Workspace::class);
+    }
 }
