@@ -14,6 +14,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        // dd(User::where('name', 'like', '%rafa%')->get());
         //* Generamos una entidad de la clase UserFilter
         $filter = new UserFilter();
          //* Mandamos a llamar la función "build" para construir los arrays con: columna, operador, valor a buscar... en base a lo que se tenga en el $request

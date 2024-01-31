@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Filters\Api;
-use Illuminate\Http\Request;
 use App\Filters\Api\AppFilter;
 
 class UserFilter extends AppFilter{
 
     //* Parametros por los cuales podemos filtrar
     protected $rescuedParams = [
-        'name' => ['eq'],
+        'name' => ['li', 'eq'],
         'email' => ['eq'],
         'birthdate' => ['eq', 'gt'],
     ];
@@ -25,6 +24,7 @@ class UserFilter extends AppFilter{
         'lte' => '<=',
         'gt' => '>',
         'gte' => '>=',
+        'li' => 'like',
     ];
 
 }

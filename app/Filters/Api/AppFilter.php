@@ -37,13 +37,15 @@ class AppFilter {
 
             foreach($operators as $operator){
                 //! $operator traera el valor: eq, gt, lt, etc...
-                
+
                 //! Verifica si el operador de esta vuelta se encuentra como clave el el query actual, si existe entra de lo contrario continua con la siguiente vuelta
                 if (isset($query[$operator])) {
                     // $column: El parametro en cuestion (la columna en base de datos)
                     // $this->operatorMapping: El operador en cuestión
                     // $query[$operator]: // El valor del parametro
-                    $q[] = [$column, $this->operatorsMapping[$operator], $query[$operator]];
+                    // dd($column, $this->operatorsMapping[$operator], $query[$operator]);
+                    $value = ($operator !== 'li') ? $query[$operator] : "%$query[$operator]%";
+                    $q[] = [$column, $this->operatorsMapping[$operator], $value];
                 }
             }
         }
