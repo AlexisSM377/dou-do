@@ -14,7 +14,7 @@ class UserFilter extends AppFilter{
 
     //* Parametros cuyo nombre debemos normalizar, ej: lastName = last_name
     protected $columnsMapping = [
-        // 'name' => 'name',
+        // 'lastName' => 'last_name',
     ];
 
 }
