@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filers;
+namespace App\Filters\Api;
 use Illuminate\Http\Request;
 
 class AppFilter {
     protected $rescuedParams = [];
-    protected $columMapping = [];
-    protected $operator = [];
+    protected $columnsMapping = [];
+    protected $operatorsMapping = [];
 
     public function build(Request $request)
     {
@@ -15,11 +15,11 @@ class AppFilter {
             $query = $request->query($param);
             if (empty($query)) continue;
 
-            $column = $this->columMapping[$param] ?? $param;
+            $column = $this->columnsMapping[$param] ?? $param;
 
             foreach($operators as $operator){
                 if (isset($query[$operator])) {
-                    $q[] = [$column, $this->operator[$operator], $query[$operator]];
+                    $q[] = [$column, $this->operatorsMapping[$operator], $query[$operator]];
                 }
             }
         }

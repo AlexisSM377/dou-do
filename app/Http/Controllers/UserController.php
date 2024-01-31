@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\Api\UserFilter;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,11 +12,12 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //* not used
-        // $users = User::paginate(10);
-        // return new UserResource($users);
+        $filter = new UserFilter();
+        $q = $filter->build($request);
+        $users = User::where($q);
+        return new UserResource($users->paginate()->appends($request->query()));
     }
 
     /**
