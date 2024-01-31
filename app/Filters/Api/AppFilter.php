@@ -11,6 +11,12 @@ class AppFilter {
     public function build(Request $request)
     {
         $q = [];
+        dd($this->rescuedParams);
+        /*
+            rescuedParams
+
+        
+        */
         foreach($this->rescuedParams as $param => $operators){
             $query = $request->query($param);
             if (empty($query)) continue;
@@ -23,6 +29,7 @@ class AppFilter {
                 }
             }
         }
+        dd("-");
         return $q;
     }
 
