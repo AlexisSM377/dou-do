@@ -10,12 +10,12 @@ class UserFilter extends AppFilter{
     protected $rescuedParams = [
         'name' => ['eq'],
         'email' => ['eq'],
-        'birthdate' => ['eq'],
+        'birthdate' => ['eq', 'gt'],
     ];
 
     //* Parametros cuyo nombre debemos normalizar, ej: lastName = last_name
     protected $columnsMapping = [
-
+        // 'name' => 'name',
     ];
 
     //* Operadores de comparación

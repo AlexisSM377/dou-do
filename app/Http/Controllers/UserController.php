@@ -15,6 +15,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $filter = new UserFilter();
+        // dd($filter);
         $q = $filter->build($request);
         $users = User::where($q);
         return new UserResource($users->paginate()->appends($request->query()));
