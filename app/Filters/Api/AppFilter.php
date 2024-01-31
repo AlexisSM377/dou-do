@@ -6,7 +6,15 @@ use Illuminate\Http\Request;
 class AppFilter {
     protected $rescuedParams = [];
     protected $columnsMapping = [];
-    protected $operatorsMapping = [];
+    //* Operadores de comparación
+    protected $operatorsMapping = [
+        'eq' => '=',
+        'lt' => '<',
+        'lte' => '<=',
+        'gt' => '>',
+        'gte' => '>=',
+        'li' => 'like',
+    ];
 
     public function build(Request $request)
     {

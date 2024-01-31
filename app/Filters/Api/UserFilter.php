@@ -17,14 +17,4 @@ class UserFilter extends AppFilter{
         // 'name' => 'name',
     ];
 
-    //* Operadores de comparación
-    protected $operatorsMapping = [
-        'eq' => '=',
-        'lt' => '<',
-        'lte' => '<=',
-        'gt' => '>',
-        'gte' => '>=',
-        'li' => 'like',
-    ];
-
 }
