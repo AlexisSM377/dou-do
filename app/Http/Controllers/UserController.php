@@ -14,19 +14,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //* Generamos una entidad de la clase UserFilter
         $filter = new UserFilter();
-         //* Mandamos a llamar la función "build" para construir los arrays con: columna, operador, valor a buscar... en base a lo que se tenga en el $request
-         //* Esto se guarda en un array en la variable $q
         $q = $filter->build($request);
-
-        //* Aqui ya solo hacemos la consulta en base a el array que contiene los parametros de busqueda.
-        //* EJ: Asi se veria internamente
-        //* User::where('name', '=', 'Rafa');
         $users = User::where($q)->paginate(10);
-
-        //* 1) Enviamos el objeto paginado de los usuarios, al UserResource insertando en la misma paginación, el $request->query, con esto hacemos que prevalescan los filtros...
-        //* 2) El UserResource nos devuelve todo ya parseado a JSON, para poderlo servir via API
         return new UserResource($users->appends($request->query()));
     }
 
