@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Filters\Api\UserFilter;
 use App\Http\Resources\Collections\UserCollection;
+use App\Http\Resources\resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        if (request()->includeNotifications) {
+            return new UserResource($user->loadMissing('notifications'));
+        } else {
+            return new UserResource($user);
+        }
     }
 
     /**
