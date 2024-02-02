@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Filters\Api\UserFilter;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\Collections\UserCollection;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -17,7 +17,7 @@ class UserController extends Controller
         $filter = new UserFilter();
         $users = User::where($filter->build($request));
         $users = ($request->includeNotifications) ? $users->with('notifications') : $users;
-        return new UserResource($users->paginate(10)->appends($request->query()));
+        return new UserCollection($users->paginate(10)->appends($request->query()));
     }
 
     /**
