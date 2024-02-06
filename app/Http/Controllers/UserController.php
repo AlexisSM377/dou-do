@@ -73,6 +73,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response()->json([
+            'message' => "El usuario con el correo electronico: $user->email ha sido eliminado",
+        ]);
     }
 }
