@@ -22,15 +22,7 @@ class NotificationController extends Controller
     {
         return new NotificationResource(Notification::create($request->all()));
     }
-
-    public function bulk(NotificationBulkRequest $request)
-    {
-        $bulk = collect($request->all())->map(function($array, $key){
-            return Arr::except($array, ['user_id']);
-        });
-        dd($bulk);
-    }
-
+    
     public function show(Notification $notification)
     {
         return new NotificationResource($notification);

@@ -37,4 +37,6 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers'], function
     Route::resource('summaries', SummaryController::class);
     Route::resource('friends', FriendController::class);
     Route::resource('friend-request', FriendRequestController::class);
+
+    Route::post('notifications/bulk', [NotificationController::class, 'bulk']);
 });
