@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\FriendRequestController;
 use App\Http\Controllers\NotificationController;
@@ -27,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers'], function(){
+Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth:sanctum'], function(){
     Route::resource('users', UserController::class);
     Route::resource('workspaces', WorkspaceController::class);
     Route::resource('tasks', TaskController::class);
@@ -38,5 +39,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers'], function
     Route::resource('friends', FriendController::class);
     Route::resource('friend-request', FriendRequestController::class);
 
-    Route::post('notifications/bulk', [NotificationController::class, 'bulk']);
+    // Route::controller(AuthController::class)->group(function(){
+    //     Route::post('login', 'login');
+    // });
 });
