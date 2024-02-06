@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Filters\Api\UserFilter;
+use App\Http\Requests\UserRequest;
 use App\Http\Resources\Collections\UserCollection;
 use App\Http\Resources\resources\UserResource;
 use App\Models\User;
@@ -32,9 +33,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        return new UserResource(User::create($request->all()));
     }
 
     /**
