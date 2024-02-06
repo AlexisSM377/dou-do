@@ -38,8 +38,8 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middlewa
     Route::resource('summaries', SummaryController::class);
     Route::resource('friends', FriendController::class);
     Route::resource('friend-request', FriendRequestController::class);
+});
 
-    // Route::controller(AuthController::class)->group(function(){
-    //     Route::post('login', 'login');
-    // });
+Route::controller(AuthController::class)->group(['prefix' => 'api'], function(){
+    Route::post('login', 'login');
 });
