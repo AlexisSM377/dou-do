@@ -40,7 +40,5 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middlewa
     Route::resource('friend-request', FriendRequestController::class);
 });
 
-Route::controller(AuthController::class)->group(function(){
-    Route::post('login', 'login');
-    Route::post('logout', 'logout');
-});
+Route::post('login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
