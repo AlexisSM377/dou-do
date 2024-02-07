@@ -42,4 +42,5 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middlewa
 
 Route::controller(AuthController::class)->group(function(){
     Route::post('login', 'login');
+    Route::post('logout', 'logout');
 });

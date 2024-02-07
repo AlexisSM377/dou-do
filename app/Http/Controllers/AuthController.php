@@ -16,4 +16,11 @@ class AuthController extends Controller
             return response()->json(['message' => 'Incorrect credentials']);
         }
     }
+
+    public function logout(Request $request)
+    {
+        Auth::attempt($request->all());
+        Auth()->User()->tokens()->delete();
+        return response()->json(['message' => 'Closed session'], 200);
+    }
 }
