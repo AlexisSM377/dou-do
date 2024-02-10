@@ -16,7 +16,6 @@ class FriendRequestController extends Controller
      */
     public function index()
     {
-        $friendRequests = FriendRequest::paginate(10);
-        // return new FriendRequestResource($friendRequests);
+        // TODO: Not used
     }
 }
