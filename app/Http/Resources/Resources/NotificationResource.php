@@ -5,12 +5,15 @@ namespace App\Http\Resources\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * Resource from Notifications
+ */
 class NotificationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function toArray(Request $request): array
     {
