@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\WorkspaceResource;
-use App\Models\Workspace;
-use Illuminate\Http\Request;
-
+/**
+ * Controller class to Workspaces
+ */
 class WorkspaceController extends Controller
 {
+    /**
+     * Returns a general list from Workspaces
+     *
+     * @return JsonResponse<Workspaces>
+     */
     public function index()
     {
-        //* Not used
-        // $workspaces = Workspace::paginate(10);
-        // return new WorkspaceResource($workspaces);
+        // TODO: Not used
     }
 }
