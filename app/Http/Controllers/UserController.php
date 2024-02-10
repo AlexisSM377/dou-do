@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Filters\Api\UserFilter;
-use App\Http\Requests\Store\UserStoreRequest;
-use App\Http\Requests\update\UserUpdateRequest;
-use App\Http\Resources\Collections\UserCollection;
-use App\Http\Resources\resources\UserResource;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\Store\UserStoreRequest;
+use App\Http\Requests\Update\UserUpdateRequest;
+use App\Http\Resources\Collections\UserCollection;
+use App\Http\Resources\Resources\UserResource;
+use App\Filters\Api\UserFilter;
+use App\Models\User;
 
+/**
+ * Controller class to users
+ */
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Returns a general list from users
+     *
+     * @param Request $request
+     * @return JsonResponse<Users>
      */
     public function index(Request $request)
     {
@@ -24,15 +30,10 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Save in database a new User and returns it
+     *
+     * @param UserStoreRequest $request
+     * @return JsonResponse<User>
      */
     public function store(UserStoreRequest $request)
     {
@@ -40,7 +41,10 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Gets from database a user and returns it
+     *
+     * @param User $user
+     * @return JsonResponse<User>
      */
     public function show(User $user)
     {
@@ -52,15 +56,11 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Updates a user and returns it
+     *
+     * @param UserUpdateRequest $request
+     * @param User $user
+     * @return JsonResponse<User>
      */
     public function update(UserUpdateRequest $request, User $user)
     {
@@ -69,7 +69,10 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove a user and returns a informatical message
+     *
+     * @param User $user
+     * @return JsonResponse
      */
     public function destroy(User $user)
     {

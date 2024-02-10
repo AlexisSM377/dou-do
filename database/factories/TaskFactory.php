@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
+ * Factory to Tasks
  */
 class TaskFactory extends Factory
 {
@@ -23,7 +23,6 @@ class TaskFactory extends Factory
             'description' => fake()->paragraph(),
             'status' => fake()->boolean(),
             'due_date' => fake()->dateTimeBetween('now', 'now'),
-            
         ];
     }
 }

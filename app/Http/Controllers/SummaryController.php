@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\SummaryResource;
-use App\Models\Summary;
-use Illuminate\Http\Request;
-
+/**
+ * Controller class to Summaries
+ */
 class SummaryController extends Controller
 {
+    /**
+     * Returns a general listo from summaries
+     *
+     * @return JsonResponse<Summaries>
+     */
     public function index()
     {
-        //* Not used
-        // $summaries = Summary::paginate(10);
-        // return new SummaryResource($summaries);
+        // TODO: Not used
     }
 }

@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PriorityResource;
 use App\Models\Priority;
-use Illuminate\Http\Request;
 
+/**
+ * Controller class to Priorities
+ */
 class PriorityController extends Controller
 {
+    /**
+     * Returns a general list from priorities
+     *
+     * @return JsonResponse<Priorities>
+     */
     public function index()
     {
-        $priorities = Priority::all();
-        return new PriorityResource($priorities);
+        // TODO: Not used
     }
 }
