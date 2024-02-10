@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Friend;
-use Illuminate\Http\Request;
 
 /**
  * Controller class to Friends
@@ -11,9 +10,9 @@ use Illuminate\Http\Request;
 class FriendController extends Controller
 {
     /**
-     * Returns the general friend list 
+     * Returns the general friend list
      *
-     * @return JsonResponse
+     * @return JsonResponse<Friends>
      */
     public function index()
     {

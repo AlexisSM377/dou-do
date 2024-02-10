@@ -12,7 +12,7 @@ class FriendRequestController extends Controller
     /**
      * Returns a general list from friend requests
      *
-     * @return JsonResponse
+     * @return JsonResponse<FriendRequests>
      */
     public function index()
     {
