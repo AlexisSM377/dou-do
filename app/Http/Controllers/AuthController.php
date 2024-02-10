@@ -12,7 +12,7 @@ class AuthController extends Controller
     {
         if (Auth::attempt($request->all())) {
             $user = Auth()->User();
-            return $user->createToken('user-token')->plainTextToken;
+            return response()->json(['token' => $user->createToken('user-token')->plainTextToken], 200);
         } else {
             return response()->json(['message' => 'Incorrect credentials']);
         }
