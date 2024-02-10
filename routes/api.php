@@ -23,11 +23,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+/**
+ * Route group for V1 APIs
+ * -> Prefix: V1
+ * -> Middleware: sanctum
+ */
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth:sanctum'], function(){
     Route::resource('users', UserController::class);
     Route::resource('workspaces', WorkspaceController::class);
@@ -40,5 +40,6 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middlewa
     Route::resource('friend-request', FriendRequestController::class);
 });
 
+// Route to login and logout
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
