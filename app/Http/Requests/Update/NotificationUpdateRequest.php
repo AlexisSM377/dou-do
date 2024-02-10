@@ -4,6 +4,9 @@ namespace App\Http\Requests\Update;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * RequestUpdate from Notifications
+ */
 class NotificationUpdateRequest extends FormRequest
 {
     /**
@@ -15,7 +18,7 @@ class NotificationUpdateRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Sets validation rules to apply to the request
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
