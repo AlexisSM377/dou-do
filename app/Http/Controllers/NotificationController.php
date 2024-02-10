@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\store\NotificationBulkRequest;
 use App\Http\Requests\Store\NotificationStoreRequest;
 use App\Http\Requests\Update\NotificationUpdateRequest;
 use App\Http\Resources\Collections\NotificationCollection;
 use App\Http\Resources\Resources\NotificationResource;
 use App\Models\Notification;
-use Illuminate\Support\Arr;
+
 
 class NotificationController extends Controller
 {
