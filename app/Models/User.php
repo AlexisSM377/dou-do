@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,8 +18,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
         'email',
         'password',
+        'birthdate',
     ];
 
     /**
@@ -42,4 +43,49 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function profesion()
+    {
+        return $this->belongsTo(Profession::class);
+    }
+
+    public function summaries()
+    {
+        return $this->hasMany(Summary::class);
+    }
+
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class);
+    }
+
+    public function workspaces()
+    {
+        return $this->belongsToMany(Workspace::class);
+    }
+
+    public function myFriends()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
+    }
+
+    public function friendToMe()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
+    }
+
+    public function myFriendRequests()
+    {
+        return $this->belongsToMany(User::class, 'friend_requests', 'origin_user_id', 'target_user_id');
+    }
+
+    public function friendRequestsToMe()
+    {
+        return $this->belongsToMany(User::class, 'friend_requests', 'target_user_id', 'origin_user_id');
+    }
 }
