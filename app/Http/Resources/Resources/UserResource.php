@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\resources;
+namespace App\Http\Resources\Resources;
 
 use App\Http\Resources\Resources\NotificationResource;
 use Illuminate\Http\Request;

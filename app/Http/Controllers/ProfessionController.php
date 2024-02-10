@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProfessionResource;
-use App\Models\Profession;
-
 /**
  * Controller class to Professions
  */

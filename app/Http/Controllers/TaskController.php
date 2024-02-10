@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TaskResource;
-use App\Models\Task;
-use Illuminate\Http\Request;
-
+/**
+ * Controller class to Tasks
+ */
 class TaskController extends Controller
 {
+    /**
+     * Return a general list from tasks
+     *
+     * @return JsonResponse<Tasks>
+     */
     public function index()
     {
-        //* Not used
-        // $tasks = Task::paginate(30);
-        // return new TaskResource($tasks);
+        // TODO: Tasks
     }
 }

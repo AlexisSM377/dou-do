@@ -10,7 +10,7 @@ class SummaryController extends Controller
     /**
      * Returns a general listo from summaries
      *
-     * @return void
+     * @return JsonResponse<Summaries>
      */
     public function index()
     {
