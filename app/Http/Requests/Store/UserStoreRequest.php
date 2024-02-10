@@ -4,6 +4,9 @@ namespace App\Http\Requests\Store;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * RequestStore from Users
+ */
 class UserStoreRequest extends FormRequest
 {
     /**
@@ -15,7 +18,7 @@ class UserStoreRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Sets validation rules to apply to the request
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
