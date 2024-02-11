@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
  * -> Prefix: V1
  * -> Middleware: sanctum
  */
-Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth:sanctum'], function(){
+Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth.api'], function(){
     Route::resource('users', UserController::class);
     Route::resource('workspaces', WorkspaceController::class);
     Route::resource('tasks', TaskController::class);
@@ -42,4 +42,6 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middlewa
 
 // Route to login and logout
 Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);

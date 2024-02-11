@@ -79,6 +79,6 @@ class UserController extends Controller
         $user->delete();
         return response()->json([
             'message' => "El usuario con el correo electronico: $user->email ha sido eliminado",
-        ]);
+        ], 200);
     }
 }

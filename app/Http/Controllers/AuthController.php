@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Api\AuthRequest;
+use App\Http\Requests\Store\UserStoreRequest;
+use App\Http\Resources\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\AuthRequest;
 use Illuminate\Http\Request;
 
 /**
@@ -23,7 +26,7 @@ class AuthController extends Controller
             $user = Auth()->User();
             return response()->json(['token' => $user->createToken('user-token')->plainTextToken], 200);
         } else {
-            return response()->json(['message' => 'Incorrect credentials'], 403);
+            return response()->json(['error' => 'Incorrect credentials'], 403);
         }
     }
 
@@ -37,5 +40,11 @@ class AuthController extends Controller
     {
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Closed session'], 200);
+    }
+
+    public function register(UserStoreRequest $request)
+    {
+        $user = User::create($request->all());
+        return new UserResource($user);
     }
 }

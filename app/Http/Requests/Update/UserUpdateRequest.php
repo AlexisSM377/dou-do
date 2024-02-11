@@ -32,7 +32,7 @@ class UserUpdateRequest extends FormRequest
                 'email' => 'required|max:100|email',
                 'password' => 'required|min:8|max:30',
                 'birthdate' => 'required|date',
-            ]; 
+            ];
         } else if ($method == 'PATCH') {
             return [
                 'name' => 'sometimes|required|max:25|min:4|string',
