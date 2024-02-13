@@ -12,7 +12,7 @@
             padding-top: 2.5rem;
             padding-bottom: 2.5rem;
             border-radius: 0.5rem;
-            width: 100%;
+            width: 50%;
             background-color: #374151;
         }
         .sub-box-main {
@@ -71,6 +71,7 @@
             font-weight: 600;
             color: #ffffff;
             background-color: #2563EB;
+            text-decoration-line: none;
         }
         .btn:hover {
             border-width: 2px;
@@ -84,6 +85,9 @@
         }
         body {
             font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -93,7 +97,7 @@
         <div class="sub-box-main">
             <span class="title">DuoDo</span>
         </div>
-        <div style="padding: 1rem; width: 100%; background-color: #2563EB; ">
+        <div style="padding: 1rem; background-color: #2563EB; ">
             <div style="display: flex; gap: 0.5rem; justify-content: center; ">
                 <span class="general-txt">---</span>
                 <span style="display: block; text-align: center; color: #ffffff; ">
