@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Resources\Resources\UserResource;
+use App\Mail\VerifyAccount;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Controller class to User-Auth actions
@@ -45,6 +47,9 @@ class AuthController extends Controller
     public function register(UserStoreRequest $request)
     {
         $user = User::create($request->all());
+        $token = $user->createToken('verify-account')->plainTextToken;
+        $emailVerify = new VerifyAccount($user, $token);
+        Mail::to($user->email)->send($emailVerify);
         return new UserResource($user);
     }
 }
