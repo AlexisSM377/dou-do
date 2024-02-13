@@ -114,7 +114,7 @@
                 electrónico.</span>
         </div>
         <div class="gen-spacing">
-            <span class="second-gen-txt">Hello Rafa</span>
+            <span class="second-gen-txt">Hello {{$name}}</span>
             <span class="instruction-two">Por favor, da clic en el siguiente botón para poder verificar tu
                 cuenta.</span>
         </div>

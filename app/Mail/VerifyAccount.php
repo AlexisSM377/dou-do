@@ -15,8 +15,6 @@ class VerifyAccount extends Mailable
     use Queueable, SerializesModels;
 
     public $name;
-    public $last_name;
-    public $email;
     public $token;
 
     /**
@@ -28,8 +26,6 @@ class VerifyAccount extends Mailable
     public function __construct($user, $token)
     {
         $this->name = $user->name;
-        $this->last_name = $user->last_name;
-        $this->email = $user->email;
         $this->token = $token;
     }
 
