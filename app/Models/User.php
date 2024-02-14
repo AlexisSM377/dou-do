@@ -124,4 +124,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'friend_requests', 'target_user_id', 'origin_user_id');
     }
+
+    public function verificationTraking()
+    {
+        return $this->hasOne(VerificationTraking::class, 'user_id');
+    }
 }
