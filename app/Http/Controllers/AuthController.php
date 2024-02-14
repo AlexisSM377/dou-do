@@ -50,10 +50,11 @@ class AuthController extends Controller
     public function register(UserStoreRequest $request)
     {
         $user = User::create($request->all());
-        $token = $user->createToken('email-token')->plainTextToken;
-        $url = URL::signedRoute('verification.verify', ['token' => "1"]);
-        $emailVerify = new VerifyAccount($user, $url);
+        $token = $user->createToken('email-token', [], now()->addHours(8))->plainTextToken;
+        $emailVerify = new VerifyAccount($user, $token);
         Mail::to($user->email)->send($emailVerify);
         return new UserResource($user);
     }
+
+    
 }
