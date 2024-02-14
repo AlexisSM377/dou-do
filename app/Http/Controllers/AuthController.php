@@ -7,6 +7,7 @@ use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Resources\Resources\UserResource;
 use App\Mail\VerifyAccount;
 use App\Models\User;
+use App\Models\VerificationTraking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -50,7 +51,8 @@ class AuthController extends Controller
     public function register(UserStoreRequest $request)
     {
         $user = User::create($request->all());
-        $token = $user->createToken('email-token', [], now()->addHours(8))->plainTextToken;
+        VerificationTraking::create(['user_id' => $user->id, 'valid_until' => now('America/Mexico_City')->addHours(8) ]);
+        $token = $user->createToken('email-token', [], now('America/Mexico_City')->addHours(8))->plainTextToken;
         $emailVerify = new VerifyAccount($user, $token);
         Mail::to($user->email)->send($emailVerify);
         return new UserResource($user);

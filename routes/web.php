@@ -28,3 +28,7 @@ Route::get('/get-verify-request/{token}', [
     VerifyEmailController::class, 
     'getVerifyRequest']
 )->name('verify-request');
+
+Route::get('nose', function(){
+    dd();
+});

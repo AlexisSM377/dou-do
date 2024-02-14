@@ -9,6 +9,8 @@ class VerificationTraking extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'count', 'valid_until'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
