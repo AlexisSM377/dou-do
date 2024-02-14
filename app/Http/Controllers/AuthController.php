@@ -56,5 +56,9 @@ class AuthController extends Controller
         return new UserResource($user);
     }
 
-    
+    public function verifyEmail(Request $request)
+    {
+        $request->user()->update(['verified' => true]);
+    }
+
 }
