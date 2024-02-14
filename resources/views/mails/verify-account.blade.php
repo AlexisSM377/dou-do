@@ -119,9 +119,7 @@
                 cuenta.</span>
         </div>
         <div style="display: flex; margin-top: 3rem; justify-content: center; ">
-            <a href="http://"
-                class="btn">Verificar
-                correo electrónico</a>
+            <a href="{{$url}}" class="btn">Verificar correo electrónico</a>
         </div>
         <div class="gen-spacing">
             <span class="second-gen-txt">¡Gracias!</span>

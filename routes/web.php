@@ -1,6 +1,10 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('nose', function() {
-    return view('mails.verify-account');
-});
+
+Route::get('/verify-email', function (Request $request) {
+    if (! $request->hasValidSignature()) {
+        abort(401, 'Unauthorized');
+    }
+
+    dd("verificado chavo");
+})->middleware('signed')->name('verification.verify');

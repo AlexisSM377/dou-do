@@ -9,7 +9,10 @@ use App\Mail\VerifyAccount;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 /**
  * Controller class to User-Auth actions
@@ -47,8 +50,9 @@ class AuthController extends Controller
     public function register(UserStoreRequest $request)
     {
         $user = User::create($request->all());
-        $token = $user->createToken('verify-account')->plainTextToken;
-        $emailVerify = new VerifyAccount($user, $token);
+        $token = $user->createToken('email-token')->plainTextToken;
+        $url = URL::signedRoute('verification.verify', ['token' => "1"]);
+        $emailVerify = new VerifyAccount($user, $url);
         Mail::to($user->email)->send($emailVerify);
         return new UserResource($user);
     }

@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -15,7 +14,7 @@ class VerifyAccount extends Mailable
     use Queueable, SerializesModels;
 
     public $name;
-    public $token;
+    public $url;
 
     /**
      * Undocumented function
@@ -23,10 +22,10 @@ class VerifyAccount extends Mailable
      * @param User $user
      * @param string $token
      */
-    public function __construct($user, $token)
+    public function __construct($user, $url)
     {
         $this->name = $user->name;
-        $this->token = $token;
+        $this->url = $url;
     }
 
     /**
