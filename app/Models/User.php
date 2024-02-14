@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'password',
         'birthdate',
+        'verified',
     ];
 
     // The attributes that should be hidden

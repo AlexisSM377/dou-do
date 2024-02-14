@@ -21,7 +21,7 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/get-verify-request/{token}', [
@@ -29,6 +29,6 @@ Route::get('/get-verify-request/{token}', [
     'getVerifyRequest']
 )->name('verify-request');
 
-Route::get('nose', function(){
-    dd();
-});
+Route::get('welcome', function(){
+    return view('welcome');
+})->name('welcome');
