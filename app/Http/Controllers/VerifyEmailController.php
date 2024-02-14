@@ -13,7 +13,11 @@ class VerifyEmailController extends Controller
         if ($request->hasValidSignature()) {
             $url = config('app.base_url') . "/api/verify-email";
             $token = Crypt::decryptString($token);
-            Http::withToken($token)->post($url);
+            dd($token);
+            $response = Http::withToken($token)->post($url);
+            if ($response->ok()) {
+                return redirect()->route('welcome');
+            }
         } else {
             dd("Esta petición ha vencido");
         }
