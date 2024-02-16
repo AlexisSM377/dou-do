@@ -13,9 +13,9 @@ class ErrorTypesSeeder extends Seeder
      */
     public function run(): void
     {
-        ErrorType::create(['error' => 'API']);
-        ErrorType::create(['error' => 'Auth']);
-        ErrorType::create(['error' => 'Controller']);
-        ErrorType::create(['error' => 'Class']);
+        ErrorType::create(['type' => 'API']);
+        ErrorType::create(['type' => 'Auth']);
+        ErrorType::create(['type' => 'Controller']);
+        ErrorType::create(['type' => 'Class']);
     }
 }
