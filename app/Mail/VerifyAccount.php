@@ -31,7 +31,7 @@ class VerifyAccount extends Mailable
         $this->url = URL::temporarySignedRoute(
             'verify-request', 
             $expiration,
-            ['token' => Crypt::encryptString($token) 
+            ['token' => urlencode($token)
         ]);
     }
 

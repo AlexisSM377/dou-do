@@ -60,16 +60,7 @@ class AuthController extends Controller
 
     public function verifyEmail(Request $request)
     {
-        if (now('America/Mexico_City')->lessThan($request->user()->verificationTraking->valid_until)) {
-            if ($request->user()->verificationTraking->count <= 2) {
-                $request->user()->update(['verified' => true]);
-                return redirect()->route('welcome');
-            } else {
-                dd("Exception");
-            }
-        } else {
-            dd("El tiempo expiro");
-        }
+        
     }
 
 }
