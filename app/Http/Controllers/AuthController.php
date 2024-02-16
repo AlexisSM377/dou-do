@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\GlobalClases\Api\RegistrationActions;
 use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Resources\Resources\UserResource;
@@ -10,7 +11,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use RegistrationActions;
 
 /**
  * Controller class to User-Auth actions

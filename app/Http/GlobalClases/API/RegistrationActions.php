@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\GlobalClases\Api;
+
 use App\Mail\VerifyAccount;
 use App\Models\UserToken;
 use Illuminate\Http\Request;
