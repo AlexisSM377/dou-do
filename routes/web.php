@@ -34,3 +34,8 @@ Route::get('/get-verify-request/{token}', [
 Route::get('welcome', function(){
     return view('welcome');
 })->name('welcome');
+
+
+Route::get('nose', function(){
+    
+});

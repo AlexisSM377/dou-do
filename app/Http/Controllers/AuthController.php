@@ -8,6 +8,7 @@ use App\Http\Resources\Resources\UserResource;
 use App\Mail\VerifyAccount;
 use App\Models\ErrorLog;
 use App\Models\User;
+use App\Models\UserToken;
 use App\Models\VerificationTraking;
 use Error;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +55,7 @@ class AuthController extends Controller
     {
         try {
             $user = User::create($request->all());
-            $token = $user->createToken('email-token', [], now('America/Mexico_City')->addHours(8))->plainTextToken;
+            $token = $this->setUserToken($user, 1);
             $emailVerify = new VerifyAccount($user, $token);
             Mail::to($user->email)->send($emailVerify);
             return new UserResource($user);
@@ -77,5 +78,16 @@ class AuthController extends Controller
             'class' => $th->getTrace()[0]['class'],
             'function' => $th->getTrace()[0]['function'],
         ]);
+    }
+
+    public function setUserToken($user, $tokenType) 
+    {
+        $objToken = UserToken::create([
+            'user_id' => $user->id,
+            'token' => Crypt::encryptString(Str::random(15) . Str::replace(' ', '/', now('America/Mexico_City'))),
+            'token_type_id' => $tokenType,
+            'valid_until' => now('America/Mexico_City')->addHours(12),
+        ]);
+        return $objToken->token;
     }
 }

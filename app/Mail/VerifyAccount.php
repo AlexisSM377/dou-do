@@ -8,7 +8,6 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\URL;
 
 class VerifyAccount extends Mailable
@@ -26,7 +25,7 @@ class VerifyAccount extends Mailable
      */
     public function __construct($user, $token)
     {
-        $expiration = now('America/Mexico_City')->addHours(8);
+        $expiration = now('America/Mexico_City')->addHours(12);
         $this->name = $user->name;
         $this->url = URL::temporarySignedRoute(
             'verify-request', 
