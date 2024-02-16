@@ -6,8 +6,10 @@ use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Resources\Resources\UserResource;
 use App\Mail\VerifyAccount;
+use App\Models\ErrorLog;
 use App\Models\User;
 use App\Models\VerificationTraking;
+use Error;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -51,13 +53,20 @@ class AuthController extends Controller
     public function register(UserStoreRequest $request)
     {
         try {
+            $resultado = 10 / 0;
             $user = User::create($request->all());
             $token = $user->createToken('email-token', [], now('America/Mexico_City')->addHours(8))->plainTextToken;
             $emailVerify = new VerifyAccount($user, $token);
             Mail::to($user->email)->send($emailVerify);
             return new UserResource($user);
         } catch (\Throwable $th) {
-            
+            ErrorLog::create([
+                'message' => $th->getMessage(),
+                'type' => 'api',
+                'class' => get_class($this),
+                'function' => debug_backtrace()[0]['function'],
+            ]);
+            return response()->json(['error' => $th->getMessage()]);
         }
     }
 

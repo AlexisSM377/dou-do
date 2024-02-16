@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('error_logs', function (Blueprint $table) {
+        Schema::create('error_types', function (Blueprint $table) {
             $table->id();
-            $table->string('message');
-            $table->tinyInteger('type');
-            $table->string('controller');
-            $table->string('function');
+            $table->string('error');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('error_logs');
+        Schema::dropIfExists('error_types');
     }
 };
