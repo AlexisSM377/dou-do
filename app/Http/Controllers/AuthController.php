@@ -50,12 +50,15 @@ class AuthController extends Controller
 
     public function register(UserStoreRequest $request)
     {
-        $user = User::create($request->all());
-        VerificationTraking::create(['user_id' => $user->id, 'valid_until' => now('America/Mexico_City')->addHours(8) ]);
-        $token = $user->createToken('email-token', [], now('America/Mexico_City')->addHours(8))->plainTextToken;
-        $emailVerify = new VerifyAccount($user, $token);
-        Mail::to($user->email)->send($emailVerify);
-        return new UserResource($user);
+        try {
+            $user = User::create($request->all());
+            $token = $user->createToken('email-token', [], now('America/Mexico_City')->addHours(8))->plainTextToken;
+            $emailVerify = new VerifyAccount($user, $token);
+            Mail::to($user->email)->send($emailVerify);
+            return new UserResource($user);
+        } catch (\Throwable $th) {
+            
+        }
     }
 
     public function verifyEmail(Request $request)

@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_tokens', function (Blueprint $table) {
+        Schema::create('token_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('token');
-            $table->tinyInteger('type');
-            $table->dateTime('valid_until');
-            $table->timestamps();
+            $table->string('type');
         });
     }
 
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_tokens');
+        Schema::dropIfExists('token_types');
     }
 };
