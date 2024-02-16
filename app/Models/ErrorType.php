@@ -9,7 +9,5 @@ class ErrorType extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'type'
-    ];
+    protected $fillable = ['type'];
 }

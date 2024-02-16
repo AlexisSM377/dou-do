@@ -62,7 +62,7 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             ErrorLog::create([
                 'message' => $th->getMessage(),
-                'type' => 'api',
+                'error_type_id' => 1,
                 'class' => get_class($this),
                 'function' => debug_backtrace()[0]['function'],
             ]);

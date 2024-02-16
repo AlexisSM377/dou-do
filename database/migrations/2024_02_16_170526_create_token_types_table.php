@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('error_types', function (Blueprint $table) {
+        Schema::create('token_types', function (Blueprint $table) {
             $table->id();
-            $table->string('error');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('error_types');
+        Schema::dropIfExists('token_types');
     }
 };
