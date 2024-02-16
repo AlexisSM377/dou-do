@@ -37,5 +37,10 @@ Route::get('welcome', function(){
 
 
 Route::get('nose', function(){
-    
+    dump(
+        Str::length(Crypt::encryptString(Str::random(15) . Str::replace(' ', '/', now('America/Mexico_City'))))
+    );
+    dd(
+        Str::length(bcrypt(Str::random(15) . Str::replace(' ', '/', now('America/Mexico_City'))) )
+    );
 });

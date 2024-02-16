@@ -6,13 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Ramsey\Uuid\Uuid;
+
 
 /**
  * Model class to User
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids;
+    
 
     // Fillable
     protected $fillable = [
@@ -35,6 +39,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function newUniqueId(): string
+    {
+        return (string) Uuid::uuid4();
+    }
+
+    public function uniqueIds(): array
+    {
+        return ['external_identifier'];
+    }
 
     /**
      * Relational function User-Notification
@@ -124,10 +138,5 @@ class User extends Authenticatable
     public function friendRequestsToMe()
     {
         return $this->belongsToMany(User::class, 'friend_requests', 'target_user_id', 'origin_user_id');
-    }
-
-    public function verificationTraking()
-    {
-        return $this->hasOne(VerificationTraking::class, 'user_id');
     }
 }

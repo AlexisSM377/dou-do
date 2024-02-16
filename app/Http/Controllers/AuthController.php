@@ -56,8 +56,8 @@ class AuthController extends Controller
         try {
             $user = User::create($request->all());
             $token = $this->setUserToken($user, 1);
-            $emailVerify = new VerifyAccount($user, $token);
-            Mail::to($user->email)->send($emailVerify);
+            $this->buildEmail($user, $token);
+            
             return new UserResource($user);
         } catch (\Throwable $th) {
             $this->setError($th, 1);
@@ -73,7 +73,7 @@ class AuthController extends Controller
     public function setError($th, $typeError)
     {
         ErrorLog::create([
-            'message' => $th->getMessage(),
+            'message' => Str::limit($th->getMessage(), 250),
             'error_type_id' => $typeError,
             'class' => $th->getTrace()[0]['class'],
             'function' => $th->getTrace()[0]['function'],
@@ -82,12 +82,20 @@ class AuthController extends Controller
 
     public function setUserToken($user, $tokenType) 
     {
-        $objToken = UserToken::create([
+        $token = Str::random(15) . Str::replace(' ', '/', now('America/Mexico_City'));
+        UserToken::create([
             'user_id' => $user->id,
-            'token' => Crypt::encryptString(Str::random(15) . Str::replace(' ', '/', now('America/Mexico_City'))),
+            'token' => bcrypt($token),
             'token_type_id' => $tokenType,
             'valid_until' => now('America/Mexico_City')->addHours(12),
         ]);
-        return $objToken->token;
+        return $token;
+    }
+
+    public function buildEmail($user, $token)
+    {
+        $encryptedToken = Crypt::encryptString($token);
+        $emailVerify = new VerifyAccount($user, $encryptedToken);
+        Mail::to($user->email)->send($emailVerify);
     }
 }
