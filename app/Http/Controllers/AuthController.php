@@ -53,19 +53,13 @@ class AuthController extends Controller
     public function register(UserStoreRequest $request)
     {
         try {
-            $resultado = 10 / 0;
             $user = User::create($request->all());
             $token = $user->createToken('email-token', [], now('America/Mexico_City')->addHours(8))->plainTextToken;
             $emailVerify = new VerifyAccount($user, $token);
             Mail::to($user->email)->send($emailVerify);
             return new UserResource($user);
         } catch (\Throwable $th) {
-            ErrorLog::create([
-                'message' => $th->getMessage(),
-                'error_type_id' => 1,
-                'class' => get_class($this),
-                'function' => debug_backtrace()[0]['function'],
-            ]);
+            $this->setError($th, 1);
             return response()->json(['error' => $th->getMessage()]);
         }
     }
@@ -75,4 +69,13 @@ class AuthController extends Controller
         
     }
 
+    public function setError($th, $typeError)
+    {
+        ErrorLog::create([
+            'message' => $th->getMessage(),
+            'error_type_id' => $typeError,
+            'class' => $th->getTrace()[0]['class'],
+            'function' => $th->getTrace()[0]['function'],
+        ]);
+    }
 }
