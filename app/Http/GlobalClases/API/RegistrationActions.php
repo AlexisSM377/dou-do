@@ -30,8 +30,18 @@ class RegistrationActions
 
     public static function buildEmail($user, $token)
     {
-        $encryptedToken = Crypt::encryptString($token);
-        $emailVerify = new VerifyAccount($user, $encryptedToken);
+        $body = RegistrationActions::generateBody($user, $token);
+        $emailVerify = new VerifyAccount($user, $body);
         Mail::to($user->email)->send($emailVerify);
+    }
+
+    private static function generateBody($user, $token)
+    {
+        $body = [
+            'token' => $token,
+            'request_code' => $user->external_identifier,
+        ];
+        
+        return Crypt::encryptString(json_encode($body));
     }
 }

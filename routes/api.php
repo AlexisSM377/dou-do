@@ -48,5 +48,4 @@ Route::post('/get-verify-request', [VerifyEmailController::class, 'getVerifyRequ
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/verify-email', [AuthController::class, 'verifyEmail']);
 });

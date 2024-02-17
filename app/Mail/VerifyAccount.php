@@ -23,14 +23,14 @@ class VerifyAccount extends Mailable
      * @param User $user
      * @param string $token
      */
-    public function __construct($user, $token)
+    public function __construct($user, $body)
     {
         $expiration = now('America/Mexico_City')->addHours(12);
         $this->name = $user->name;
         $this->url = URL::temporarySignedRoute(
             'verify-request', 
             $expiration,
-            ['token' => urlencode($token)
+            ['body' => urlencode($body)
         ]);
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyEmailController;
 use Illuminate\Database\Console\DumpCommand;
@@ -35,12 +36,13 @@ Route::get('welcome', function(){
     return view('welcome');
 })->name('welcome');
 
+Route::post('/verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
 
 Route::get('nose', function(){
-    dump(
-        Str::length(Crypt::encryptString(Str::random(15) . Str::replace(' ', '/', now('America/Mexico_City'))))
-    );
-    dd(
-        Str::length(bcrypt(Str::random(15) . Str::replace(' ', '/', now('America/Mexico_City'))) )
-    );
+    $body = [
+        'token' => 'nose1234nose1234nose1234',
+        'request_code' => 'A1-B1-C1'
+    ];
+    $newBody = json_encode($body);
+    dd(Crypt::encryptString($newBody));
 });

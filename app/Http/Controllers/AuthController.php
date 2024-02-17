@@ -59,6 +59,11 @@ class AuthController extends Controller
         }
     }
 
+    public function verifyEmail(UserStoreRequest $request)
+    {
+        
+    }
+
     public function setError($th, $typeError)
     {
         ErrorLog::create([
