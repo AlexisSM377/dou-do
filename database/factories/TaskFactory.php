@@ -20,7 +20,7 @@ class TaskFactory extends Factory
             'user_id' => fake()->numberBetween(1, 5),
             'priority_id' => fake()->numberBetween(1, 5),
             'title' => fake()->word(),
-            'description' => fake()->paragraph(),
+            'description' => fake()->sentence(5),
             'status' => fake()->boolean(),
             'due_date' => fake()->dateTimeBetween('now', 'now'),
         ];
