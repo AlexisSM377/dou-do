@@ -24,9 +24,5 @@ Route::get('welcome', function(){
     return view('welcome');
 })->name('welcome');
 
-Route::get('/get-verify-request/{body}', [
-    VerifyEmailController::class,
-    'getVerifyRequest'
-])->name('verify-request');
-
+Route::get('/get-verify-request/{body}', [ VerifyEmailController::class, 'getVerifyRequest' ])->name('verify-request');
 Route::post('/verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
