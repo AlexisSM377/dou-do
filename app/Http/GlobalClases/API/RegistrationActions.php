@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
-class RegistrationActions 
+class RegistrationActions
 {
     public static function verifyEmail(Request $request)
     {
-        
+
     }
 
-    public static function setUserToken($user, $tokenType) 
+    public static function setUserToken($user, $tokenType)
     {
         $token = Str::random(15) . Str::replace(' ', '/', now('America/Mexico_City'));
         UserToken::create([
@@ -41,7 +41,7 @@ class RegistrationActions
             'token' => $token,
             'request_code' => $user->external_identifier,
         ];
-        
+
         return Crypt::encryptString(json_encode($body));
     }
 }
