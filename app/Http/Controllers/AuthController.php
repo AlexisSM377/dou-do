@@ -51,7 +51,7 @@ class AuthController extends Controller
             $user = User::create($request->all());
             $token = RegistrationActions::setUserToken($user, 1);
             RegistrationActions::buildEmail($user, $token);
-            dd('aqui x2');
+
             return new UserResource($user);
         } catch (\Throwable $th) {
             $this->setError($th, 1);

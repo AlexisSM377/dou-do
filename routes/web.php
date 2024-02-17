@@ -24,7 +24,7 @@ Route::get('welcome', function(){
     return view('welcome');
 })->name('welcome');
 
-Route::get('/get-verify-request/{token}', [
+Route::get('/get-verify-request/{body}', [
     VerifyEmailController::class,
     'getVerifyRequest'
 ])->name('verify-request');
