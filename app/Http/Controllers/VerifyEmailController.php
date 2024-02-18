@@ -12,7 +12,6 @@ class VerifyEmailController extends Controller
 {
     public function getVerifyRequest(Request $request, $body)
     {
-        $error = false;
         try {
             if ($request->hasValidSignature()) {
                 $rescuedBody = json_decode(Crypt::decryptString($body));
@@ -26,21 +25,12 @@ class VerifyEmailController extends Controller
                                 $user->update([
                                     'verified' => true
                                 ]);
-                            } else {
-                                $error = true;
+                                return redirect()->route();
                             }
-                        } else {
-                            $error = true;
                         }
-                    } else {
-                        $error = true;
                     }
-                } else {
-                    $error = true;
                 }
-                if ($error) {
-                    return redirect()->route('verification.expired');
-                }
+                return redirect()->route('verification.expired');
             } else {
                 return redirect()->route('verification.expired');
             }
@@ -53,5 +43,10 @@ class VerifyEmailController extends Controller
     public function verificationExpired()
     {
         return view('mails.resend-verification');
+    }
+
+    public function verified()
+    {
+        return view('mails.verified');
     }
 }

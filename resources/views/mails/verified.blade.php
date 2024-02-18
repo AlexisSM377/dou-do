@@ -51,10 +51,10 @@
 <body class="">
     <div class="boxMain">
         <div class="subMain">
-            <span class="title">Problemas internos...</span>
-            <span class="subtitle">Por favor, comunícate con el soporte para poder ayudarte.</span>
+            <span class="title">¡Gracias por verificar tu cuenta! 🎉🎉🎉</span>
+            <span class="subtitle">Ahora puedes iniciar sesión desde la aplicación DuoDo.</span>
             <div class="imgContainer">
-                <img src="https://i.postimg.cc/Y91Y9jF8/triste.png"
+                <img src="https://i.postimg.cc/44PHFDQK/feliz.png"
                     alt="" style="width: 16rem;">
             </div>
         </div>
