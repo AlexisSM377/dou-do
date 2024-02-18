@@ -25,7 +25,7 @@ class VerifyEmailController extends Controller
                                 $user->update([
                                     'verified' => true
                                 ]);
-                                return redirect()->route('verified', $user->id);
+                                return redirect()->route('email.verified', $user->id);
                             }
                         }
                     }

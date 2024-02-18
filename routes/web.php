@@ -28,6 +28,6 @@ Route::get('/internal-error', [ InternalManagement::class, 'handleInternalError'
 
 Route::group(['prefix' => 'verification'], function(){
     Route::get('/receive-request/{body}', [ VerifyEmailController::class, 'getVerifyRequest' ])->name('receive-request');
-    Route::get('/expired', [ VerifyEmailController::class, 'verificationExpired' ])->name('expired');
-    Route::get('/verified/{user}', [ VerifyEmailController::class, 'verified' ])->name('verified');
+    Route::get('/expired', [ VerifyEmailController::class, 'verificationExpired' ])->name('verification.expired');
+    Route::get('/verified/{user}', [ VerifyEmailController::class, 'verified' ])->name('email.verified');
 });
