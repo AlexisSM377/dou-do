@@ -7,7 +7,6 @@ use App\Http\GlobalClases\Api\RegistrationActions;
 use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Resources\Resources\UserResource;
-use App\Models\ErrorLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

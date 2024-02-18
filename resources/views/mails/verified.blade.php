@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Error interno</title>
+    <title>Cuenta verificada</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -55,7 +55,7 @@
             <span class="subtitle">Ahora puedes iniciar sesión desde la aplicación DuoDo.</span>
             <div class="imgContainer">
                 <img src="https://i.postimg.cc/44PHFDQK/feliz.png"
-                    alt="" style="width: 16rem;">
+                    alt="" style="width: 18rem;">
             </div>
         </div>
     </div>

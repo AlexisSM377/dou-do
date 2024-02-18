@@ -25,7 +25,7 @@ class VerifyEmailController extends Controller
                                 $user->update([
                                     'verified' => true
                                 ]);
-                                return redirect()->route();
+                                return redirect()->route('verified', $user->id);
                             }
                         }
                     }
@@ -45,8 +45,12 @@ class VerifyEmailController extends Controller
         return view('mails.resend-verification');
     }
 
-    public function verified()
+    public function verified(User $user)
     {
-        return view('mails.verified');
+        if ($user->verified) {
+            return view('mails.verified');
+        } else {
+            abort(403);
+        }
     }
 }
