@@ -11,17 +11,12 @@ use Illuminate\Support\Str;
 
 class RegistrationActions
 {
-    public static function verifyEmail(Request $request)
-    {
-
-    }
-
     public static function setUserToken($user, $tokenType)
     {
         $token = Str::random(15) . Str::replace(' ', '/', now('America/Mexico_City'));
         UserToken::create([
             'user_id' => $user->id,
-            'token' => bcrypt($token),
+            'token' => Crypt::encryptString($token),
             'token_type_id' => $tokenType,
             'valid_until' => now('America/Mexico_City')->addHours(12),
         ]);

@@ -15,12 +15,25 @@ class VerifyEmailController extends Controller
             $rescuedBody = json_decode(Crypt::decryptString($body));
             if ($rescuedBody->token && $rescuedBody->request_code) {
                 $user = User::where('external_identifier', $rescuedBody->request_code)->first();
-                $token = UserToken::where('user_id', $user->id)->where('token', $rescuedBody->token)->latest()->first();
-                dump($user);
-                dd($token);
+                if (!empty($user) && $user->verified == false) {
+                    $userToken = UserToken::where('user_id', $user->id)->first();
+                    if (!empty($userToken->id)) {
+                        $currentToken = Crypt::decryptString($userToken->token);
+                        if (strcasecmp($currentToken, $rescuedBody->token) == 0) {
+                            $user->update([
+                                'verified' => true
+                            ]);
+                        }
+                    }
+                }
             }
         } else {
             //TODO: LINK YA NO ES VALIDO
         }
+    }
+
+    public function verificationExpired()
+    {
+        return view('mails.resend-verification');
     }
 }

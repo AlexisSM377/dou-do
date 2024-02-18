@@ -25,4 +25,5 @@ Route::get('welcome', function(){
 })->name('welcome');
 
 Route::get('/get-verify-request/{body}', [ VerifyEmailController::class, 'getVerifyRequest' ])->name('verify-request');
+Route::get('/verification-expired', [ VerifyEmailController::class, 'verificationExpired' ])->name('verification.expired');
 Route::post('/verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
