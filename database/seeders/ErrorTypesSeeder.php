@@ -17,5 +17,6 @@ class ErrorTypesSeeder extends Seeder
         ErrorType::create(['type' => 'Auth']);
         ErrorType::create(['type' => 'Controller']);
         ErrorType::create(['type' => 'Class']);
+        ErrorType::create(['type' => 'Account Verification']);
     }
 }

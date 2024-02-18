@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\GlobalClases\Api\BuildError;
 use App\Http\GlobalClases\Api\RegistrationActions;
 use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Store\UserStoreRequest;
@@ -10,7 +11,7 @@ use App\Models\ErrorLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+
 
 /**
  * Controller class to User-Auth actions
@@ -54,18 +55,8 @@ class AuthController extends Controller
 
             return new UserResource($user);
         } catch (\Throwable $th) {
-            $this->setError($th, 1);
+            BuildError::setError($th, 1);
             return response()->json(['error' => $th->getMessage()]);
         }
-    }
-
-    public function setError($th, $typeError)
-    {
-        ErrorLog::create([
-            'message' => Str::limit($th->getMessage(), 250),
-            'error_type_id' => $typeError,
-            'class' => $th->getTrace()[0]['class'],
-            'function' => $th->getTrace()[0]['function'],
-        ]);
     }
 }

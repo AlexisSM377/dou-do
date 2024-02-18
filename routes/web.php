@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InternalManagement;
 use App\Http\Controllers\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +23,8 @@ Route::get('/', function () {
 Route::get('welcome', function(){
     return view('welcome');
 })->name('welcome');
+
+Route::get('/internal-error', [ InternalManagement::class, 'handleInternalError' ])->name('internal.error');
 
 Route::group(['prefix' => 'verification'], function(){
     Route::get('/receive-request/{body}', [ VerifyEmailController::class, 'getVerifyRequest' ])->name('receive-request');

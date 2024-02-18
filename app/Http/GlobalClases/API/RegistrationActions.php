@@ -4,7 +4,6 @@ namespace App\Http\GlobalClases\Api;
 
 use App\Mail\VerifyAccount;
 use App\Models\UserToken;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
