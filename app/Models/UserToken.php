@@ -15,4 +15,9 @@ class UserToken extends Model
         'token_type_id',
         'valid_until'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

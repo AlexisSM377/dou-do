@@ -16,7 +16,7 @@ use Ramsey\Uuid\Uuid;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasUuids;
-    
+
 
     // Fillable
     protected $fillable = [
@@ -138,5 +138,10 @@ class User extends Authenticatable
     public function friendRequestsToMe()
     {
         return $this->belongsToMany(User::class, 'friend_requests', 'target_user_id', 'origin_user_id');
+    }
+
+    public function userTokens()
+    {
+        return $this->hasMany(UserToken::class);
     }
 }
