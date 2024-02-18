@@ -19,7 +19,6 @@
             margin-bottom: 1rem;
             justify-content: center;
             width: 100%;
-            height: 10rem;
         }
         .title {
             display: block;
@@ -82,7 +81,7 @@
     <div class="boxMain">
         <div>
             <div class="boxImg">
-                <img src="https://kaihatsu-code.com/assets/logo.png" alt="" style="width: 16rem; height: 10rem;">
+                <img src="https://i.postimg.cc/0j4ygMdc/verificar-removebg-preview.png" alt="" style="width: 18rem;">
             </div>
             <div style="margin-top: 2rem; margin-bottom: 2rem;">
                 <hr>

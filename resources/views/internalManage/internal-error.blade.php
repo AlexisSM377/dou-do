@@ -55,7 +55,7 @@
             <span class="subtitle">Por favor, comunícate con el soporte para poder ayudarte.</span>
             <div class="imgContainer">
                 <img src="https://i.postimg.cc/Y91Y9jF8/triste.png"
-                    alt="" style="width: 16rem;">
+                    alt="" style="width: 18rem;">
             </div>
         </div>
     </div>
