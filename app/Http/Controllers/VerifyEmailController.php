@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\GlobalClases\Api\BuildError;
+use App\Http\GlobalClases\Api\RegistrationActions;
 use App\Models\User;
 use App\Models\UserToken;
 use Illuminate\Http\Request;
@@ -52,5 +53,18 @@ class VerifyEmailController extends Controller
         } else {
             abort(403);
         }
+    }
+
+    public function recendRequest(Request $request)
+    {
+        $email = $request->email;
+        if (!empty($email)) {
+            $user = User::where('email', $email)->first();
+            if ($user) {
+                $token = RegistrationActions::setUserToken($user, 1);
+                RegistrationActions::buildEmail($user, $token);
+            }
+        }
+        
     }
 }
