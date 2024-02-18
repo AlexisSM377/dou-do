@@ -23,12 +23,20 @@ class VerifyEmailController extends Controller
                             $user->update([
                                 'verified' => true
                             ]);
+                        } else {
+                            
                         }
+                    } else {
+
                     }
+                } else {
+
                 }
+            } else {
+
             }
         } else {
-            //TODO: LINK YA NO ES VALIDO
+            return redirect()->route('verification.expired');
         }
     }
 

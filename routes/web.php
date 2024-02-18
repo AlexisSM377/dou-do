@@ -24,6 +24,7 @@ Route::get('welcome', function(){
     return view('welcome');
 })->name('welcome');
 
-Route::get('/get-verify-request/{body}', [ VerifyEmailController::class, 'getVerifyRequest' ])->name('verify-request');
-Route::get('/verification-expired', [ VerifyEmailController::class, 'verificationExpired' ])->name('verification.expired');
-Route::post('/verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
+Route::group(['prefix' => 'verification'], function(){
+    Route::get('/receive-request/{body}', [ VerifyEmailController::class, 'getVerifyRequest' ])->name('receive-request');
+    Route::get('/expired', [ VerifyEmailController::class, 'verificationExpired' ])->name('expired');
+});
