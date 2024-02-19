@@ -27,7 +27,11 @@ class AuthController extends Controller
     {
         if (Auth::attempt($request->all())) {
             $user = Auth()->User();
-            return response()->json(['token' => $user->createToken('user-token')->plainTextToken], 200);
+            if ($user->verified == 1) {
+                return response()->json(['token' => $user->createToken('user-token')->plainTextToken], 200);
+            } else {
+                return response()->json(['message' => 'Please verify your account via email' ], 401);
+            }
         } else {
             return response()->json(['error' => 'Incorrect credentials'], 403);
         }
