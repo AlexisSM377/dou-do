@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
  * -> Prefix: V1
  * -> Middleware: sanctum
  */
-Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth.api'], function(){
+Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth.api' ], function(){
     Route::resource('users', UserController::class);
     Route::resource('workspaces', WorkspaceController::class);
     Route::resource('tasks', TaskController::class);
