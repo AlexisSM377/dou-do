@@ -19,7 +19,7 @@ class VerifyEmailController extends Controller
                 if ($rescuedBody->token && $rescuedBody->request_code) {
                     $user = User::where('external_identifier', $rescuedBody->request_code)->first();
                     if (!empty($user) && $user->verified == false) {
-                        $userToken = UserToken::where('user_id', $user->id)->first();
+                        $userToken = UserToken::where('user_id', $user->id)->latest()->first();
                         if (!empty($userToken->id)) {
                             $currentToken = Crypt::decryptString($userToken->token);
                             if (strcasecmp($currentToken, $rescuedBody->token) == 0) {
