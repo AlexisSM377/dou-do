@@ -31,4 +31,5 @@ Route::group(['prefix' => 'verification'], function(){
     Route::get('/verified/{user}', [ VerifyEmailController::class, 'verified' ])->name('email.verified');
     Route::get('/expired', [ VerifyEmailController::class, 'verificationExpired' ])->name('verification.expired');
     Route::post('/recend-request', [ VerifyEmailController::class, 'recendRequest' ])->name('recend.request');
+    Route::get('/recend', [ VerifyEmailController::class, 'resend' ])->name('email.recend');
 });

@@ -65,6 +65,12 @@ class VerifyEmailController extends Controller
                 RegistrationActions::buildEmail($user, $token);
             }
         }
-        
+        return redirect()->route('email.recend');
+
+    }
+
+    public function resend()
+    {
+        return view('mails.resend');
     }
 }
