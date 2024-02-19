@@ -62,7 +62,7 @@ class VerifyEmailController extends Controller
             $user = User::where('email', $email)->first();
             if ($user) {
                 $token = RegistrationActions::setUserToken($user, 1);
-                RegistrationActions::buildEmail($user, $token);
+                RegistrationActions::buildEmail($user, $token, 'verification');
             }
         }
         return redirect()->route('email.recend');

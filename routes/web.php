@@ -33,3 +33,7 @@ Route::group(['prefix' => 'verification'], function(){
     Route::post('/recend-request', [ VerifyEmailController::class, 'recendRequest' ])->name('recend.request');
     Route::get('/recend', [ VerifyEmailController::class, 'resend' ])->name('email.recend');
 });
+
+Route::group(['prefix' => 'forgot-password'], function(){
+    Route::get('/receive-request/{body}', [ VerifyEmailController::class, 'getVerifyRequest' ])->name('receive-request');
+});

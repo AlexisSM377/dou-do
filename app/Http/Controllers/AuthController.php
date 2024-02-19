@@ -53,8 +53,7 @@ class AuthController extends Controller
     {
         try {
             $user = User::create($request->all());
-            $token = RegistrationActions::setUserToken($user, 1);
-            RegistrationActions::buildEmail($user, $token);
+            $this->buildVerificationToken($user, 'verification');
 
             return new UserResource($user);
         } catch (\Throwable $th) {
@@ -65,6 +64,18 @@ class AuthController extends Controller
 
     public function forgotPassword(Request $request)
     {
-        dd($request->all());
+        if (!empty($request->email)) {
+            $user = User::where('email', $request->email)->first();
+            if (!empty($user)) {
+                $this->buildVerificationToken($user, 'forgot-password');
+            }
+        }
+
+    }
+
+    public function buildVerificationToken($user, $type)
+    {
+        $token = RegistrationActions::setUserToken($user, 1);
+        RegistrationActions::buildEmail($user, $token, $type);
     }
 }
