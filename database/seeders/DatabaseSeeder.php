@@ -21,5 +21,9 @@ class DatabaseSeeder extends Seeder
         Summary::factory(10)->create();
         Task::factory(30)->create();
         Workspace::factory(10)->create();
+        $this->call([
+            ErrorTypesSeeder::class,
+            TokenTypesSeeder::class,
+        ]);
     }
 }

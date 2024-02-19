@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\WorkspaceController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,7 @@ use Illuminate\Support\Facades\Route;
  * -> Prefix: V1
  * -> Middleware: sanctum
  */
-Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth.api'], function(){
+Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth.api' ], function(){
     Route::resource('users', UserController::class);
     Route::resource('workspaces', WorkspaceController::class);
     Route::resource('tasks', TaskController::class);
@@ -42,5 +43,8 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middlewa
 // Route to login and logout
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
+Route::post('/get-verify-request', [VerifyEmailController::class, 'getVerifyRequest']);
 
-Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
+Route::group(['middleware' => 'auth:sanctum'], function() {
+    Route::post('/logout', [AuthController::class, 'logout']);
+});

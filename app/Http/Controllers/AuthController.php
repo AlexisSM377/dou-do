@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\GlobalClases\Api\BuildError;
+use App\Http\GlobalClases\Api\RegistrationActions;
 use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Resources\Resources\UserResource;
-use App\Mail\VerifyAccount;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
 
 /**
  * Controller class to User-Auth actions
@@ -29,7 +27,11 @@ class AuthController extends Controller
     {
         if (Auth::attempt($request->all())) {
             $user = Auth()->User();
-            return response()->json(['token' => $user->createToken('user-token')->plainTextToken], 200);
+            if ($user->verified == 1) {
+                return response()->json(['token' => $user->createToken('user-token')->plainTextToken], 200);
+            } else {
+                return response()->json(['message' => 'Please verify your account via email' ], 401);
+            }
         } else {
             return response()->json(['error' => 'Incorrect credentials'], 403);
         }
@@ -49,11 +51,15 @@ class AuthController extends Controller
 
     public function register(UserStoreRequest $request)
     {
-        $user = User::create($request->all());
-        $token = $user->createToken('email-token')->plainTextToken;
-        $url = URL::signedRoute('verification.verify', ['token' => "1"]);
-        $emailVerify = new VerifyAccount($user, $url);
-        Mail::to($user->email)->send($emailVerify);
-        return new UserResource($user);
+        try {
+            $user = User::create($request->all());
+            $token = RegistrationActions::setUserToken($user, 1);
+            RegistrationActions::buildEmail($user, $token);
+
+            return new UserResource($user);
+        } catch (\Throwable $th) {
+            BuildError::setError($th, 1);
+            return response()->json(['error' => $th->getMessage()]);
+        }
     }
 }
