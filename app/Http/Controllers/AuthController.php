@@ -62,4 +62,9 @@ class AuthController extends Controller
             return response()->json(['error' => $th->getMessage()]);
         }
     }
+
+    public function forgotPassword(Request $request)
+    {
+        dd($request->all());
+    }
 }
