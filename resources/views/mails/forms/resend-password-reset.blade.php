@@ -88,12 +88,14 @@
             </div>
             <span class="title">Reenviar solicitud de restablecimiento de contraseña.</span>
             <span class="subtitle">El tiempo de la solicitud de restablecimiento de contraseña ha expirado. Ingresa tu correo electrónico para poder generar una nueva.</span>
-            <form action="{{route('')}}" method="POST">
+            <form action="{{route('forgot-password.forwarded')}}" method="POST">
                 @csrf
                 <div class="boxForm">
                     <label for="email">Correo electronico</label>
-                    <input type="email" class="inputEmail"
-                        name="email" id="email">
+                    <input type="email" class="inputEmail" name="email" id="email">
+                    @error('email')
+                        <span style="font-weight: 600; color: #EF4444;">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div style="margin-top: 1.5rem;">
                     <button type="submit" class="btn">Generar solicitud</button>

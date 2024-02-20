@@ -27,7 +27,7 @@
         }
         .title {
             display: block;
-            font-size: 1.875rem;
+            font-size: 1.5rem;
             line-height: 2.25rem;
             font-weight: 600;
             margin-bottom: 10px;

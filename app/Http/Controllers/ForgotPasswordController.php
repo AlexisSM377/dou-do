@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\GlobalClases\BuildError;
+use App\Http\Requests\Update\OnlyEmailRequest;
 use App\Http\Requests\Update\PasswordUpdateRequest;
 use App\Models\User;
 use App\Models\UserToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Http;
 
 class ForgotPasswordController extends Controller
 {
@@ -28,9 +30,9 @@ class ForgotPasswordController extends Controller
                         }
                     }
                 }
-                return redirect()->route('verification.expired');
+                return redirect()->route('forgot-password.expired');
             } else {
-                return redirect()->route('verification.expired');
+                return redirect()->route('forgot-password.expired');
             }
         } catch (\Throwable $th) {
             BuildError::saveError($th, 5);
@@ -43,9 +45,15 @@ class ForgotPasswordController extends Controller
         return view('mails.forms.resend-password-reset');
     }
 
-    public function attendRequestForwarded()
+    public function attendRequestForwarded(OnlyEmailRequest $request)
     {
-        // TODO: Logica para reenvio de solicitud
+        if ($request->email) {
+            $url = config('app.base_url') . '/api/forgot-password';
+            $response = Http::asForm()->post($url, [
+                'email' => $request->email,
+            ]);
+            dd($response);
+        }
     }
 
     public function showForwardMessage()
