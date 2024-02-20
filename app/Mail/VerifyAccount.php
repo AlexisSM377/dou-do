@@ -28,7 +28,7 @@ class VerifyAccount extends Mailable
         $expiration = now('America/Mexico_City')->addHours(12);
         $this->name = $user->name;
         $this->url = URL::temporarySignedRoute(
-            'receive-request',
+            'verification.attend',
             $expiration,
             ['body' => urlencode($body)
         ]);

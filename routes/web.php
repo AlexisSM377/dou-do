@@ -27,13 +27,10 @@ Route::get('welcome', function(){
 Route::get('/internal-error', [ InternalManagement::class, 'handleInternalError' ])->name('internal.error');
 
 Route::group(['prefix' => 'verification'], function(){
-    Route::get('/receive-request/{body}', [ VerifyEmailController::class, 'getVerifyRequest' ])->name('receive-request');
-    Route::get('/verified/{user}', [ VerifyEmailController::class, 'verified' ])->name('email.verified');
+    Route::get('/attend/{body}', [ VerifyEmailController::class, 'getVerifyRequest' ])->name('verification.attend');
+    Route::get('/verify/{user}', [ VerifyEmailController::class, 'verified' ])->name('verification.verify');
     Route::get('/expired', [ VerifyEmailController::class, 'verificationExpired' ])->name('verification.expired');
-    Route::post('/recend-request', [ VerifyEmailController::class, 'recendRequest' ])->name('recend.request');
-    Route::get('/recend', [ VerifyEmailController::class, 'resend' ])->name('email.recend');
+    Route::post('/resend', [ VerifyEmailController::class, 'recendRequest' ])->name('verification.resend');
+    Route::get('/forwarded-message', [ VerifyEmailController::class, 'resend' ])->name('verification.fm');
 });
 
-Route::group(['prefix' => 'forgot-password'], function(){
-    Route::get('/receive-request/{body}', [ VerifyEmailController::class, 'getVerifyRequest' ])->name('receive-request');
-});

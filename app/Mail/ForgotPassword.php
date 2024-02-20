@@ -25,7 +25,7 @@ class ForgotPassword extends Mailable
         $expiration = now('America/Mexico_City')->addHours(12);
         $this->name = $user->name;
         $this->url = URL::temporarySignedRoute(
-            'receive-request',
+            'a',
             $expiration,
             ['body' => urlencode($body)
         ]);

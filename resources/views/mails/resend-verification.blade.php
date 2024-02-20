@@ -89,7 +89,7 @@
             <span class="title">Reenviar verificación de correo electronico</span>
             <span class="subtitle">El tiempo de validación de tu cuenta ha expirado. Ingresa tu correo
                 electrónico para poder generar una nueva solicitud de verificación.</span>
-            <form action="{{route('recend.request')}}" method="POST">
+            <form action="{{route('verification.resend')}}" method="POST">
                 @csrf
                 <div class="boxForm">
                     <label for="email">Correo electronico</label>

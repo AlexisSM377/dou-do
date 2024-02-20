@@ -26,7 +26,7 @@ class VerifyEmailController extends Controller
                                 $user->update([
                                     'verified' => true
                                 ]);
-                                return redirect()->route('email.verified', $user->id);
+                                return redirect()->route('verification.verify', $user->id);
                             }
                         }
                     }
@@ -65,7 +65,7 @@ class VerifyEmailController extends Controller
                 RegistrationActions::buildEmail($user, $token, 'verification');
             }
         }
-        return redirect()->route('email.recend');
+        return redirect()->route('verification.fm');
 
     }
 
