@@ -22,8 +22,8 @@ class PasswordUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'password' => 'required|same:password_confirmation',
-            'password_confirmation' => 'required',
+            'password' => 'required|same:password_confirmation|min:8',
+            'password_confirmation' => 'required|min:8',
         ];
     }
 
@@ -31,7 +31,8 @@ class PasswordUpdateRequest extends FormRequest
     {
         return [
             '*.required' => 'El campo es requerido.',
-            '*.same' => 'Los valores deben coincidir.'
+            '*.same' => 'Los valores deben coincidir.',
+            '*.min' => 'La contraseña debe contener mínimo 8 caracteres.'
         ];
     }
 }

@@ -11,7 +11,6 @@ use App\Models\UserToken;
 use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Http;
 
 class ForgotPasswordController extends Controller
 {
@@ -59,11 +58,6 @@ class ForgotPasswordController extends Controller
         } catch (\Throwable $th) {
             BuildError::saveError($th, 6);
         }
-    }
-
-    public function showForwardMessage()
-    {
-        // TODO: Motsrar vista de que se ha reenviado la solicitud de restablecimiento de contraseña
     }
 
     public function restorePassword(PasswordUpdateRequest $request, User $user)
