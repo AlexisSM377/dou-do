@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Actualizar contraseña</title>
+    <title>Reenviar verificación de cuenta</title>
     <style>
         .boxMain {
             display: flex;
@@ -43,7 +43,7 @@
             border-radius: 0.375rem;
             border-width: 2px;
             border-color: #93C5FD;
-            width: 100%;
+            width: 33.333333%;
             font-weight: 600;
             padding-bottom: 5px;
             padding-top: 5px;
@@ -81,26 +81,19 @@
     <div class="boxMain">
         <div>
             <div class="boxImg">
-                <img src="https://i.postimg.cc/SQzXwrH6/contra-removebg-preview.png" alt="" style="width: 16rem;">
+                <img src="https://i.postimg.cc/GmS8W53j/three-removebg-preview.png" alt="" style="width: 18rem;">
             </div>
-            <div style="margin-top: 1rem; margin-bottom: 2rem;">
+            <div style="margin-top: 2rem; margin-bottom: 2rem;">
                 <hr>
             </div>
-            <span class="title">Restablecimiento de contraseña.</span>
-            <span class="subtitle">Ingresa tu nueva contraseña</span>
-            <form action="{{route('forgot-password.restore', $user->id)}}" method="POST">
+            <span class="title">Reenviar solicitud de restablecimiento de contraseña.</span>
+            <span class="subtitle">El tiempo de la solicitud de restablecimiento de contraseña ha expirado. Ingresa tu correo electrónico para poder generar una nueva.</span>
+            <form action="{{route('')}}" method="POST">
                 @csrf
                 <div class="boxForm">
-                    <div style="width: 50%">
-                        <label for="password">Contraseña</label>
-                        <input type="password" class="inputEmail" name="password" id="password">
-                        @error('password') <span style="font-weight: 600; color: #EF4444;">{{ $message }}</span> @enderror
-                    </div>
-                    <div style="width: 50%">
-                        <label for="password_confirmation">Confirmar contraseña</label>
-                        <input type="password" class="inputEmail" name="password_confirmation" id="password_confirmation">
-                        @error('password_confirmation') <span style="font-weight: 600; color: #EF4444;">{{ $message }}</span> @enderror
-                    </div>
+                    <label for="email">Correo electronico</label>
+                    <input type="email" class="inputEmail"
+                        name="email" id="email">
                 </div>
                 <div style="margin-top: 1.5rem;">
                     <button type="submit" class="btn">Generar solicitud</button>
