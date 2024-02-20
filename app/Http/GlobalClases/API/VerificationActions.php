@@ -27,10 +27,10 @@ class VerificationActions
     {
         $body = VerificationActions::generateBody($user, $token);
         switch ($type) {
-            case 'verification':
+            case 1:
                 $emailVerify = new VerifyAccount($user, $body);
             break;
-            case 'forgot-password':
+            case 2:
                 $emailVerify = new ForgotPassword($user, $body);
             break;
             default:

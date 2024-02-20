@@ -53,7 +53,7 @@ class AuthController extends Controller
     {
         try {
             $user = User::create($request->all());
-            $this->buildVerificationToken($user, 'verification');
+            $this->buildVerificationToken($user, 1);
 
             return new UserResource($user);
         } catch (\Throwable $th) {
@@ -64,12 +64,17 @@ class AuthController extends Controller
 
     public function forgotPassword(Request $request)
     {
-        // TODO
+        if (!empty($request->email)) {
+            $user = User::where('email', $request->email)->first();
+            if (!empty($user)) {
+                $this->buildVerificationToken($user, 2);
+            }
+        }
     }
 
     public function buildVerificationToken($user, $type)
     {
-        $token = VerificationActions::setUserToken($user, 1);
+        $token = VerificationActions::setUserToken($user, $type);
         VerificationActions::buildEmail($user, $token, $type);
     }
 }

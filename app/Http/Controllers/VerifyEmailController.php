@@ -62,7 +62,7 @@ class VerifyEmailController extends Controller
             $user = User::where('email', $email)->first();
             if ($user) {
                 $token = VerificationActions::setUserToken($user, 1);
-                VerificationActions::buildEmail($user, $token, 'verification');
+                VerificationActions::buildEmail($user, $token, 1);
             }
         }
         return redirect()->route('verification.fm');
