@@ -27,16 +27,17 @@
         }
         .title {
             display: block;
-            font-size: 1.875rem;
+            font-size: 1.5rem;
             line-height: 2.25rem;
             font-weight: 600;
             margin-bottom: 10px;
         }
         .subtitle {
             display: block;
-            margin-top: 0.5rem;
-            font-size: 1.25rem;
-            line-height: 1.75rem;
+            font-size: 1.125rem;
+            line-height: 2.25rem;
+            font-weight: 200;
+            margin-bottom: 10px;
         }
         .imgContainer {
             display: flex;
@@ -52,7 +53,8 @@
 <body class="">
     <div class="boxMain">
         <div class="subMain">
-            <span class="title">Se ha generado una nueva solicitud de restablecimiento de contraseña. Revisa tu correo electrónico.</span>
+            <span class="title">Se ha generado una nueva solicitud de restablecimiento de contraseña.</span>
+            <span class="subtitle">Revisa tu correo electrónico.</span>
             <div class="imgContainer">
                 <img src="https://i.postimg.cc/4d7nRyVY/20541e8c-97c5-465a-a386-9d5d21ef3199-removebg-preview.png"
                     alt="" style="width: 18rem;">

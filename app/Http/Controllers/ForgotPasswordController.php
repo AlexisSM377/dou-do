@@ -52,6 +52,7 @@ class ForgotPasswordController extends Controller
         try {
             if ($request->email) {
                 BuildForgotPasswordEmail::build($request->email);
+                return view('mails.informativeMessages.resend-password-reset');
             } else {
                 throw new Error('La petición no contiene un correo.');
             }

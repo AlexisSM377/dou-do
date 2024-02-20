@@ -34,9 +34,9 @@
         }
         .subtitle {
             display: block;
-            margin-top: 0.5rem;
-            font-size: 1.25rem;
-            line-height: 1.75rem;
+            font-size: 1.125rem;
+            line-height: 2.25rem;
+            font-weight: 200;
         }
         .imgContainer {
             display: flex;
@@ -52,7 +52,8 @@
 <body class="">
     <div class="boxMain">
         <div class="subMain">
-          <span class="title">La contraseña ha sido restablecida con éxito, ahora puedes iniciar sesión desde la aplicación.</span>
+          <span class="title">La contraseña ha sido restablecida con éxito.</span>
+          <span class="subtitle">Ahora puedes iniciar sesión desde la aplicación.</span>
           <div class="imgContainer">
             <img src="https://i.postimg.cc/52pq6g4H/dos-removebg-preview.png" alt="" style="width: 18rem;" />
           </div>
