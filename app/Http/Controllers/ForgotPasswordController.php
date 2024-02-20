@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\GlobalClases\Api\BuildForgotPasswordEmail;
 use App\Http\GlobalClases\BuildError;
 use App\Http\Requests\Update\OnlyEmailRequest;
 use App\Http\Requests\Update\PasswordUpdateRequest;
 use App\Models\User;
 use App\Models\UserToken;
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Http;
@@ -47,12 +49,14 @@ class ForgotPasswordController extends Controller
 
     public function attendRequestForwarded(OnlyEmailRequest $request)
     {
-        if ($request->email) {
-            $url = config('app.base_url') . '/api/forgot-password';
-            $response = Http::asForm()->post($url, [
-                'email' => $request->email,
-            ]);
-            dd($response);
+        try {
+            if ($request->email) {
+                BuildForgotPasswordEmail::build($request->email);
+            } else {
+                throw new Error('La petición no contiene un correo.');
+            }
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 6);
         }
     }
 

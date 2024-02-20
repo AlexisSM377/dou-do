@@ -52,7 +52,7 @@
 <body class="">
     <div class="boxMain">
         <div class="subMain">
-            <span class="title">Si el correo electrónico es válido, recibirás la nueva solicitud de verificación.</span>
+            <span class="title">Se ha generado una nueva solicitud de restablecimiento de contraseña. Revisa tu correo electrónico.</span>
             <div class="imgContainer">
                 <img src="https://i.postimg.cc/4d7nRyVY/20541e8c-97c5-465a-a386-9d5d21ef3199-removebg-preview.png"
                     alt="" style="width: 18rem;">

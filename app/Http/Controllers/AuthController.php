@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\GlobalClases\Api\BuildForgotPasswordEmail;
 use App\Http\GlobalClases\Api\BuildVerificationEmail;
 use App\Http\GlobalClases\Api\VerificationActions;
 use App\Http\GlobalClases\BuildError;
@@ -9,6 +10,7 @@ use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Resources\Resources\UserResource;
 use App\Models\User;
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,11 +67,14 @@ class AuthController extends Controller
 
     public function forgotPassword(Request $request)
     {
-        if (!empty($request->email)) {
-            $user = User::where('email', $request->email)->first();
-            if (!empty($user)) {
-                BuildVerificationEmail::build($user, 2);
+        try {
+            if (!empty($request->email)) {
+                BuildForgotPasswordEmail::build($request->email);
+            } else {
+                throw new Error('La petición no contiene un correo.');
             }
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 6);
         }
     }
 }
