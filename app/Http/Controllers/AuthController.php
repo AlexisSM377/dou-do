@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\GlobalClases\Api\BuildVerificationEmail;
 use App\Http\GlobalClases\Api\VerificationActions;
 use App\Http\GlobalClases\BuildError;
 use App\Http\Requests\Api\AuthRequest;
@@ -53,7 +54,7 @@ class AuthController extends Controller
     {
         try {
             $user = User::create($request->all());
-            $this->buildVerificationToken($user, 1);
+            BuildVerificationEmail::build($user, 1);
 
             return new UserResource($user);
         } catch (\Throwable $th) {
@@ -67,14 +68,8 @@ class AuthController extends Controller
         if (!empty($request->email)) {
             $user = User::where('email', $request->email)->first();
             if (!empty($user)) {
-                $this->buildVerificationToken($user, 2);
+                BuildVerificationEmail::build($user, 2);
             }
         }
-    }
-
-    public function buildVerificationToken($user, $type)
-    {
-        $token = VerificationActions::setUserToken($user, $type);
-        VerificationActions::buildEmail($user, $token, $type);
     }
 }

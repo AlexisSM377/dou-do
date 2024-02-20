@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\GlobalClases\Api\BuildVerificationEmail;
 use App\Http\GlobalClases\Api\VerificationActions;
 use App\Http\GlobalClases\BuildError;
 use App\Models\User;
@@ -61,8 +62,9 @@ class VerifyEmailController extends Controller
         if (!empty($email)) {
             $user = User::where('email', $email)->first();
             if ($user) {
-                $token = VerificationActions::setUserToken($user, 1);
-                VerificationActions::buildEmail($user, $token, 1);
+                BuildVerificationEmail::build($user, 1);
+                // $token = VerificationActions::setUserToken($user, 1);
+                // VerificationActions::buildEmail($user, $token, 1);
             }
         }
         return redirect()->route('verification.fm');
