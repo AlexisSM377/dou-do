@@ -25,7 +25,7 @@ class ForgotPassword extends Mailable
         $expiration = now('America/Mexico_City')->addHours(12);
         $this->name = $user->name;
         $this->url = URL::temporarySignedRoute(
-            'a',
+            'forgot-password.attend',
             $expiration,
             ['body' => urlencode($body)
         ]);
@@ -37,7 +37,7 @@ class ForgotPassword extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Forgot Password',
+            subject: 'Contraseña olvidada',
         );
     }
 
@@ -47,7 +47,7 @@ class ForgotPassword extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mails.forgot-password',
         );
     }
 

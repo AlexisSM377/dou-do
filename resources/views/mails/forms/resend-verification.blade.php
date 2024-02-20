@@ -81,7 +81,7 @@
     <div class="boxMain">
         <div>
             <div class="boxImg">
-                <img src="https://i.postimg.cc/0j4ygMdc/verificar-removebg-preview.png" alt="" style="width: 18rem;">
+                <img src="https://i.postimg.cc/GmS8W53j/three-removebg-preview.png" alt="" style="width: 18rem;">
             </div>
             <div style="margin-top: 2rem; margin-bottom: 2rem;">
                 <hr>

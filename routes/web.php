@@ -38,8 +38,3 @@ Route::group(['prefix' => 'verification'], function(){
 Route::group(['prefix' => 'forgot-password'], function(){
     Route::get('/attend/{body}', [ ForgotPasswordController::class, 'attendRequest' ])->name('forgot-password.attend');
 });
-
-
-Route::get('nose', function(){
-    return view('mails.forms.forgot-password');
-});

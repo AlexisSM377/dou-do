@@ -54,7 +54,7 @@
             <span class="title">¡Gracias por verificar tu cuenta! 🎉🎉🎉</span>
             <span class="subtitle">Ahora puedes iniciar sesión desde la aplicación DuoDo.</span>
             <div class="imgContainer">
-                <img src="https://i.postimg.cc/44PHFDQK/feliz.png"
+                <img src="https://i.postimg.cc/gcBDKN83/uno-removebg-preview.png"
                     alt="" style="width: 18rem;">
             </div>
         </div>
