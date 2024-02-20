@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\GlobalClases\Api\BuildError;
-use App\Http\GlobalClases\Api\RegistrationActions;
+use App\Http\GlobalClases\Api\VerificationActions;
+use App\Http\GlobalClases\BuildError;
 use App\Models\User;
 use App\Models\UserToken;
 use Illuminate\Http\Request;
@@ -36,7 +36,7 @@ class VerifyEmailController extends Controller
                 return redirect()->route('verification.expired');
             }
         } catch (\Throwable $th) {
-            BuildError::setError($th, 5);
+            BuildError::saveError($th, 5);
             return redirect()->route('internal.error');
         }
     }
@@ -61,8 +61,8 @@ class VerifyEmailController extends Controller
         if (!empty($email)) {
             $user = User::where('email', $email)->first();
             if ($user) {
-                $token = RegistrationActions::setUserToken($user, 1);
-                RegistrationActions::buildEmail($user, $token, 'verification');
+                $token = VerificationActions::setUserToken($user, 1);
+                VerificationActions::buildEmail($user, $token, 'verification');
             }
         }
         return redirect()->route('verification.fm');

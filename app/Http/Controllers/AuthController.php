@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\GlobalClases\Api\BuildError;
-use App\Http\GlobalClases\Api\RegistrationActions;
+use App\Http\GlobalClases\Api\VerificationActions;
+use App\Http\GlobalClases\BuildError;
 use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Resources\Resources\UserResource;
@@ -57,25 +57,19 @@ class AuthController extends Controller
 
             return new UserResource($user);
         } catch (\Throwable $th) {
-            BuildError::setError($th, 1);
+            BuildError::saveError($th, 1);
             return response()->json(['error' => $th->getMessage()]);
         }
     }
 
     public function forgotPassword(Request $request)
     {
-        if (!empty($request->email)) {
-            $user = User::where('email', $request->email)->first();
-            if (!empty($user)) {
-                $this->buildVerificationToken($user, 'forgot-password');
-            }
-        }
-
+        // TODO
     }
 
     public function buildVerificationToken($user, $type)
     {
-        $token = RegistrationActions::setUserToken($user, 1);
-        RegistrationActions::buildEmail($user, $token, $type);
+        $token = VerificationActions::setUserToken($user, 1);
+        VerificationActions::buildEmail($user, $token, $type);
     }
 }

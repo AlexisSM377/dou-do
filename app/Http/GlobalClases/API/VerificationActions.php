@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
-class RegistrationActions
+class VerificationActions
 {
     public static function setUserToken($user, $tokenType)
     {
@@ -25,7 +25,7 @@ class RegistrationActions
 
     public static function buildEmail($user, $token, $type)
     {
-        $body = RegistrationActions::generateBody($user, $token);
+        $body = VerificationActions::generateBody($user, $token);
         switch ($type) {
             case 'verification':
                 $emailVerify = new VerifyAccount($user, $body);
