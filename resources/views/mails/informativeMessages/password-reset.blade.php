@@ -31,12 +31,14 @@
             line-height: 2.25rem;
             font-weight: 600;
             margin-bottom: 10px;
+            text-align: center;
         }
         .subtitle {
             display: block;
             font-size: 1.125rem;
             line-height: 2.25rem;
             font-weight: 200;
+            text-align: center;
         }
         .imgContainer {
             display: flex;

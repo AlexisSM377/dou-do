@@ -43,7 +43,7 @@
             border-radius: 0.375rem;
             border-width: 2px;
             border-color: #93C5FD;
-            width: 33.333333%;
+            width: 50%;
             font-weight: 600;
             padding-bottom: 5px;
             padding-top: 5px;
@@ -87,7 +87,7 @@
                 <hr>
             </div>
             <span class="title">Reenviar solicitud de restablecimiento de contraseña.</span>
-            <span class="subtitle">El tiempo de la solicitud de restablecimiento de contraseña ha expirado. Ingresa tu correo electrónico para poder generar una nueva.</span>
+            <span class="subtitle">El tiempo de la solicitud de restablecimiento de contraseña ha expirado, ingresa tu correo electrónico para poder generar una nueva.</span>
             <form action="{{route('forgot-password.forwarded')}}" method="POST">
                 @csrf
                 <div class="boxForm">
@@ -97,7 +97,7 @@
                         <span style="font-weight: 600; color: #EF4444;">{{ $message }}</span>
                     @enderror
                 </div>
-                <div style="margin-top: 1.5rem;">
+                <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
                     <button type="submit" class="btn">Generar solicitud</button>
                 </div>
             </form>

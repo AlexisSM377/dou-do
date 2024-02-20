@@ -31,6 +31,7 @@
             line-height: 2.25rem;
             font-weight: 600;
             margin-bottom: 10px;
+            text-align: center;
         }
         .subtitle {
             display: block;
