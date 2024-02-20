@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ForgotPasswordController extends Controller
 {
-    public function receiveRequest(Request $request, $body)
+    public function attendRequest(Request $request, $body)
     {
         dd($body);
     }

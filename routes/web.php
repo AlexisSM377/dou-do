@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\InternalManagement;
 use App\Http\Controllers\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,11 @@ Route::group(['prefix' => 'verification'], function(){
     Route::get('/forwarded-message', [ VerifyEmailController::class, 'showForwardMessage' ])->name('verification.fm');
 });
 
+Route::group(['prefix' => 'forgot-password'], function(){
+    Route::get('/attend/{body}', [ ForgotPasswordController::class, 'attendRequest' ])->name('forgot-password.attend');
+});
+
+
+Route::get('nose', function(){
+    return view('mails.forms.forgot-password');
+});
