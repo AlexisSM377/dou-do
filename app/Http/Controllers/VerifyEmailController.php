@@ -64,12 +64,6 @@ class VerifyEmailController extends Controller
                 BuildVerificationEmail::build($user, 1);
             }
         }
-        return redirect()->route('verification.fm');
-
-    }
-
-    public function showForwardMessage()
-    {
         return view('mails.informativeMessages.resend');
     }
 }
