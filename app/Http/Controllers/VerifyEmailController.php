@@ -43,13 +43,13 @@ class VerifyEmailController extends Controller
 
     public function attendExpiredRequest()
     {
-        return view('mails.resend-verification');
+        return view('mails.forms.resend-verification');
     }
 
     public function verifyUser(User $user)
     {
         if ($user->verified) {
-            return view('mails.verified');
+            return view('mails.informativeMessages.verified');
         } else {
             abort(403);
         }
@@ -71,6 +71,6 @@ class VerifyEmailController extends Controller
 
     public function showForwardMessage()
     {
-        return view('mails.resend');
+        return view('mails.informativeMessages.resend');
     }
 }
