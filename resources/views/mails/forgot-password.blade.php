@@ -88,7 +88,7 @@
             </div>
             <span class="title">Restablecimiento de contraseña.</span>
             <span class="subtitle">Ingresa tu nueva contraseña</span>
-            <form action="{{route('verification.resend')}}" method="POST">
+            <form action="{{route('verification.forwarded')}}" method="POST">
                 @csrf
                 <div class="boxForm">
                     <label for="password">Contraseña</label>

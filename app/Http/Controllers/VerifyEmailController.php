@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Crypt;
 
 class VerifyEmailController extends Controller
 {
-    public function getVerifyRequest(Request $request, $body)
+    public function attendVerification(Request $request, $body)
     {
         try {
             if ($request->hasValidSignature()) {
@@ -41,12 +41,12 @@ class VerifyEmailController extends Controller
         }
     }
 
-    public function verificationExpired()
+    public function attendExpiredRequest()
     {
         return view('mails.resend-verification');
     }
 
-    public function verified(User $user)
+    public function verifyUser(User $user)
     {
         if ($user->verified) {
             return view('mails.verified');
@@ -55,7 +55,7 @@ class VerifyEmailController extends Controller
         }
     }
 
-    public function recendRequest(Request $request)
+    public function attendRequestForwarded(Request $request)
     {
         $email = $request->email;
         if (!empty($email)) {
@@ -69,7 +69,7 @@ class VerifyEmailController extends Controller
 
     }
 
-    public function resend()
+    public function showForwardMessage()
     {
         return view('mails.resend');
     }
