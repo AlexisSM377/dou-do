@@ -31,7 +31,10 @@ class AuthController extends Controller
         if (Auth::attempt($request->all())) {
             $user = Auth()->User();
             if ($user->verified == 1) {
-                return response()->json(['token' => $user->createToken('user-token')->plainTextToken], 200);
+                return response()->json([
+                    'token' => $user->createToken('user-token')->plainTextToken,
+                    'user' => $user,
+                ], 200);
             } else {
                 return response()->json(['message' => 'Please verify your account via email' ], 401);
             }
@@ -76,5 +79,10 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             BuildError::saveError($th, 6);
         }
+    }
+
+    public function whoIAm(Request $request)
+    {
+
     }
 }
