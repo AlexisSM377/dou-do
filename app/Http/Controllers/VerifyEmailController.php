@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\GlobalClases\Api\BuildError;
-use App\Http\GlobalClases\Api\RegistrationActions;
+use App\Http\GlobalClases\Api\BuildVerificationEmail;
+use App\Http\GlobalClases\BuildError;
 use App\Models\User;
 use App\Models\UserToken;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Crypt;
 
 class VerifyEmailController extends Controller
 {
-    public function getVerifyRequest(Request $request, $body)
+    public function attendVerification(Request $request, $body)
     {
         try {
             if ($request->hasValidSignature()) {
@@ -26,7 +26,7 @@ class VerifyEmailController extends Controller
                                 $user->update([
                                     'verified' => true
                                 ]);
-                                return redirect()->route('email.verified', $user->id);
+                                return redirect()->route('verification.verify', $user->id);
                             }
                         }
                     }
@@ -36,41 +36,34 @@ class VerifyEmailController extends Controller
                 return redirect()->route('verification.expired');
             }
         } catch (\Throwable $th) {
-            BuildError::setError($th, 5);
+            BuildError::saveError($th, 5);
             return redirect()->route('internal.error');
         }
     }
 
-    public function verificationExpired()
+    public function attendExpiredRequest()
     {
-        return view('mails.resend-verification');
+        return view('mails.forms.resend-verification');
     }
 
-    public function verified(User $user)
+    public function verifyUser(User $user)
     {
         if ($user->verified) {
-            return view('mails.verified');
+            return view('mails.informativeMessages.verified');
         } else {
             abort(403);
         }
     }
 
-    public function recendRequest(Request $request)
+    public function attendRequestForwarded(Request $request)
     {
         $email = $request->email;
         if (!empty($email)) {
             $user = User::where('email', $email)->first();
             if ($user) {
-                $token = RegistrationActions::setUserToken($user, 1);
-                RegistrationActions::buildEmail($user, $token);
+                BuildVerificationEmail::build($user, 1);
             }
         }
-        return redirect()->route('email.recend');
-
-    }
-
-    public function resend()
-    {
-        return view('mails.resend');
+        return view('mails.informativeMessages.resend');
     }
 }

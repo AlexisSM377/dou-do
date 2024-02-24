@@ -43,7 +43,7 @@
             border-radius: 0.375rem;
             border-width: 2px;
             border-color: #93C5FD;
-            width: 33.333333%;
+            width: 50%;
             font-weight: 600;
             padding-bottom: 5px;
             padding-top: 5px;
@@ -81,22 +81,23 @@
     <div class="boxMain">
         <div>
             <div class="boxImg">
-                <img src="https://i.postimg.cc/0j4ygMdc/verificar-removebg-preview.png" alt="" style="width: 18rem;">
+                <img src="https://i.postimg.cc/GmS8W53j/three-removebg-preview.png" alt="" style="width: 18rem;">
             </div>
             <div style="margin-top: 2rem; margin-bottom: 2rem;">
                 <hr>
             </div>
-            <span class="title">Reenviar verificación de correo electronico</span>
-            <span class="subtitle">El tiempo de validación de tu cuenta ha expirado. Ingresa tu correo
-                electrónico para poder generar una nueva solicitud de verificación.</span>
-            <form action="{{route('recend.request')}}" method="POST">
+            <span class="title">Reenviar solicitud de restablecimiento de contraseña.</span>
+            <span class="subtitle">El tiempo de la solicitud de restablecimiento de contraseña ha expirado, ingresa tu correo electrónico para poder generar una nueva.</span>
+            <form action="{{route('forgot-password.forwarded')}}" method="POST">
                 @csrf
                 <div class="boxForm">
                     <label for="email">Correo electronico</label>
-                    <input type="email" class="inputEmail"
-                        name="email" id="email">
+                    <input type="email" class="inputEmail" name="email" id="email">
+                    @error('email')
+                        <span style="font-weight: 600; color: #EF4444;">{{ $message }}</span>
+                    @enderror
                 </div>
-                <div style="margin-top: 1.5rem;">
+                <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
                     <button type="submit" class="btn">Generar solicitud</button>
                 </div>
             </form>

@@ -2,13 +2,14 @@
 
 namespace App\Http\GlobalClases\Api;
 
+use App\Mail\ForgotPassword;
 use App\Mail\VerifyAccount;
 use App\Models\UserToken;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
-class RegistrationActions
+class VerificationActions
 {
     public static function setUserToken($user, $tokenType)
     {
@@ -22,10 +23,19 @@ class RegistrationActions
         return $token;
     }
 
-    public static function buildEmail($user, $token)
+    public static function buildEmail($user, $token, $type)
     {
-        $body = RegistrationActions::generateBody($user, $token);
-        $emailVerify = new VerifyAccount($user, $body);
+        $body = VerificationActions::generateBody($user, $token);
+        switch ($type) {
+            case 1:
+                $emailVerify = new VerifyAccount($user, $body);
+            break;
+            case 2:
+                $emailVerify = new ForgotPassword($user, $body);
+            break;
+            default:
+            break;
+        }
         Mail::to($user->email)->send($emailVerify);
     }
 

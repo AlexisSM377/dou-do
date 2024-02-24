@@ -2,15 +2,15 @@
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\URL;
 
-class VerifyAccount extends Mailable
+class ForgotPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,17 +18,14 @@ class VerifyAccount extends Mailable
     public $url;
 
     /**
-     * Undocumented function
-     *
-     * @param User $user
-     * @param string $token
+     * Create a new message instance.
      */
     public function __construct($user, $body)
     {
         $expiration = now('America/Mexico_City')->addHours(12);
         $this->name = $user->name;
         $this->url = URL::temporarySignedRoute(
-            'verification.attend',
+            'forgot-password.attend',
             $expiration,
             ['body' => urlencode($body)
         ]);
@@ -40,7 +37,7 @@ class VerifyAccount extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Verificación de cuenta',
+            subject: 'Contraseña olvidada',
         );
     }
 
@@ -50,7 +47,7 @@ class VerifyAccount extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.verify-account',
+            view: 'mails.forgot-password',
         );
     }
 

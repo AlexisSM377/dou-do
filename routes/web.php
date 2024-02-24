@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\InternalManagement;
 use App\Http\Controllers\VerifyEmailController;
+use App\Mail\ForgotPassword;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,9 +29,15 @@ Route::get('welcome', function(){
 Route::get('/internal-error', [ InternalManagement::class, 'handleInternalError' ])->name('internal.error');
 
 Route::group(['prefix' => 'verification'], function(){
-    Route::get('/receive-request/{body}', [ VerifyEmailController::class, 'getVerifyRequest' ])->name('receive-request');
-    Route::get('/verified/{user}', [ VerifyEmailController::class, 'verified' ])->name('email.verified');
-    Route::get('/expired', [ VerifyEmailController::class, 'verificationExpired' ])->name('verification.expired');
-    Route::post('/recend-request', [ VerifyEmailController::class, 'recendRequest' ])->name('recend.request');
-    Route::get('/recend', [ VerifyEmailController::class, 'resend' ])->name('email.recend');
+    Route::get('/verify-user/{user}', [ VerifyEmailController::class, 'verifyUser' ])->name('verification.verify');
+    Route::get('/attend/{body}', [ VerifyEmailController::class, 'attendVerification' ])->name('verification.attend');
+    Route::get('/expired', [ VerifyEmailController::class, 'attendExpiredRequest' ])->name('verification.expired');
+    Route::post('/resend', [ VerifyEmailController::class, 'attendRequestForwarded' ])->name('verification.forwarded');
+});
+
+Route::group(['prefix' => 'forgot-password'], function(){
+    Route::post('/restore/{user}', [ForgotPasswordController::class, 'restorePassword'])->name('forgot-password.restore');
+    Route::get('/attend/{body}', [ ForgotPasswordController::class, 'attendRequest' ])->name('forgot-password.attend');
+    Route::get('/expired', [ForgotPasswordController::class, 'attendExpiredRequest'])->name('forgot-password.expired');
+    Route::post('/resend', [ForgotPasswordController::class, 'attendRequestForwarded'])->name('forgot-password.forwarded');
 });

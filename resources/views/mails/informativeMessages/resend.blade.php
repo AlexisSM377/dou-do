@@ -54,7 +54,7 @@
         <div class="subMain">
             <span class="title">Si el correo electrónico es válido, recibirás la nueva solicitud de verificación.</span>
             <div class="imgContainer">
-                <img src="https://i.postimg.cc/HngzCzdk/send-removebg-preview.png"
+                <img src="https://i.postimg.cc/4d7nRyVY/20541e8c-97c5-465a-a386-9d5d21ef3199-removebg-preview.png"
                     alt="" style="width: 18rem;">
             </div>
         </div>

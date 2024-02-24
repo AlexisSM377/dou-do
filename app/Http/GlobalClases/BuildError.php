@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\GlobalClases\Api;
+namespace App\Http\GlobalClases;
 
 use App\Models\ErrorLog;
 use Illuminate\Support\Str;
 
 class BuildError
 {
-    public static function setError($th, $typeError)
+    public static function saveError($th, $typeError)
     {
         ErrorLog::create([
             'message' => Str::limit($th->getMessage(), 250),

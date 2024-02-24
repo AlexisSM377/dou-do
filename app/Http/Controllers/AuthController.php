@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\GlobalClases\Api\BuildError;
-use App\Http\GlobalClases\Api\RegistrationActions;
+use App\Http\GlobalClases\Api\BuildForgotPasswordEmail;
+use App\Http\GlobalClases\Api\BuildVerificationEmail;
+use App\Http\GlobalClases\Api\VerificationActions;
+use App\Http\GlobalClases\BuildError;
 use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Resources\Resources\UserResource;
 use App\Models\User;
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +31,10 @@ class AuthController extends Controller
         if (Auth::attempt($request->all())) {
             $user = Auth()->User();
             if ($user->verified == 1) {
-                return response()->json(['token' => $user->createToken('user-token')->plainTextToken], 200);
+                return response()->json([
+                    'token' => $user->createToken('user-token')->plainTextToken,
+                    'user' => $user,
+                ], 200);
             } else {
                 return response()->json(['message' => 'Please verify your account via email' ], 401);
             }
@@ -46,25 +52,37 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
-        return response()->json(['message' => 'Closed session'], 200);
+        return response()->json(['status' => 'ok'], 200);
     }
 
     public function register(UserStoreRequest $request)
     {
         try {
             $user = User::create($request->all());
-            $token = RegistrationActions::setUserToken($user, 1);
-            RegistrationActions::buildEmail($user, $token);
+            BuildVerificationEmail::build($user, 1);
 
             return new UserResource($user);
         } catch (\Throwable $th) {
-            BuildError::setError($th, 1);
+            BuildError::saveError($th, 1);
             return response()->json(['error' => $th->getMessage()]);
         }
     }
 
     public function forgotPassword(Request $request)
     {
-        dd($request->all());
+        try {
+            if (!empty($request->email)) {
+                BuildForgotPasswordEmail::build($request->email);
+            } else {
+                throw new Error('La petición no contiene un correo.');
+            }
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 6);
+        }
+    }
+
+    public function whoIAm()
+    {
+        return response()->json(['status' => 'ok']);
     }
 }
