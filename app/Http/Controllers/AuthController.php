@@ -52,7 +52,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
-        return response()->json(['message' => 'Closed session'], 200);
+        return response()->json(['status' => 'ok'], 200);
     }
 
     public function register(UserStoreRequest $request)
@@ -81,8 +81,8 @@ class AuthController extends Controller
         }
     }
 
-    public function whoIAm(Request $request)
+    public function whoIAm()
     {
-
+        return response()->json(['status' => 'ok']);
     }
 }
