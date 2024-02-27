@@ -29,11 +29,11 @@ class AuthController extends Controller
     public function login(AuthRequest $request)
     {
         if (Auth::attempt($request->all())) {
-            $user = Auth()->User();
+            $user = User::where('id', Auth()->User()->id)->first();
             if ($user->verified == 1) {
                 return response()->json([
                     'token' => $user->createToken('user-token')->plainTextToken,
-                    'user' => $user,
+                    'user' => new UserResource($user->loadMissing('avatars')),
                 ], 200);
             } else {
                 return response()->json(['message' => 'Por favor, verifica tu cuenta por correo electrónico.' ], 401);
