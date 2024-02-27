@@ -148,4 +148,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserToken::class);
     }
+
+    public function avatars()
+    {
+        return $this->belongsToMany(Avatar::class, 'user_avatars');
+    }
 }

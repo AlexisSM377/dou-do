@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'birthdate' => $this->birthdate,
             'notifications' => NotificationResource::collection($this->whenLoaded('notifications')),
+            'avatar' => AvatarResource::collection($this->whenLoaded('avatars')),
         ];
     }
 }

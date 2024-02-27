@@ -48,11 +48,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        if (request()->includeNotifications) {
-            return new UserResource($user->loadMissing('notifications'));
-        } else {
-            return new UserResource($user);
-        }
+        $includ = [];
+        (request()->includeNotifications) ? array_push($includ, 'notifications') : null;
+        (request()->includeAvatar) ? array_push($includ, 'avatars') : null;
+        return new UserResource($user->loadMissing($includ));
     }
 
     /**
