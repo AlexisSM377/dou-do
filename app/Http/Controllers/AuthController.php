@@ -36,10 +36,10 @@ class AuthController extends Controller
                     'user' => $user,
                 ], 200);
             } else {
-                return response()->json(['message' => 'Please verify your account via email' ], 401);
+                return response()->json(['message' => 'Por favor, verifica tu cuenta por correo electrónico.' ], 401);
             }
         } else {
-            return response()->json(['error' => 'Incorrect credentials'], 403);
+            return response()->json(['message' => 'Credenciales incorrectas.'], 403);
         }
     }
 
@@ -73,11 +73,13 @@ class AuthController extends Controller
         try {
             if (!empty($request->email)) {
                 BuildForgotPasswordEmail::build($request->email);
+                return response()->json(['status' => 'ok']);
             } else {
                 throw new Error('La petición no contiene un correo.');
             }
         } catch (\Throwable $th) {
             BuildError::saveError($th, 6);
+            return response()->json(['message' => $th->getMessage()]);
         }
     }
 
