@@ -87,4 +87,10 @@ class AuthController extends Controller
     {
         return response()->json(['status' => 'ok']);
     }
+
+    public function refreshUser(Request $request)
+    {
+        $user = User::where('id', $request->user()->id)->first();
+        return new UserResource($user->loadMissing('avatars'));
+    }
 }
