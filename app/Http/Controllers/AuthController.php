@@ -60,7 +60,6 @@ class AuthController extends Controller
         try {
             $user = User::create($request->all());
             BuildVerificationEmail::build($user, 1);
-
             return new UserResource($user);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
