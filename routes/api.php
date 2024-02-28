@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\FriendRequestController;
 use App\Http\Controllers\NotificationController;
@@ -38,6 +39,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middlewa
     Route::resource('summaries', SummaryController::class);
     Route::resource('friends', FriendController::class);
     Route::resource('friend-request', FriendRequestController::class);
+    Route::resource('avatars', AvatarController::class);
 });
 
 // Route to login and logout
