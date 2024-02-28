@@ -46,6 +46,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middlewa
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
+Route::post('set-avatar', [AvatarController::class, 'setAvatar']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('/logout', [AuthController::class, 'logout']);
