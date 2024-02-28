@@ -24,10 +24,10 @@ class AvatarController extends Controller
         try {
             $user = User::where('external_identifier', $request->user_id)->first();
             if (!empty($user)) {
-                UserAvatar::create([
-                    'user_id' => $user->id,
-                    'avatar_id' => $request->avatar_id,
-                ]);
+                UserAvatar::updateOrCreate(
+                    ['user_id' => $user->id,],
+                    ['avatar_id' => $request->avatar_id,]
+                );
             } else {
                 throw new Error('No se encontro al usuario indicado');
             }

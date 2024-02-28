@@ -51,5 +51,5 @@ Route::post('set-avatar', [AvatarController::class, 'setAvatar']);
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/who-i-am', [AuthController::class, 'whoIAm']);
-    Route::post('/refresh-user', [AuthController::class, 'refreshUser']);
+    Route::get('/refresh-user', [AuthController::class, 'refreshUser']);
 });
