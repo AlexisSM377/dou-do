@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\InternalManagement;
+use App\Http\Controllers\VerifyEmailController;
+use App\Mail\ForgotPassword;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +20,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('dashboard');
+});
+
+Route::get('welcome', function(){
     return view('welcome');
+})->name('welcome');
+
+Route::get('/internal-error', [ InternalManagement::class, 'handleInternalError' ])->name('internal.error');
+
+Route::group(['prefix' => 'verification'], function(){
+    Route::get('/verify-user/{user}', [ VerifyEmailController::class, 'verifyUser' ])->name('verification.verify');
+    Route::get('/attend/{body}', [ VerifyEmailController::class, 'attendVerification' ])->name('verification.attend');
+    Route::get('/expired', [ VerifyEmailController::class, 'attendExpiredRequest' ])->name('verification.expired');
+    Route::post('/resend', [ VerifyEmailController::class, 'attendRequestForwarded' ])->name('verification.forwarded');
+});
+
+Route::group(['prefix' => 'forgot-password'], function(){
+    Route::post('/restore/{user}', [ForgotPasswordController::class, 'restorePassword'])->name('forgot-password.restore');
+    Route::get('/attend/{body}', [ ForgotPasswordController::class, 'attendRequest' ])->name('forgot-password.attend');
+    Route::get('/expired', [ForgotPasswordController::class, 'attendExpiredRequest'])->name('forgot-password.expired');
+    Route::post('/resend', [ForgotPasswordController::class, 'attendRequestForwarded'])->name('forgot-password.forwarded');
+});
+
+Route::get('/nose', function(){
+    $user = User::where('id', 11)->with('avatars')->first();
+    dd($user);
 });
