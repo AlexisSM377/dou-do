@@ -29,17 +29,17 @@ class AuthController extends Controller
     public function login(AuthRequest $request)
     {
         if (Auth::attempt($request->all())) {
-            $user = Auth()->User();
+            $user = User::where('id', Auth()->User()->id)->first();
             if ($user->verified == 1) {
                 return response()->json([
                     'token' => $user->createToken('user-token')->plainTextToken,
-                    'user' => $user,
+                    'user' => new UserResource($user->loadMissing('avatars')),
                 ], 200);
             } else {
-                return response()->json(['message' => 'Please verify your account via email' ], 401);
+                return response()->json(['message' => 'Por favor, verifica tu cuenta por correo electrónico.' ], 401);
             }
         } else {
-            return response()->json(['error' => 'Incorrect credentials'], 403);
+            return response()->json(['message' => 'Credenciales incorrectas.'], 403);
         }
     }
 
@@ -60,7 +60,6 @@ class AuthController extends Controller
         try {
             $user = User::create($request->all());
             BuildVerificationEmail::build($user, 1);
-
             return new UserResource($user);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
@@ -73,16 +72,24 @@ class AuthController extends Controller
         try {
             if (!empty($request->email)) {
                 BuildForgotPasswordEmail::build($request->email);
+                return response()->json(['status' => 'ok']);
             } else {
                 throw new Error('La petición no contiene un correo.');
             }
         } catch (\Throwable $th) {
             BuildError::saveError($th, 6);
+            return response()->json(['message' => $th->getMessage()]);
         }
     }
 
     public function whoIAm()
     {
         return response()->json(['status' => 'ok']);
+    }
+
+    public function refreshUser(Request $request)
+    {
+        $user = User::where('id', $request->user()->id)->first();
+        return new UserResource($user->loadMissing('avatars'));
     }
 }

@@ -19,11 +19,13 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'external_identifier' => $this->external_identifier,
             'name' => $this->name,
             'last_name' => $this->last_name,
             'email' => $this->email,
             'birthdate' => $this->birthdate,
             'notifications' => NotificationResource::collection($this->whenLoaded('notifications')),
+            'avatar' => AvatarResource::collection($this->whenLoaded('avatars')),
         ];
     }
 }

@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ErrorTypesSeeder::class,
             TokenTypesSeeder::class,
+            AvatarSeeder::class
         ]);
     }
 }

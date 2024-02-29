@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\FriendRequestController;
 use App\Http\Controllers\NotificationController;
@@ -38,14 +39,17 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middlewa
     Route::resource('summaries', SummaryController::class);
     Route::resource('friends', FriendController::class);
     Route::resource('friend-request', FriendRequestController::class);
+    Route::resource('avatars', AvatarController::class);
 });
 
 // Route to login and logout
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
+Route::post('set-avatar', [AvatarController::class, 'setAvatar']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/who-i-am', [AuthController::class, 'whoIAm']);
+    Route::get('/refresh-user', [AuthController::class, 'refreshUser']);
 });
