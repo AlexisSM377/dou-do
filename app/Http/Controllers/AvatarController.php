@@ -9,7 +9,6 @@ use App\Models\Avatar;
 use App\Models\User;
 use App\Models\UserAvatar;
 use Error;
-use Illuminate\Http\Request;
 
 class AvatarController extends Controller
 {

@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\GlobalClases\Api\BuildForgotPasswordEmail;
 use App\Http\GlobalClases\Api\BuildVerificationEmail;
-use App\Http\GlobalClases\Api\VerificationActions;
 use App\Http\GlobalClases\BuildError;
 use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Resources\Resources\UserResource;
 use App\Models\User;
 use Error;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
