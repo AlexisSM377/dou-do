@@ -42,8 +42,3 @@ Route::group(['prefix' => 'forgot-password'], function(){
     Route::get('/expired', [ForgotPasswordController::class, 'attendExpiredRequest'])->name('forgot-password.expired');
     Route::post('/resend', [ForgotPasswordController::class, 'attendRequestForwarded'])->name('forgot-password.forwarded');
 });
-
-Route::get('/nose', function(){
-    $user = User::where('id', 11)->with('avatars')->first();
-    dd($user);
-});
