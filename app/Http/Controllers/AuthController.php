@@ -11,6 +11,7 @@ use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Resources\Resources\UserResource;
 use App\Models\User;
 use Error;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,18 +29,22 @@ class AuthController extends Controller
      */
     public function login(AuthRequest $request)
     {
-        if (Auth::attempt($request->all())) {
-            $user = User::where('id', Auth()->User()->id)->first();
-            if ($user->verified == 1) {
-                return response()->json([
-                    'token' => $user->createToken('user-token')->plainTextToken,
-                    'user' => new UserResource($user->loadMissing('avatars')),
-                ], 200);
+        try {
+            if (Auth::attempt($request->all())) {
+                $user = User::where('id', Auth()->User()->id)->first();
+                if ($user->verified == 1) {
+                    return response()->json([
+                        'token' => $user->createToken('user-token')->plainTextToken,
+                        'user' => new UserResource($user->loadMissing('avatars')),
+                    ], 200);
+                } else {
+                    return response()->json(['message' => 'Por favor, verifica tu cuenta por correo electrónico.' ], 401);
+                }
             } else {
-                return response()->json(['message' => 'Por favor, verifica tu cuenta por correo electrónico.' ], 401);
+                return response()->json(['message' => 'Credenciales incorrectas.'], 403);
             }
-        } else {
-            return response()->json(['message' => 'Credenciales incorrectas.'], 403);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 2);
         }
     }
 
@@ -51,8 +56,12 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
-        return response()->json(['status' => 'ok'], 200);
+        try {
+            $request->user()->tokens()->delete();
+            return response()->json(['status' => 'ok'], 200);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 2);
+        }
     }
 
     public function register(UserStoreRequest $request)
@@ -84,12 +93,20 @@ class AuthController extends Controller
 
     public function whoIAm()
     {
-        return response()->json(['status' => 'ok']);
+        try {
+            return response()->json(['status' => 'ok']);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+        }
     }
 
     public function refreshUser(Request $request)
     {
-        $user = User::where('id', $request->user()->id)->first();
-        return new UserResource($user->loadMissing('avatars'));
+        try {
+            $user = User::where('id', $request->user()->id)->first();
+            return new UserResource($user->loadMissing('avatars'));
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+        }
     }
 }
