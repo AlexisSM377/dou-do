@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 /**
- * Controller class to Summaries
+ * Controller class to Summaries actions
  */
 class SummaryController extends Controller
 {
     /**
      * Returns a general listo from summaries
      *
-     * @return JsonResponse<Summaries>
+     * @return JSON
      */
     public function index()
     {
