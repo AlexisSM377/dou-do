@@ -5,8 +5,18 @@ namespace App\Http\GlobalClases;
 use App\Models\ErrorLog;
 use Illuminate\Support\Str;
 
+/**
+ * Class to BuildError actions
+ */
 class BuildError
 {
+    /**
+     * Gets the error message and the error Type, and saves it en databases
+     *
+     * @param object $th
+     * @param integer $typeError
+     * @return void
+     */
     public static function saveError($th, $typeError)
     {
         ErrorLog::create([
