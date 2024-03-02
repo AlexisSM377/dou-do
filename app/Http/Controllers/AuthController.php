@@ -62,6 +62,13 @@ class AuthController extends Controller
         }
     }
 
+
+    /**
+     * Register function - Save user in database and returns it
+     *
+     * @param UserStoreRequest $request
+     * @return JsonResponse<200>
+     */
     public function register(UserStoreRequest $request)
     {
         try {
@@ -74,6 +81,12 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Forgot Password function - Gets the email and send a mail for reset the password
+     *
+     * @param Request $request
+     * @return JsonResponse<200>
+     */
     public function forgotPassword(Request $request)
     {
         try {
@@ -89,6 +102,11 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * WhoIAm function - Checks if the user token is still available
+     *
+     * @return JsonResponse<200>
+     */
     public function whoIAm()
     {
         try {
@@ -98,6 +116,12 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Refresh User - Checks if the user is auth and returns it
+     *
+     * @param Request $request
+     * @return JsonResponse<200>
+     */
     public function refreshUser(Request $request)
     {
         try {
