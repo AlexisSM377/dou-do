@@ -5,7 +5,7 @@ namespace App\Http\Requests\Store;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * RequestStore from Notifications
+ * Store Request to validate the Notification fields
  */
 class NotificationStoreRequest extends FormRequest
 {
