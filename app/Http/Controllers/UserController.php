@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Filters\Api\UserFilter;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Requests\Update\UserUpdateRequest;
 use App\Http\Resources\Collections\UserCollection;
 use App\Http\Resources\Resources\UserResource;
-use App\Filters\Api\UserFilter;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 /**
  * Controller class to users actions
