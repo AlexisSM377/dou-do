@@ -10,10 +10,14 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\URL;
 
+/**
+ * Class to build a verification email
+ */
 class VerifyAccount extends Mailable
 {
     use Queueable, SerializesModels;
 
+    //* Variables
     public $name;
     public $url;
 
