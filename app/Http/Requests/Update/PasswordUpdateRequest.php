@@ -4,6 +4,9 @@ namespace App\Http\Requests\Update;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Update Request to validate the restore password fields
+ */
 class PasswordUpdateRequest extends FormRequest
 {
     /**

@@ -5,7 +5,7 @@ namespace App\Http\Requests\Update;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * RequestUpdate from Notifications
+ * Update Request to validate the Notification fields
  */
 class NotificationUpdateRequest extends FormRequest
 {
