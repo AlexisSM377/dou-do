@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 /**
- * Controller class to Workspaces
+ * Controller class to Workspaces actions
  */
 class WorkspaceController extends Controller
 {
     /**
      * Returns a general list from Workspaces
      *
-     * @return JsonResponse<Workspaces>
+     * @return JSON
      */
     public function index()
     {

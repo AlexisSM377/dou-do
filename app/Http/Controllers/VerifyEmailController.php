@@ -9,6 +9,9 @@ use App\Models\UserToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
+/**
+ * Controller class to Verify email actions
+ */
 class VerifyEmailController extends Controller
 {
     /**
