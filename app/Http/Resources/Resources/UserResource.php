@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Request;
 
 /**
- * Resource from Users
+ * Class to build a JSON with specific fields of an user
  */
 class UserResource extends JsonResource
 {

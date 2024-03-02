@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Resource from Notifications
+ * Class to build a JSON with specific fields of a notification
  */
 class NotificationResource extends JsonResource
 {
