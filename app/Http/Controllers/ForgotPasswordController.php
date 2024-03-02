@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Crypt;
 class ForgotPasswordController extends Controller
 {
     /**
-     * Attend Request function - Validates the request and redirect to reset password form, with a user variable
+     * Validates the request and redirect to reset password form, with a user variable
      *
      * @param Request $request
      * @param string<encoded> $body
@@ -52,7 +52,7 @@ class ForgotPasswordController extends Controller
     }
 
     /**
-     * Attend Expired Request function - Redirects to the resend request form
+     * Redirects to the resend request form
      *
      * @return void
      */
@@ -62,7 +62,7 @@ class ForgotPasswordController extends Controller
     }
 
     /**
-     * Attend Request Forwarded function - Gets the email and resend a new forgot password request
+     * Gets the email and resend a new forgot password request
      *
      * @param OnlyEmailRequest $request
      * @return void
@@ -82,7 +82,7 @@ class ForgotPasswordController extends Controller
     }
 
     /**
-     * Restore Password function - Gets the password, validates it, and save the new password in the user record
+     * Gets the password, validates it, and save the new password in the user record
      *
      * @param PasswordUpdateRequest $request
      * @param User $user

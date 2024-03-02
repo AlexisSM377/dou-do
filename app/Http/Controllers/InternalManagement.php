@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class InternalManagement extends Controller
 {
     /**
-     * Redirect internal error function - Redirects to view with a internal error message
+     * Redirects to view with a internal error message
      *
      * @return void
      */

@@ -16,9 +16,9 @@ use Error;
 class AvatarController extends Controller
 {
     /**
-     * Index function - Returns all avatars in database
+     * Returns all avatars in database
      *
-     * @return Collection
+     * @return JSON
      */
     public function index()
     {
@@ -27,7 +27,7 @@ class AvatarController extends Controller
     }
 
     /**
-     * Set Avatar function - Set the user avatar
+     * Set the user avatar
      *
      * @param SetAvatarRequest $request
      * @return JsonResponse<200>

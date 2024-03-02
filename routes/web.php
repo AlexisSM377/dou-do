@@ -3,8 +3,6 @@
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\InternalManagement;
 use App\Http\Controllers\VerifyEmailController;
-use App\Mail\ForgotPassword;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
