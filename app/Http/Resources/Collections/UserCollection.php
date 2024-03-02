@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
- * ResourceCollection from Users
+ * Class to build a collection with users data
  */
 class UserCollection extends ResourceCollection
 {

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
- * ResourceCollection from Notifications
+ * Class to build a collection with notifications data
  */
 class NotificationCollection extends ResourceCollection
 {
