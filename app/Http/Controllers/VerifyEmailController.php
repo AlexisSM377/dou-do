@@ -18,7 +18,7 @@ class VerifyEmailController extends Controller
      * Validates the request, verify user and redirects to a confirm view
      *
      * @param Request $request
-     * @param string<encoded> $body
+     * @param string<encrypted> $body
      * @return void
      */
     public function attendVerification(Request $request, $body)

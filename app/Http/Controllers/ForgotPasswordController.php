@@ -21,7 +21,7 @@ class ForgotPasswordController extends Controller
      * Validates the request and redirect to reset password form, with a user variable
      *
      * @param Request $request
-     * @param string<encoded> $body
+     * @param string<encrypted> $body
      * @return void
      */
     public function attendRequest(Request $request, $body)
