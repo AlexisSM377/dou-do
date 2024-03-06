@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Model class to Notification
+ * Model class for Notification table
  */
 class Notification extends Model
 {
     use HasFactory;
 
-    // Fillable
+    //* Fillable
     protected $fillable = [
         'user_id',
         'title',
@@ -20,12 +20,13 @@ class Notification extends Model
     ];
 
     /**
-     * Relation function Notification-User
+     * Gives relation between notification and user N:N
      *
      * @return EloquentRelation
      */
     public function user()
     {
+        //TODO: Corregir, debe ser N:1
         return $this->belongsTo(User::class);
     }
 }

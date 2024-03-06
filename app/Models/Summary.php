@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Model class to Summary
+ * Model class for Summary table
  */
 class Summary extends Model
 {
     use HasFactory;
 
-    // Fillable
+    //* Fillable
     protected $fillable = [
         'user_id',
         'title',
@@ -22,12 +22,13 @@ class Summary extends Model
     ];
 
     /**
-     * Relation function Summary-User
+     * Gives relation between Summary and User -
      *
      * @return EloquentRelation
      */
     public function users()
     {
+        // TODO: Corregir, se debe aclarar cual es la relacion y funcionalidad. 
         return $this->belongsTo(User::class);
     }
 }

@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Model class to Priority
+ * Model class for Priority table
  */
 class Priority extends Model
 {
     use HasFactory;
 
-    // Fillable
+    //* Fillable
     protected $fillable = ['priority'];
 
     /**
-     * Relation function Priority-Task
+     * Gives relation between Priority and tasks N:1
      *
      * @return EloquentRelation
      */

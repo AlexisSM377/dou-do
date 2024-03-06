@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Model class to Task
+ * Model class for Task tbale
  */
 class Task extends Model
 {
     use HasFactory;
 
-    // Fillable
+    //* Fillable
     protected $fillable = [
         'user_id',
         'priority_id',
@@ -23,7 +23,7 @@ class Task extends Model
     ];
 
     /**
-     * Relation function Task-Priority
+     * Gives relation between Task and priority N:1
      *
      * @return EloquentRelation
      */
@@ -33,7 +33,7 @@ class Task extends Model
     }
 
     /**
-     * Relation function Task-User
+     * Gives relation between Task and User N:N
      *
      * @return EloquentRelation
      */

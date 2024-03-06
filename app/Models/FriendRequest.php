@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Model class to FriendRequest
+ * Model class for FriendRequest table
  */
 class FriendRequest extends Model
 {
     use HasFactory;
 
-    // Fillable
+    //* Fillable
     protected $fillable = ['origin_user_id', 'target_user_id'];
 }

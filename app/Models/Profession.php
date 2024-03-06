@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Model class to Profession
+ * Model class FOR Profession table
  */
 class Profession extends Model
 {
     use HasFactory;
 
-    // Fillable
+    //* Fillable
     protected $fillable = ['profession'];
 
     /**
-     * Relation function Profession-User
+     * Gives relation between Profession and user N:1
      *
      * @return EloquentRelation
      */
