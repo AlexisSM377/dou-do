@@ -17,16 +17,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//* Route for dashboard
 Route::get('/', function () {
     return view('dashboard');
 });
 
+//* Route for welcome to the app
 Route::get('welcome', function(){
     return view('welcome');
 })->name('welcome');
 
+//* Route for manage internal errors
 Route::get('/internal-error', [ InternalManagement::class, 'redirectInternalError' ])->name('internal.error');
 
+/**
+ * Route group for Email verification
+ ** verify-user
+ ** attend
+ ** expired
+ ** resend
+ * -> Prefix: verification
+ */
 Route::group(['prefix' => 'verification'], function(){
     Route::get('/verify-user/{user}', [ VerifyEmailController::class, 'verifyUser' ])->name('verification.verify');
     Route::get('/attend/{body}', [ VerifyEmailController::class, 'attendVerification' ])->name('verification.attend');
@@ -34,6 +45,14 @@ Route::group(['prefix' => 'verification'], function(){
     Route::post('/resend', [ VerifyEmailController::class, 'attendRequestForwarded' ])->name('verification.forwarded');
 });
 
+/**
+ * Route group for Restore password
+ ** restore
+ ** attend
+ ** expired
+ ** resend
+ * -> Prefix: forgot-password
+ */
 Route::group(['prefix' => 'forgot-password'], function(){
     Route::post('/restore/{user}', [ForgotPasswordController::class, 'restorePassword'])->name('forgot-password.restore');
     Route::get('/attend/{body}', [ ForgotPasswordController::class, 'attendRequest' ])->name('forgot-password.attend');
