@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\Avatar;
 use Illuminate\Database\Seeder;
 
+/**
+ * Seeder class for avatar table
+ */
 class AvatarSeeder extends Seeder
 {
     /**

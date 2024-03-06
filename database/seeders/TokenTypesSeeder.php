@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\TokenType;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+/**
+ * Seeder class for TokenType table
+ */
 class TokenTypesSeeder extends Seeder
 {
     /**
