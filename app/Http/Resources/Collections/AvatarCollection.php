@@ -5,6 +5,9 @@ namespace App\Http\Resources\Collections;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * Class to build a collection with avatars data
+ */
 class AvatarCollection extends ResourceCollection
 {
     /**

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FriendRequest;
 
 /**
- * Controller class to friend requests
+ * Controller class to friend requests actions
  */
 class FriendRequestController extends Controller
 {

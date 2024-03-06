@@ -6,14 +6,14 @@ use App\Http\Resources\PriorityResource;
 use App\Models\Priority;
 
 /**
- * Controller class to Priorities
+ * Controller class to Priorities actions
  */
 class PriorityController extends Controller
 {
     /**
      * Returns a general list from priorities
      *
-     * @return JsonResponse<Priorities>
+     * @return JSON
      */
     public function index()
     {

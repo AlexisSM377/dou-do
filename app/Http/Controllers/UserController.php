@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Filters\Api\UserFilter;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Requests\Update\UserUpdateRequest;
 use App\Http\Resources\Collections\UserCollection;
 use App\Http\Resources\Resources\UserResource;
-use App\Filters\Api\UserFilter;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 /**
- * Controller class to users
+ * Controller class to users actions
  */
 class UserController extends Controller
 {
@@ -19,7 +19,7 @@ class UserController extends Controller
      * Returns a general list from users
      *
      * @param Request $request
-     * @return JsonResponse<Users>
+     * @return JSON
      */
     public function index(Request $request)
     {
@@ -33,7 +33,7 @@ class UserController extends Controller
      * Save in database a new User and returns it
      *
      * @param UserStoreRequest $request
-     * @return JsonResponse<User>
+     * @return JSON
      */
     public function store(UserStoreRequest $request)
     {
@@ -44,7 +44,7 @@ class UserController extends Controller
      * Gets from database a user and returns it
      *
      * @param User $user
-     * @return JsonResponse<User>
+     * @return JSON
      */
     public function show(User $user)
     {
@@ -59,7 +59,7 @@ class UserController extends Controller
      *
      * @param UserUpdateRequest $request
      * @param User $user
-     * @return JsonResponse<User>
+     * @return JSON
      */
     public function update(UserUpdateRequest $request, User $user)
     {
@@ -71,7 +71,7 @@ class UserController extends Controller
      * Remove a user and returns a informatical message
      *
      * @param User $user
-     * @return JsonResponse
+     * @return JsonResponse<200>
      */
     public function destroy(User $user)
     {

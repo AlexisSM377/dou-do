@@ -4,6 +4,9 @@ namespace App\Http\Requests\Update;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Update Request to validate only user email
+ */
 class OnlyEmailRequest extends FormRequest
 {
     /**

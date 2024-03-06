@@ -5,7 +5,7 @@ namespace App\Http\Requests\Store;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * RequestStore from Users
+ * Store Request to validate the User fields
  */
 class UserStoreRequest extends FormRequest
 {

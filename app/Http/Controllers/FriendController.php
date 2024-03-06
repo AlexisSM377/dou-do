@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Friend;
 
 /**
- * Controller class to Friends
+ * Controller class to Friends actios
  */
 class FriendController extends Controller
 {

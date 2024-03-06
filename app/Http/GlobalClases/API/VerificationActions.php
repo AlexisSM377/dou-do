@@ -9,8 +9,18 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
+/**
+ * Class to VerificationActions actions
+ */
 class VerificationActions
 {
+    /**
+     * Gets user and token type, and create a UserToken record
+     *
+     * @param object $user
+     * @param integer $tokenType
+     * @return token
+     */
     public static function setUserToken($user, $tokenType)
     {
         $token = Str::random(15) . Str::replace(' ', '/', now('America/Mexico_City'));
@@ -23,6 +33,14 @@ class VerificationActions
         return $token;
     }
 
+    /**
+     * Gets the user, token and the email type, build the email and sends it
+     *
+     * @param object $user
+     * @param string $token
+     * @param integer $type
+     * @return void
+     */
     public static function buildEmail($user, $token, $type)
     {
         $body = VerificationActions::generateBody($user, $token);
@@ -39,6 +57,13 @@ class VerificationActions
         Mail::to($user->email)->send($emailVerify);
     }
 
+    /**
+     * Builds the email body with the token and request_code (user external identifier)
+     *
+     * @param object $user
+     * @param string $token
+     * @return body<encrypted>
+     */
     private static function generateBody($user, $token)
     {
         $body = [

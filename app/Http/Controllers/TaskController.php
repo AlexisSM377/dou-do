@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 /**
- * Controller class to Tasks
+ * Controller class to Tasks actions
  */
 class TaskController extends Controller
 {
     /**
      * Return a general list from tasks
      *
-     * @return JsonResponse<Tasks>
+     * @return JSON
      */
     public function index()
     {

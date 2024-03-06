@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\ErrorType;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+/**
+ * Seeder class for ErrorType table
+ */
 class ErrorTypesSeeder extends Seeder
 {
     /**

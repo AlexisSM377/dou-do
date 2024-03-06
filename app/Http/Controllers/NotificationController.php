@@ -9,14 +9,14 @@ use App\Http\Resources\Resources\NotificationResource;
 use App\Models\Notification;
 
 /**
- * Controller class to Notifications
+ * Controller class to Notifications actions
  */
 class NotificationController extends Controller
 {
     /**
      * Returns a general list from notifications
      *
-     * @return JsonResponse<Notifications>
+     * @return JSON
      */
     public function index()
     {
@@ -28,7 +28,7 @@ class NotificationController extends Controller
      * Save in database a new notification and returns it
      *
      * @param NotificationStoreRequest $request
-     * @return JsonResponse<Notification>
+     * @return JSON
      */
     public function store(NotificationStoreRequest $request)
     {
@@ -39,7 +39,7 @@ class NotificationController extends Controller
      * Gets from database a notification and returns it
      *
      * @param Notification $notification
-     * @return JsonResponse<Notification>
+     * @return JSON
      */
     public function show(Notification $notification)
     {
@@ -51,7 +51,7 @@ class NotificationController extends Controller
      *
      * @param NotificationUpdateRequest $request
      * @param Notification $notification
-     * @return JsonResponse<Notification>
+     * @return JSON
      */
     public function update(NotificationUpdateRequest $request, Notification $notification)
     {

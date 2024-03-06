@@ -5,7 +5,7 @@ namespace App\Http\Requests\Update;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * UpdateRequest from User
+ * Update Request to validate the User fields
  */
 class UserUpdateRequest extends FormRequest
 {

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 /**
- * Controller class to Professions
+ * Controller class to Professions actions
  */
 class ProfessionController extends Controller
 {
     /**
      * Returns a general list from Professions
      *
-     * @return JsonResponse<Professions>
+     * @return JSON
      */
     public function index()
     {

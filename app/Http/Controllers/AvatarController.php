@@ -10,14 +10,28 @@ use App\Models\User;
 use App\Models\UserAvatar;
 use Error;
 
+/**
+ * Controller class to Avatar actions
+ */
 class AvatarController extends Controller
 {
+    /**
+     * Returns all avatars in database
+     *
+     * @return JSON
+     */
     public function index()
     {
         $avatars = Avatar::paginate(10);
         return new AvatarCollection($avatars);
     }
 
+    /**
+     * Set the user avatar
+     *
+     * @param SetAvatarRequest $request
+     * @return JsonResponse<200>
+     */
     public function setAvatar(SetAvatarRequest $request)
     {
         try {

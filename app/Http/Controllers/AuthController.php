@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     /**
-     * Login function - Gets user credentials and returns an auth token or error message
+     * Gets user credentials and returns an auth token or error message
      *
      * @param AuthRequest $request
      * @return JsonResponse<200|403>
@@ -47,7 +47,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Logout function - Gets a user authenticated and returns an informatical message
+     * Gets a user authenticated and returns an informatical message
      *
      * @param Request $request
      * @return JsonResponse<200>
@@ -62,6 +62,13 @@ class AuthController extends Controller
         }
     }
 
+
+    /**
+     * Save user in database and returns it
+     *
+     * @param UserStoreRequest $request
+     * @return JsonResponse<200>
+     */
     public function register(UserStoreRequest $request)
     {
         try {
@@ -74,6 +81,12 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Gets the email and send a mail for reset the password
+     *
+     * @param Request $request
+     * @return JsonResponse<200>
+     */
     public function forgotPassword(Request $request)
     {
         try {
@@ -89,6 +102,11 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Checks if the user token is still available
+     *
+     * @return JsonResponse<200>
+     */
     public function whoIAm()
     {
         try {
@@ -98,6 +116,12 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Checks if the user is auth and returns it
+     *
+     * @param Request $request
+     * @return JsonResponse<200>
+     */
     public function refreshUser(Request $request)
     {
         try {

@@ -12,8 +12,18 @@ use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
+/**
+ * Controller class to ForgotPassword actions
+ */
 class ForgotPasswordController extends Controller
 {
+    /**
+     * Validates the request and redirect to reset password form, with a user variable
+     *
+     * @param Request $request
+     * @param string<encrypted> $body
+     * @return void
+     */
     public function attendRequest(Request $request, $body)
     {
         try {
@@ -41,11 +51,22 @@ class ForgotPasswordController extends Controller
         }
     }
 
+    /**
+     * Redirects to the resend request form
+     *
+     * @return void
+     */
     public function attendExpiredRequest()
     {
         return view('mails.forms.resend-password-reset');
     }
 
+    /**
+     * Gets the email and resend a new forgot password request
+     *
+     * @param OnlyEmailRequest $request
+     * @return void
+     */
     public function attendRequestForwarded(OnlyEmailRequest $request)
     {
         try {
@@ -60,6 +81,13 @@ class ForgotPasswordController extends Controller
         }
     }
 
+    /**
+     * Gets the password, validates it, and save the new password in the user record
+     *
+     * @param PasswordUpdateRequest $request
+     * @param User $user
+     * @return void
+     */
     public function restorePassword(PasswordUpdateRequest $request, User $user)
     {
         try {

@@ -9,6 +9,9 @@ use App\Models\User;
 use App\Models\Workspace;
 use Illuminate\Database\Seeder;
 
+/**
+ * Seeder main class
+ */
 class DatabaseSeeder extends Seeder
 {
     /**

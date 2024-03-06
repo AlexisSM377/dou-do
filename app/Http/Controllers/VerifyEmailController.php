@@ -9,8 +9,18 @@ use App\Models\UserToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
+/**
+ * Controller class to Verify email actions
+ */
 class VerifyEmailController extends Controller
 {
+    /**
+     * Validates the request, verify user and redirects to a confirm view
+     *
+     * @param Request $request
+     * @param string<encrypted> $body
+     * @return void
+     */
     public function attendVerification(Request $request, $body)
     {
         try {
@@ -41,11 +51,22 @@ class VerifyEmailController extends Controller
         }
     }
 
+    /**
+     * Redirects to the request forwarding form
+     *
+     * @return void
+     */
     public function attendExpiredRequest()
     {
         return view('mails.forms.resend-verification');
     }
 
+    /**
+     * Validates the user's verification status and redirects to a confirmation view or an error view
+     *
+     * @param User $user
+     * @return void
+     */
     public function verifyUser(User $user)
     {
         if ($user->verified) {
@@ -55,6 +76,12 @@ class VerifyEmailController extends Controller
         }
     }
 
+    /**
+     * Gets the email, resend the verification request and returns to a confirmation view
+     *
+     * @param Request $request
+     * @return void
+     */
     public function attendRequestForwarded(Request $request)
     {
         $email = $request->email;
