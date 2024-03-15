@@ -6,6 +6,7 @@ use App\Http\GlobalClases\Api\BuildVerificationEmail;
 use App\Http\GlobalClases\BuildError;
 use App\Models\User;
 use App\Models\UserToken;
+use ExponentPhpSDK\Expo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
@@ -26,6 +27,7 @@ class VerifyEmailController extends Controller
                                 $user->update([
                                     'verified' => true
                                 ]);
+                                $this->subscribeUser($user);
                                 return redirect()->route('verification.verify', $user->id);
                             }
                         }
@@ -65,5 +67,13 @@ class VerifyEmailController extends Controller
             }
         }
         return view('mails.informativeMessages.resend');
+    }
+
+    public function subscribeUser($user)
+    {
+        $channelName = 'general';
+        $token = $user->expo_push_token;
+        $expo = Expo::normalSetup();
+        $expo->subscribe($channelName, $token);
     }
 }

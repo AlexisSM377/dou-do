@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\InternalManagement;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Mail\ForgotPassword;
 use App\Models\User;
@@ -43,7 +44,20 @@ Route::group(['prefix' => 'forgot-password'], function(){
     Route::post('/resend', [ForgotPasswordController::class, 'attendRequestForwarded'])->name('forgot-password.forwarded');
 });
 
+Route::group(['middleware' => 'auth:sanctum'], function() {
+    Route::post('/notifications/{data}', [NotificationController::class, 'buildNotification']);
+});
+
 Route::get('/nose', function(){
+    $data = [
+        'type' => 'friend-request',
+        'body' => [
+            'name' => 'rafa'
+        ]
+    ];
+    $data = json_decode(json_encode($data));
+    dd($data->body->name);
+    /*
     $channelName = 'news';
     $recipient= ['ExponentPushToken[xruFMYA9YWofjVf3GQnkGK]'];
 
@@ -56,4 +70,5 @@ Route::get('/nose', function(){
     $notification = ['title' => 'Notificación #1', 'body' => 'Con esto ya la armamos xd...'];
 
     $expo->notify([$channelName], $notification);
+    */
 });
