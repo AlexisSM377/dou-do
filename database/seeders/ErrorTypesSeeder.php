@@ -21,5 +21,6 @@ class ErrorTypesSeeder extends Seeder
         ErrorType::create(['type' => 'Class']);
         ErrorType::create(['type' => 'Account Verification']);
         ErrorType::create(['type' => 'Forgot password']);
+        ErrorType::create(['type' => 'Notifications']);
     }
 }
