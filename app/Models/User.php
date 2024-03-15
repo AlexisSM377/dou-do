@@ -22,6 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'last_name',
+        'expo_push_token',
         'email',
         'password',
         'birthdate',
