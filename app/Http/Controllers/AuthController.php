@@ -36,13 +36,14 @@ class AuthController extends Controller
                         'user' => new UserResource($user->loadMissing('avatars')),
                     ], 200);
                 } else {
-                    return response()->json(['message' => 'Por favor, verifica tu cuenta por correo electrónico.' ], 401);
+                    return response()->json(['message' => 'Por favor, verifica tu cuenta por correo electrónico.' ], 403);
                 }
             } else {
-                return response()->json(['message' => 'Credenciales incorrectas.'], 403);
+                return response()->json(['message' => 'Credenciales incorrectas.'], 401);
             }
         } catch (\Throwable $th) {
             BuildError::saveError($th, 2);
+            return response()->json(['message' => 'Error en el servidor, inténtalo más tarde.'], 500);
         }
     }
 
