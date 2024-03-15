@@ -2,11 +2,8 @@
 
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\InternalManagement;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\GlobalClases\Notifications\NotificationPush;
-use App\Mail\ForgotPassword;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -45,10 +42,7 @@ Route::group(['prefix' => 'forgot-password'], function(){
     Route::post('/resend', [ForgotPasswordController::class, 'attendRequestForwarded'])->name('forgot-password.forwarded');
 });
 
-// Route::group(['middleware' => 'auth:sanctum'], function() {
-//     Route::post('/notifications/{data}', [NotificationController::class, 'buildNotification']);
-// });
-
+/*
 Route::get('/nose', function(){
     $expo = \ExponentPhpSDK\Expo::normalSetup();
     $expo->subscribe('general', 'ExponentPushToken[xruFMYA9YWofjVf3GQnkGK]');
@@ -62,3 +56,4 @@ Route::get('/nose', function(){
     ];
     NotificationPush::build($data);
 });
+*/
