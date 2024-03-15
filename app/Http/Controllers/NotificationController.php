@@ -9,6 +9,7 @@ use App\Http\Resources\Collections\NotificationCollection;
 use App\Http\Resources\Resources\NotificationResource;
 use App\Models\Notification;
 use Error;
+use ExponentPhpSDK\Expo;
 
 /**
  * Controller class to Notifications
@@ -16,18 +17,12 @@ use Error;
 class NotificationController extends Controller
 {
     /**
-     * Returns a general list from notifications
+     * Builds the notification body and sends it
      *
-     * @return JsonResponse<Notifications>
+     * @param Array $data
      */
     public function buildNotification($data)
     {
-        $data = [
-            'type' => 'friend-request',
-            'body' => [
-                'user_name' => 'rafa'
-            ]
-        ];
         $data = json_decode(json_encode($data));
         try {
             $notification = null;
@@ -78,6 +73,8 @@ class NotificationController extends Controller
                     throw new Error('Elección no encontrada');
                 break;
             }
+            $expo = \ExponentPhpSDK\Expo::normalSetup();
+            $expo->notify(['general'], $notification);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 7);
         }
