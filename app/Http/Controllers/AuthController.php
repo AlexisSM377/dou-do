@@ -78,7 +78,7 @@ class AuthController extends Controller
             return new UserResource($user);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
-            return response()->json(['error' => $th->getMessage()]);
+            return response()->json(['message' => 'Error en el servidor, inténtalo más tarde.'], 500);
         }
     }
 
