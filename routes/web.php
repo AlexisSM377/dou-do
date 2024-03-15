@@ -4,6 +4,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\InternalManagement;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\VerifyEmailController;
+use App\Http\GlobalClases\Notifications\NotificationPush;
 use App\Mail\ForgotPassword;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -44,31 +45,20 @@ Route::group(['prefix' => 'forgot-password'], function(){
     Route::post('/resend', [ForgotPasswordController::class, 'attendRequestForwarded'])->name('forgot-password.forwarded');
 });
 
-Route::group(['middleware' => 'auth:sanctum'], function() {
-    Route::post('/notifications/{data}', [NotificationController::class, 'buildNotification']);
-});
+// Route::group(['middleware' => 'auth:sanctum'], function() {
+//     Route::post('/notifications/{data}', [NotificationController::class, 'buildNotification']);
+// });
 
 Route::get('/nose', function(){
+    $expo = \ExponentPhpSDK\Expo::normalSetup();
+    $expo->subscribe('general', 'ExponentPushToken[xruFMYA9YWofjVf3GQnkGK]');
     $data = [
-        'type' => 'friend-request',
+        'type' => 'partner-left-team',
         'body' => [
-            'name' => 'rafa'
+            'user_name' => 'Rafael',
+            'workspace_name' => 'Integrador IDGS-83',
+            'task' => 'Generar índice de la documentación'
         ]
     ];
-    $data = json_decode(json_encode($data));
-    dd($data->body->name);
-    /*
-    $channelName = 'news';
-    $recipient= ['ExponentPushToken[xruFMYA9YWofjVf3GQnkGK]'];
-
-    $expo = \ExponentPhpSDK\Expo::normalSetup();
-
-    foreach ($recipient as $token) {
-        $expo->subscribe($channelName, $token);
-    }
-
-    $notification = ['title' => 'Notificación #1', 'body' => 'Con esto ya la armamos xd...'];
-
-    $expo->notify([$channelName], $notification);
-    */
+    NotificationPush::build($data);
 });
