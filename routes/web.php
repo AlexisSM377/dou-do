@@ -42,3 +42,18 @@ Route::group(['prefix' => 'forgot-password'], function(){
     Route::get('/expired', [ForgotPasswordController::class, 'attendExpiredRequest'])->name('forgot-password.expired');
     Route::post('/resend', [ForgotPasswordController::class, 'attendRequestForwarded'])->name('forgot-password.forwarded');
 });
+
+Route::get('/nose', function(){
+    $channelName = 'news';
+    $recipient= ['ExponentPushToken[xruFMYA9YWofjVf3GQnkGK]'];
+
+    $expo = \ExponentPhpSDK\Expo::normalSetup();
+
+    foreach ($recipient as $token) {
+        $expo->subscribe($channelName, $token);
+    }
+
+    $notification = ['title' => 'Notificación #1', 'body' => 'Con esto ya la armamos xd...'];
+
+    $expo->notify([$channelName], $notification);
+});
