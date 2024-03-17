@@ -61,7 +61,7 @@ class TaskController extends Controller
     public function store(TaskStoreRequest $request)
     {
         try {
-            $user = User::where('id', $request->user_id)->first();
+            $user = User::where('external_identifier', $request->user_id)->first();
             Task::create(
                 array_merge(
                     $request->all(),
