@@ -28,23 +28,45 @@ class WorkspaceController extends Controller
         }
     }
 
+    /**
+     * Gets from database a workspace and returns it
+     *
+     * @param User $user
+     * @return JSON
+     */
     public function show(Workspace $workspace)
     {
         return new WorkspaceResoruce($workspace);
     }
 
+    /**
+     * Save in database a new workspace and returns it
+     *
+     * @return JSON
+     */
     public function store(WorkspaceStoreRequest $request)
     {
         Workspace::create($request->all());
         return response()->json(['message' => 'Espacio de trabajo creado.']);
     }
 
+    /**
+     * Updates a worskpace and returns it
+     *
+     * @return JSON
+     */
     public function update(WorkspaceUpdateRequest $request, Workspace $workspace)
     {
         $workspace->update($request->all());
         return response()->json(['message' => 'Espacio de trabajo actualizado.']);
     }
 
+    /**
+     * Remove a worskpace and returns a informatical message
+     *
+     * @param User $user
+     * @return JsonResponse<200>
+     */
     public function destroy(Workspace $workspace)
     {
         $workspace->delete();

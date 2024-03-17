@@ -30,6 +30,18 @@ class TaskController extends Controller
             return new TaskCollecion($tasks);
         }
     }
+
+    /**
+     * Gets from database a task and returns it
+     *
+     * @param User $user
+     * @return JSON
+     */
+    public function show(Task $task)
+    {
+        return new TaskResource($task);
+    }
+
     /**
      * Save in database a new Task and returns it
      *
@@ -45,17 +57,6 @@ class TaskController extends Controller
             )
         );
         return response()->json(['message' => 'Tarea creada.']);
-    }
-
-    /**
-     * Gets from database a task and returns it
-     *
-     * @param User $user
-     * @return JSON
-     */
-    public function show(Task $task)
-    {
-        return new TaskResource($task);
     }
 
     /**
