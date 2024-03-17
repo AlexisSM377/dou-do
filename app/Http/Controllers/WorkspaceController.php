@@ -36,12 +36,13 @@ class WorkspaceController extends Controller
     public function store(WorkspaceStoreRequest $request)
     {
         $workspace = Workspace::create($request->all());
-        return new WorkspaceResoruce($workspace);
+        return response()->json(['message' => 'Espacio de trabajo creado.']);
     }
 
     public function update(WorkspaceUpdateRequest $request, Workspace $workspace)
     {
-        $workspace->update()
+        $workspace->update($request->all());
+        return response()->json(['message' => 'Espacio de trabajo actualizado.']);
     }
 
 }

@@ -44,7 +44,7 @@ class TaskController extends Controller
                 ['user_id' => $user->id],
             )
         );
-        return response()->json(['message' => 'Tarea creada']);
+        return response()->json(['message' => 'Tarea creada.']);
     }
 
     /**
@@ -66,7 +66,7 @@ class TaskController extends Controller
     public function update(TaskUpdateRequest $request, Task $task)
     {
         $task->update($request->all());
-        return new TaskResource($task);
+        return response()->json(['message' => 'Tarea actualizada.']);
     }
 
     /**
