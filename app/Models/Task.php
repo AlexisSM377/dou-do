@@ -22,6 +22,11 @@ class Task extends Model
         'due_date',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     /**
      * Gives relation between Task and priority N:1
      *
