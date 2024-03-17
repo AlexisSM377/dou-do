@@ -20,6 +20,11 @@ class Workspace extends Model
         'advance',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * Relation function Workspace-User
      *

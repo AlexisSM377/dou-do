@@ -11,7 +11,7 @@ class WorkspaceUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,20 @@ class WorkspaceUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        if ($this->method() == 'PAT') {
+            return [
+                'name' => 'required|string|min:6',
+                'description' => 'required|string|min:8',
+                'color' => 'required|string',
+                'advance' => 'required|integer',
+            ];
+        } else if ( $this->method() == 'PATCH' ) {
+            return [
+                'name' => 'sometimes|required|string|min:6',
+                'description' => 'sometimes|required|string|min:8',
+                'color' => 'sometimes|required|string',
+                'advance' => 'sometimes|required|integer',
+            ];
+        }
     }
 }

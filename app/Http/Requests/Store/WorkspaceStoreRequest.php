@@ -11,7 +11,7 @@ class WorkspaceStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class WorkspaceStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|min:6',
+            'description' => 'required|string|min:8',
+            'color' => 'required|string',
         ];
     }
 }
