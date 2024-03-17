@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Filters\Api\UserFilter;
+use App\Http\GlobalClases\BuildError;
 use App\Http\Requests\Store\UserStoreRequest;
 use App\Http\Requests\Update\UserUpdateRequest;
 use App\Http\Resources\Collections\UserCollection;
@@ -23,10 +24,14 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $filter = new UserFilter();
-        $users = User::where($filter->build($request));
-        $users = ($request->includeNotifications) ? $users->with('notifications') : $users;
-        return new UserCollection($users->paginate(10)->appends($request->query()));
+        try {
+            $filter = new UserFilter();
+            $users = User::where($filter->build($request));
+            $users = ($request->includeNotifications) ? $users->with('notifications') : $users;
+            return new UserCollection($users->paginate(10)->appends($request->query()));
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+        }
     }
 
     /**
@@ -37,7 +42,11 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        return new UserResource(User::create($request->all()));
+        try {
+            return new UserResource(User::create($request->all()));
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+        }
     }
 
     /**
@@ -48,10 +57,14 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $includ = [];
-        (request()->includeNotifications) ? array_push($includ, 'notifications') : null;
-        (request()->includeAvatar) ? array_push($includ, 'avatars') : null;
-        return new UserResource($user->loadMissing($includ));
+        try {
+            $includ = [];
+            (request()->includeNotifications) ? array_push($includ, 'notifications') : null;
+            (request()->includeAvatar) ? array_push($includ, 'avatars') : null;
+            return new UserResource($user->loadMissing($includ));
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+        }
     }
 
     /**
@@ -63,8 +76,12 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, User $user)
     {
-        $user->update($request->all());
-        return new UserResource($user);
+        try {
+            $user->update($request->all());
+            return new UserResource($user);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+        }
     }
 
     /**
@@ -75,9 +92,13 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
-        return response()->json([
-            'message' => "El usuario con el correo electronico: $user->email ha sido eliminado",
-        ], 200);
+        try {
+            $user->delete();
+            return response()->json([
+                'message' => "El usuario con el correo electronico: $user->email ha sido eliminado",
+            ], 200);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+        }
     }
 }
