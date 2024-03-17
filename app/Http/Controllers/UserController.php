@@ -31,6 +31,7 @@ class UserController extends Controller
             return new UserCollection($users->paginate(10)->appends($request->query()));
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
         }
     }
 
@@ -46,6 +47,7 @@ class UserController extends Controller
             return new UserResource(User::create($request->all()));
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
         }
     }
 
@@ -64,6 +66,7 @@ class UserController extends Controller
             return new UserResource($user->loadMissing($includ));
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
         }
     }
 
@@ -81,6 +84,7 @@ class UserController extends Controller
             return new UserResource($user);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
         }
     }
 
@@ -99,6 +103,7 @@ class UserController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
         }
     }
 }
