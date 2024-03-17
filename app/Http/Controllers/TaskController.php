@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\GlobalClases\BuildError;
 use App\Http\Requests\Store\TaskStoreRequest;
 use App\Http\Requests\Update\TaskUpdateRequest;
 use App\Http\Resources\Collections\TaskCollecion;
@@ -23,11 +24,16 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        if (!empty($request->user)) {
-            $tasks = Task::where('user_id',
-                User::where('external_identifier', $request->user)->first()->id
-            )->get();
-            return new TaskCollecion($tasks);
+        try {
+            if (!empty($request->user)) {
+                $tasks = Task::where('user_id',
+                    User::where('external_identifier', $request->user)->first()->id
+                )->get();
+                return new TaskCollecion($tasks);
+            }
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
         }
     }
 
@@ -39,7 +45,12 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return new TaskResource($task);
+        try {
+            return new TaskResource($task);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
+        }
     }
 
     /**
@@ -49,14 +60,19 @@ class TaskController extends Controller
      */
     public function store(TaskStoreRequest $request)
     {
-        $user = User::where('id', $request->user_id)->first();
-        Task::create(
-            array_merge(
-                $request->all(),
-                ['user_id' => $user->id],
-            )
-        );
-        return response()->json(['message' => 'Tarea creada.']);
+        try {
+            $user = User::where('id', $request->user_id)->first();
+            Task::create(
+                array_merge(
+                    $request->all(),
+                    ['user_id' => $user->id],
+                )
+            );
+            return response()->json(['message' => 'Tarea creada.']);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
+        }
     }
 
     /**
@@ -66,8 +82,13 @@ class TaskController extends Controller
      */
     public function update(TaskUpdateRequest $request, Task $task)
     {
-        $task->update($request->all());
-        return response()->json(['message' => 'Tarea actualizada.']);
+        try {
+            $task->update($request->all());
+            return response()->json(['message' => 'Tarea actualizada.']);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
+        }
     }
 
     /**
@@ -78,7 +99,12 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $task->delete();
-        return response()->json(['message' => 'Tarea eliminada.']);
+        try {
+            $task->delete();
+            return response()->json(['message' => 'Tarea eliminada.']);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
+        }
     }
 }
