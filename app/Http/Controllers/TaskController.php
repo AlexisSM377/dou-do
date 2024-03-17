@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Store\TaskStoreRequest;
+use App\Models\Task;
+use App\Models\User;
+use GuzzleHttp\Psr7\Request;
+
 /**
  * Controller class to Tasks actions
  */
@@ -12,8 +17,15 @@ class TaskController extends Controller
      *
      * @return JSON
      */
-    public function index()
+    public function store(TaskStoreRequest $request)
     {
-        // TODO: Tasks
+        $user = User::where('id', $request->user_id)->first();
+        Task::create(
+            array_merge(
+                $request->all(),
+                ['user_id' => $user->id],
+            )
+        );
+        return response()->json(['message' => 'Tarea creada']);
     }
 }
