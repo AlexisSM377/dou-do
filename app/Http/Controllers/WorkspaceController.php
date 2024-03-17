@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\GlobalClases\BuildError;
 use App\Http\Requests\Store\WorkspaceStoreRequest;
 use App\Http\Requests\Update\WorkspaceUpdateRequest;
 use App\Http\Resources\Collections\WorkspaceCollection;
@@ -22,9 +23,14 @@ class WorkspaceController extends Controller
      */
     public function index(Request $request)
     {
-        if (!empty($request->user)) {
-            $user = User::where('external_identifier', $request->user)->first();
-            return new WorkspaceCollection($user->workspaces);
+        try {
+            if (!empty($request->user)) {
+                $user = User::where('external_identifier', $request->user)->first();
+                return new WorkspaceCollection($user->workspaces);
+            }
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
         }
     }
 
@@ -36,7 +42,12 @@ class WorkspaceController extends Controller
      */
     public function show(Workspace $workspace)
     {
-        return new WorkspaceResoruce($workspace);
+        try {
+            return new WorkspaceResoruce($workspace);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
+        }
     }
 
     /**
@@ -46,8 +57,13 @@ class WorkspaceController extends Controller
      */
     public function store(WorkspaceStoreRequest $request)
     {
-        Workspace::create($request->all());
-        return response()->json(['message' => 'Espacio de trabajo creado.']);
+        try {
+            Workspace::create($request->all());
+            return response()->json(['message' => 'Espacio de trabajo creado.']);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
+        }
     }
 
     /**
@@ -57,8 +73,13 @@ class WorkspaceController extends Controller
      */
     public function update(WorkspaceUpdateRequest $request, Workspace $workspace)
     {
-        $workspace->update($request->all());
-        return response()->json(['message' => 'Espacio de trabajo actualizado.']);
+        try {
+            $workspace->update($request->all());
+            return response()->json(['message' => 'Espacio de trabajo actualizado.']);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
+        }
     }
 
     /**
@@ -69,8 +90,13 @@ class WorkspaceController extends Controller
      */
     public function destroy(Workspace $workspace)
     {
-        $workspace->delete();
-        return response()->json(['message' => 'Espacio de trabajo eliminado']);
+        try {
+            $workspace->delete();
+            return response()->json(['message' => 'Espacio de trabajo eliminado']);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
+        }
     }
 
 }
