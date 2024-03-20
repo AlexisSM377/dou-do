@@ -58,7 +58,9 @@ class WorkspaceController extends Controller
     public function store(WorkspaceStoreRequest $request)
     {
         try {
-            Workspace::create($request->all());
+            $workspace = Workspace::create($request->all());
+            $user = User::where('external_identifier', $request->user_id)->first();
+            $user->workspaces()->attach($workspace->id);
             return response()->json(['message' => 'Espacio de trabajo creado.']);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);

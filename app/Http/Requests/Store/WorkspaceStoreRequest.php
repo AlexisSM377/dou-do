@@ -25,6 +25,7 @@ class WorkspaceStoreRequest extends FormRequest
             'name' => 'required|string|min:6',
             'description' => 'required|string|min:8',
             'color' => 'required|string',
+            'user_id' => 'required'
         ];
     }
 }
