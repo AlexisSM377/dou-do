@@ -15,6 +15,11 @@ class Priority extends Model
     //* Fillable
     protected $fillable = ['priority'];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * Gives relation between Priority and tasks N:1
      *

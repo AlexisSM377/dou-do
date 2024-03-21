@@ -22,10 +22,10 @@ class TaskStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required',
-            'priority_id' => 'required|integer',
             'title' => 'required|string|min:8|max:40',
             'description' => 'required|min:8|max:245',
+            'workspace_id' => 'required',
+            'priority_id' => 'required|integer',
             'due_date' => 'required|date',
         ];
     }
