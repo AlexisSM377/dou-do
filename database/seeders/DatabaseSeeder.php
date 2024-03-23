@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ErrorTypesSeeder::class,
             TokenTypesSeeder::class,
             AvatarSeeder::class,
+            PrioritySeeder::class
         ]);
     }
 }
