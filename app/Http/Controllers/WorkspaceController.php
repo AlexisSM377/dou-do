@@ -60,7 +60,7 @@ class WorkspaceController extends Controller
         try {
             $workspace = Workspace::create($request->all());
             $user = User::where('external_identifier', $request->user_id)->first();
-            $user->workspaces()->attach($workspace->id);
+            $user->workspaces()->attach($workspace->id, ['rol_id' => $request->rol_id]);
             return response()->json(['message' => 'Espacio de trabajo creado.']);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);

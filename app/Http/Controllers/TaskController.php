@@ -61,13 +61,7 @@ class TaskController extends Controller
     public function store(TaskStoreRequest $request)
     {
         try {
-            $user = User::where('external_identifier', $request->user_id)->first();
-            Task::create(
-                array_merge(
-                    $request->all(),
-                    ['user_id' => $user->id],
-                )
-            );
+            Task::create($request->all());
             return response()->json(['message' => 'Tarea creada.']);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
