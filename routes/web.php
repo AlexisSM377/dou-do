@@ -62,7 +62,7 @@ Route::group(['prefix' => 'forgot-password'], function(){
     Route::post('/resend', [ForgotPasswordController::class, 'attendRequestForwarded'])->name('forgot-password.forwarded');
 });
 
-/*
+
 Route::get('/nose', function(){
     $expo = \ExponentPhpSDK\Expo::normalSetup();
     $expo->subscribe('general', 'ExponentPushToken[xruFMYA9YWofjVf3GQnkGK]');
@@ -76,4 +76,3 @@ Route::get('/nose', function(){
     ];
     NotificationPush::build($data);
 });
-*/
