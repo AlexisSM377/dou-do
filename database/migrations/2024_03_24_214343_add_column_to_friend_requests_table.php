@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('friend_requests', function (Blueprint $table) {
-
+            $table->boolean('status')->nullable()->after('target_user_id');
         });
     }
 
@@ -21,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('friend_requests', function (Blueprint $table) {
+            //
+        });
     }
 };
