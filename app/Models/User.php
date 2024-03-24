@@ -121,7 +121,7 @@ class User extends Authenticatable
      *
      * @return EloquentRelation
      */
-    public function myFriends()
+    public function friends()
     {
         return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
     }
@@ -131,7 +131,7 @@ class User extends Authenticatable
      *
      * @return EloquentRelation
      */
-    public function myFriendRequests()
+    public function friendRequests()
     {
         return $this->belongsToMany(FriendRequest::class, 'friend_requests', 'origin_user_id', 'target_user_id');
     }
@@ -154,5 +154,15 @@ class User extends Authenticatable
     public function avatars()
     {
         return $this->belongsToMany(Avatar::class, 'user_avatars');
+    }
+
+    public function scopeGetFriendRequestsSent()
+    {
+        return FriendRequest::where('origin_user_id', $this->id)->get();
+    }
+
+    public function scopeGetLastFriendRequestSent()
+    {
+        return FriendRequest::where('origin_user_id', $this->id)->latest()->first();
     }
 }
