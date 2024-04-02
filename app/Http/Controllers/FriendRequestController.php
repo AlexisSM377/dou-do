@@ -41,6 +41,8 @@ class FriendRequestController extends Controller
                 } else {
                     return $this->friendRequestGenerate($user, $request, $currentDate);
                 }
+            } else {
+                return response()->json(['message' => 'Solicitud enviada']);
             }
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
