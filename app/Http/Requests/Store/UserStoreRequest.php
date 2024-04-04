@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 /**
  * Store Request to validate the User fields
  */
-class UserStoreRequest extends FormRequest
+class   UserStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
