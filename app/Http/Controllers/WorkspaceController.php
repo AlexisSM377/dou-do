@@ -26,7 +26,7 @@ class WorkspaceController extends Controller
         try {
             if (!empty($request->user)) {
                 $user = User::where('external_identifier', $request->user)->first();
-                return new WorkspaceCollection($user->workspaces);
+                return new WorkspaceCollection( new WorkspaceCollection($user->workspaces()->with('tasks')->get()) );
             }
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);

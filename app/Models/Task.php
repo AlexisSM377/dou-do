@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Model class for Task tbale
@@ -46,5 +47,10 @@ class Task extends Model
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function workspace()
+    {
+        return $this->belongsTo(Workspace::class);
     }
 }
