@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Friend;
+use App\Http\GlobalClases\BuildError;
+use App\Http\Resources\Collections\FriendCollection;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 /**
  * Controller class to Friends actios
@@ -14,8 +17,16 @@ class FriendController extends Controller
      *
      * @return JsonResponse<Friends>
      */
-    public function index()
+    public function index(Request $request)
     {
-        // TODO: Not used
+        try {
+            if (!empty($request->user)) {
+                $user = User::where('external_identifier', $request->user)->first();
+                return new FriendCollection( $user->friends );
+            }
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
+        }
     }
 }
