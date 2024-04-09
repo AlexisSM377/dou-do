@@ -38,7 +38,7 @@ class FriendRequestController extends Controller
                     if ($currentDate->greaterThan($due_date)) {
                         return $this->friendRequestGenerate($origin_user, $request, $currentDate);
                     } else {
-                        return response()->json(['message' => 'Ya has enviado una solicitud a este usuario, necesitas esperar algunas horas para volver a enviar otra.']);
+                        return response()->json(['message' => 'Ya has enviado una solicitud a este usuario, vuélvelo a intentar más tarde.', 'status' => 'rejected']);
                     }
                 } else {
                     return $this->friendRequestGenerate($origin_user, $target_user, $currentDate);
@@ -73,7 +73,7 @@ class FriendRequestController extends Controller
 
     public function searchUser($external_identifier)
     {
-        $user = User::where('external_identifier', $external_identifier)->latest()->first();
+        $user = User::where('external_identifier', $external_identifier)->first();
         return !empty($user->id) ? $user : false;
     }
 }
