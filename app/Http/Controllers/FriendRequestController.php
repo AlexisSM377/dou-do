@@ -36,7 +36,7 @@ class FriendRequestController extends Controller
                 if (!empty($request_last->created_at)) {
                     $due_date = $request_last->created_at->addHours(6)->format('Y-m-d H:i:s');
                     if ($currentDate->greaterThan($due_date)) {
-                        return $this->friendRequestGenerate($user, $request, $currentDate);
+                        return $this->friendRequestGenerate($origin_user, $request, $currentDate);
                     } else {
                         return response()->json(['message' => 'Ya has enviado una solicitud a este usuario, necesitas esperar algunas horas para volver a enviar otra.']);
                     }
@@ -61,7 +61,7 @@ class FriendRequestController extends Controller
     public function sendNotification($origin_user, $target_user)
     {
         $expo = Expo::normalSetup();
-        $expo->subscribe('general', $target_user->expo_push_token);
+        $expo->subscribe('solicitud', $target_user->expo_push_token);
         $data = [
             'type' => 'friend-request',
             'body' => [

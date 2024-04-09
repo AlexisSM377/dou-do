@@ -65,14 +65,11 @@ Route::group(['prefix' => 'forgot-password'], function(){
 
 Route::get('/nose', function(){
     $expo = \ExponentPhpSDK\Expo::normalSetup();
-    $expo->subscribe('general', 'ExponentPushToken[xruFMYA9YWofjVf3GQnkGK]');
-    $data = [
-        'type' => 'partner-left-team',
-        'body' => [
-            'user_name' => 'Rafael',
-            'workspace_name' => 'Integrador IDGS-83',
-            'task' => 'Generar índice de la documentación'
-        ]
+    $notification = [
+        'title' => 'Solicitud de amistad.',
+        'body' => 'Alguien te ha enviado una solicitud de amistad. 🤝'
     ];
-    NotificationPush::build($data);
+    $tokens = ['ExponentPushToken[NX-kLmDQZkZbrmlsqpMKjS]'];
+    $expo->notify($tokens, $notification);
+    
 });
