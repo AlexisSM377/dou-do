@@ -6,6 +6,9 @@ use App\Http\Controllers\VerifyEmailController;
 use App\Http\GlobalClases\Notifications\NotificationPush;
 use App\Models\Workspace;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Notifications\Notification;
+use YieldStudio\LaravelExpoNotifier\ExpoNotificationsChannel;
+use YieldStudio\LaravelExpoNotifier\Dto\ExpoMessage;
 
 
 /*
@@ -62,14 +65,12 @@ Route::group(['prefix' => 'forgot-password'], function(){
     Route::post('/resend', [ForgotPasswordController::class, 'attendRequestForwarded'])->name('forgot-password.forwarded');
 });
 
-
 Route::get('/nose', function(){
     $expo = \ExponentPhpSDK\Expo::normalSetup();
+    $expo->subscribe('user_rafa', 'ExponentPushToken[NX-kLmDQZkZbrmlsqpMKjS]');
     $notification = [
         'title' => 'Solicitud de amistad.',
-        'body' => 'Alguien te ha enviado una solicitud de amistad. 🤝'
+        'body' => 'Rafa te ha enviado una solicitud de amistad. 🤝'
     ];
-    $tokens = ['ExponentPushToken[NX-kLmDQZkZbrmlsqpMKjS]'];
-    $expo->notify($tokens, $notification);
-    
+    $expo->notify(['user_rafa'], $notification);
 });
