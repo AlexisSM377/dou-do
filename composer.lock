@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "56dbfa92b605c3c327f0f192ea054e1b",
+    "content-hash": "32138ccd0c6ee7b50b4ceb15dc29a8b6",
     "packages": [
         {
             "name": "alymosul/exponent-server-sdk-php",
@@ -1095,16 +1095,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.48.4",
+            "version": "v10.48.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "7e0701bf59cb76a51f7c1f7bea51c0c0c29c0b72"
+                "reference": "a8b682e1371338848637f638aedaef2f7607d36f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/7e0701bf59cb76a51f7c1f7bea51c0c0c29c0b72",
-                "reference": "7e0701bf59cb76a51f7c1f7bea51c0c0c29c0b72",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a8b682e1371338848637f638aedaef2f7607d36f",
+                "reference": "a8b682e1371338848637f638aedaef2f7607d36f",
                 "shasum": ""
             },
             "require": {
@@ -1298,20 +1298,20 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-03-21T13:36:36+00:00"
+            "time": "2024-04-09T14:48:50+00:00"
         },
         {
             "name": "laravel/prompts",
-            "version": "v0.1.17",
+            "version": "v0.1.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "8ee9f87f7f9eadcbe21e9e72cd4176b2f06cd5b5"
+                "reference": "3b5e6b03f1f1175574b5a32331d99c9819da9848"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/8ee9f87f7f9eadcbe21e9e72cd4176b2f06cd5b5",
-                "reference": "8ee9f87f7f9eadcbe21e9e72cd4176b2f06cd5b5",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/3b5e6b03f1f1175574b5a32331d99c9819da9848",
+                "reference": "3b5e6b03f1f1175574b5a32331d99c9819da9848",
                 "shasum": ""
             },
             "require": {
@@ -1353,9 +1353,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
-                "source": "https://github.com/laravel/prompts/tree/v0.1.17"
+                "source": "https://github.com/laravel/prompts/tree/v0.1.18"
             },
-            "time": "2024-03-13T16:05:43+00:00"
+            "time": "2024-04-04T17:41:50+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -1739,16 +1739,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.26.0",
+            "version": "3.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "072735c56cc0da00e10716dd90d5a7f7b40b36be"
+                "reference": "4729745b1ab737908c7d055148c9a6b3e959832f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/072735c56cc0da00e10716dd90d5a7f7b40b36be",
-                "reference": "072735c56cc0da00e10716dd90d5a7f7b40b36be",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/4729745b1ab737908c7d055148c9a6b3e959832f",
+                "reference": "4729745b1ab737908c7d055148c9a6b3e959832f",
                 "shasum": ""
             },
             "require": {
@@ -1813,7 +1813,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.26.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.27.0"
             },
             "funding": [
                 {
@@ -1825,7 +1825,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-25T11:49:53+00:00"
+            "time": "2024-04-07T19:17:50+00:00"
         },
         {
             "name": "league/flysystem-local",
@@ -5732,6 +5732,81 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "yieldstudio/laravel-expo-notifier",
+            "version": "0.0.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/YieldStudio/laravel-expo-notifier.git",
+                "reference": "90ed801581336369d86c50da9142d04d44d05a12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/YieldStudio/laravel-expo-notifier/zipball/90ed801581336369d86c50da9142d04d44d05a12",
+                "reference": "90ed801581336369d86c50da9142d04d44d05a12",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^9.0|^10.0|^11.0",
+                "illuminate/support": "^9.0|^10.0|^11.0",
+                "nesbot/carbon": ">=2.62.1",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "ciareis/bypass": "^1.0",
+                "dg/bypass-finals": "^1.4",
+                "guzzlehttp/guzzle": "^7.8",
+                "laravel/pint": "^1.3",
+                "orchestra/testbench": "^7.0|^8.0|^9.0.2",
+                "pestphp/pest": "^1.21|^2.0",
+                "phpunit/phpunit": "^9.4 || ^10.5 || ^11.0"
+            },
+            "type": "plugin",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "YieldStudio\\LaravelExpoNotifier\\ExpoNotificationsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "YieldStudio\\LaravelExpoNotifier\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Hemery",
+                    "email": "james@yieldstudio.fr",
+                    "homepage": "https://yieldstudio.fr",
+                    "role": "Developer"
+                },
+                {
+                    "name": "David Tang",
+                    "email": "david@yieldstudio.fr",
+                    "homepage": "https://yieldstudio.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily send Expo notifications with Laravel.",
+            "homepage": "https://github.com/YieldStudio/laravel-expo-notifier",
+            "keywords": [
+                "expo",
+                "laravel",
+                "notification",
+                "notifier",
+                "yieldstudio"
+            ],
+            "support": {
+                "issues": "https://github.com/YieldStudio/laravel-expo-notifier/issues",
+                "source": "https://github.com/YieldStudio/laravel-expo-notifier/tree/0.0.14"
+            },
+            "time": "2024-04-04T12:20:06+00:00"
         }
     ],
     "packages-dev": [
