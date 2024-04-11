@@ -16,8 +16,11 @@ class NotificationPush
     public static function build($data)
     {
         $data = json_decode(json_encode($data));
+        $expo = Expo::normalSetup();
+        $notification = null;
         try {
-            $notification = null;
+            $channel = 'user_' . $data->target_user->external_identifier;
+            $expo->subscribe($channel, $data->target_user->expo_push_token);
             switch ($data->type) {
                 case 'friend-request':
                     $notification = [
@@ -65,8 +68,7 @@ class NotificationPush
                     throw new Error('Elección no encontrada');
                 break;
             }
-            $expo = Expo::normalSetup();
-            $expo->notify(['general'], $notification);
+            $expo->notify([$channel], $notification);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 7);
         }

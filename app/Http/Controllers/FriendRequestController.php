@@ -66,7 +66,8 @@ class FriendRequestController extends Controller
             'type' => 'friend-request',
             'body' => [
                 'user_name' => $origin_user->name . " " . $origin_user->last_name,
-            ]
+            ],
+            'target_user' => $target_user
         ];
         NotificationPush::build($data);
     }
