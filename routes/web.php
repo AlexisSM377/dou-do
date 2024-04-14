@@ -3,15 +3,7 @@
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\InternalManagement;
 use App\Http\Controllers\VerifyEmailController;
-use App\Http\GlobalClases\Notifications\NotificationPush;
-use App\Http\Resources\Collections\UserCollection;
-use App\Http\Resources\Resources\UserResource;
-use App\Models\User;
-use App\Models\Workspace;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Notifications\Notification;
-use YieldStudio\LaravelExpoNotifier\ExpoNotificationsChannel;
-use YieldStudio\LaravelExpoNotifier\Dto\ExpoMessage;
 
 
 /*
@@ -77,9 +69,3 @@ Route::group(['prefix' => 'forgot-password'], function(){
 //     ];
 //     $expo->notify(['user_rafa'], $notification);
 // });
-
-Route::get('/nose', function(){
-    $external_identifier = "83d89b8f-83f0-4905-aefd-ff8aadb9a1d9";
-    $user = User::where('external_identifier', $external_identifier)->first();
-    dd( new UserCollection($user->friends->loadMissing('avatars')) );
-});

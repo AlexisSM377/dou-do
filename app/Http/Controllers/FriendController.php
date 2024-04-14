@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\GlobalClases\BuildError;
-use App\Http\Resources\Collections\FriendCollection;
 use App\Http\Resources\Collections\UserCollection;
-use App\Http\Resources\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
