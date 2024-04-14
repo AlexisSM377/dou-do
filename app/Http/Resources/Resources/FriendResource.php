@@ -14,6 +14,11 @@ class FriendResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'external_identifier' => $this->external_identifier,
+            'name' => $this->name,
+            'last_name' => $this->last_name,
+            'avatar' => AvatarResource::collection($this->whenLoaded('avatars')),
+        ];
     }
 }

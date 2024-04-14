@@ -4,6 +4,9 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\InternalManagement;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\GlobalClases\Notifications\NotificationPush;
+use App\Http\Resources\Collections\UserCollection;
+use App\Http\Resources\Resources\UserResource;
+use App\Models\User;
 use App\Models\Workspace;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Notifications\Notification;
@@ -65,12 +68,18 @@ Route::group(['prefix' => 'forgot-password'], function(){
     Route::post('/resend', [ForgotPasswordController::class, 'attendRequestForwarded'])->name('forgot-password.forwarded');
 });
 
+// Route::get('/nose', function(){
+//     $expo = \ExponentPhpSDK\Expo::normalSetup();
+//     $expo->subscribe('user_rafa', 'ExponentPushToken[NX-kLmDQZkZbrmlsqpMKjS]');
+//     $notification = [
+//         'title' => 'Solicitud de amistad.',
+//         'body' => 'Rafa te ha enviado una solicitud de amistad. 🤝'
+//     ];
+//     $expo->notify(['user_rafa'], $notification);
+// });
+
 Route::get('/nose', function(){
-    $expo = \ExponentPhpSDK\Expo::normalSetup();
-    $expo->subscribe('user_rafa', 'ExponentPushToken[NX-kLmDQZkZbrmlsqpMKjS]');
-    $notification = [
-        'title' => 'Solicitud de amistad.',
-        'body' => 'Rafa te ha enviado una solicitud de amistad. 🤝'
-    ];
-    $expo->notify(['user_rafa'], $notification);
+    $external_identifier = "83d89b8f-83f0-4905-aefd-ff8aadb9a1d9";
+    $user = User::where('external_identifier', $external_identifier)->first();
+    dd( new UserCollection($user->friends->loadMissing('avatars')) );
 });

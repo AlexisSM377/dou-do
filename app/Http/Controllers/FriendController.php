@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\GlobalClases\BuildError;
 use App\Http\Resources\Collections\FriendCollection;
+use App\Http\Resources\Collections\UserCollection;
+use App\Http\Resources\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,7 +24,7 @@ class FriendController extends Controller
         try {
             if (!empty($request->user)) {
                 $user = User::where('external_identifier', $request->user)->first();
-                return new FriendCollection( $user->friends );
+                return (new UserCollection($user->friends->loadMissing('avatars')));
             }
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
