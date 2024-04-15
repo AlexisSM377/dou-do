@@ -60,8 +60,6 @@ class FriendRequestController extends Controller
 
     public function sendNotification($origin_user, $target_user)
     {
-        $expo = Expo::normalSetup();
-        $expo->subscribe('solicitud', $target_user->expo_push_token);
         $data = [
             'type' => 'friend-request',
             'body' => [
