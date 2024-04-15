@@ -17,14 +17,14 @@ class CollaborationRequestController extends Controller
             $user = User::where('external_identifier', $request->user)->first();
             $collaborator = User::where('external_identifier', $request->collaborator)->first();
             $workspace = Workspace::where('id', $request->workspace_id)->first();
-            CollaborationRequest::create(
+            $collaboration_request = CollaborationRequest::create(
                 array_merge(
                     ['user_id' => $user->id],
                     ['collaborator_id' => $collaborator->id],
                     $request->all()
                 )
             );
-            $this->sendNotification($user, $workspace, $collaborator);
+            $this->sendNotification($user, $workspace, $collaborator, $collaboration_request);
             return response()->json(['message' => 'Solicitud de colaboración enviada exitosamente.']);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
@@ -32,7 +32,7 @@ class CollaborationRequestController extends Controller
         }
     }
 
-    public function sendNotification($origin_user, $workspace, $target_user)
+    public function sendNotification($origin_user, $workspace, $target_user, $collaboration_request)
     {
         $data = [
             'type' => 'workspace-invite',
@@ -40,7 +40,8 @@ class CollaborationRequestController extends Controller
                 'user_name' => $origin_user->name . " " . $origin_user->last_name,
                 'workspace_name' => $workspace->name
             ],
-            'target_user' => $target_user
+            'target_user' => $target_user,
+            'workspace' => $collaboration_request->id
         ];
         NotificationPush::build($data);
     }

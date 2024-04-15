@@ -37,7 +37,10 @@ class NotificationPush
                 case 'workspace-invite':
                     $notification = [
                         'title' => 'Invitación a equipo de trabajo.',
-                        'body' => $data->body->user_name . ' te ha invitado a colaborar en: ' . $data->body->workspace_name . ' 💼'
+                        'body' => $data->body->user_name . ' te ha invitado a colaborar en: ' . $data->body->workspace_name . ' 💼',
+                        'data' => [
+                            'workspace' => $data->workspace
+                        ]
                     ];
                 break;
                 case 'workspace-invite-accepted':
