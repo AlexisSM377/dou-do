@@ -133,7 +133,7 @@ class User extends Authenticatable
      */
     public function friendRequests()
     {
-        return $this->belongsTo(FriendRequest::class, 'friend_requests', 'origin_user_id', 'target_user_id');
+        return $this->belongsToMany(FriendRequest::class, 'friend_requests', 'origin_user_id', 'target_user_id');
     }
 
     /**
