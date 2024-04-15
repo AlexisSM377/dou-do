@@ -3,6 +3,7 @@
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\InternalManagement;
 use App\Http\Controllers\VerifyEmailController;
+use App\Models\Workspace;
 use Illuminate\Support\Facades\Route;
 
 
@@ -69,3 +70,8 @@ Route::group(['prefix' => 'forgot-password'], function(){
 //     ];
 //     $expo->notify(['user_rafa'], $notification);
 // });
+
+Route::get('/nose', function(){
+    $work = Workspace::find(11);
+    dd($work->users);
+});

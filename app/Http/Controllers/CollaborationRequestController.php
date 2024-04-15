@@ -53,7 +53,7 @@ class CollaborationRequestController extends Controller
             $col_re->update([
                 'status' => 1
             ]);
-            $collaborator = User::where('id', $col_re->user_id)->first();
+            $collaborator = User::where('id', $col_re->collaborator_id)->first();
             $workspace = Workspace::where('id', $col_re->workspace_id)->first();
             $collaborator->workspaces()->attach($workspace->id, ['rol_id' => 2]);
             return response()->json(['message' => 'Solicitud de colaboración aceptada.']);
