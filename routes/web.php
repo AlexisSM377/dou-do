@@ -3,7 +3,7 @@
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\InternalManagement;
 use App\Http\Controllers\VerifyEmailController;
-use App\Http\GlobalClases\Notifications\NotificationPush;
+use App\Models\Workspace;
 use Illuminate\Support\Facades\Route;
 
 
@@ -61,18 +61,17 @@ Route::group(['prefix' => 'forgot-password'], function(){
     Route::post('/resend', [ForgotPasswordController::class, 'attendRequestForwarded'])->name('forgot-password.forwarded');
 });
 
-/*
+// Route::get('/nose', function(){
+//     $expo = \ExponentPhpSDK\Expo::normalSetup();
+//     $expo->subscribe('user_rafa', 'ExponentPushToken[NX-kLmDQZkZbrmlsqpMKjS]');
+//     $notification = [
+//         'title' => 'Solicitud de amistad.',
+//         'body' => 'Rafa te ha enviado una solicitud de amistad. 🤝'
+//     ];
+//     $expo->notify(['user_rafa'], $notification);
+// });
+
 Route::get('/nose', function(){
-    $expo = \ExponentPhpSDK\Expo::normalSetup();
-    $expo->subscribe('general', 'ExponentPushToken[xruFMYA9YWofjVf3GQnkGK]');
-    $data = [
-        'type' => 'partner-left-team',
-        'body' => [
-            'user_name' => 'Rafael',
-            'workspace_name' => 'Integrador IDGS-83',
-            'task' => 'Generar índice de la documentación'
-        ]
-    ];
-    NotificationPush::build($data);
+    $work = Workspace::find(11);
+    dd($work->users);
 });
-*/

@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->foreignId('user_id')->after('id');
+        Schema::table('friend_requests', function (Blueprint $table) {
+            $table->boolean('status')->nullable()->after('target_user_id');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->dropColumn('user_id');
+        Schema::table('friend_requests', function (Blueprint $table) {
+            //
         });
     }
 };

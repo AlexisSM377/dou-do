@@ -11,11 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_workspace', function (Blueprint $table) {
-            $table->foreignId('user_id');
-            $table->foreignId('workspace_id');
-            $table->timestamps();
-        });
+        Schema::dropIfExists('user_task');
     }
 
     /**
@@ -23,6 +19,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_worskpace');
+        //
     }
 };

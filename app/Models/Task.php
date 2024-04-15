@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Model class for Task tbale
@@ -14,12 +15,18 @@ class Task extends Model
 
     //* Fillable
     protected $fillable = [
-        'user_id',
-        'priority_id',
+        'responsable_id',
         'title',
         'description',
+        'priority_id',
+        'workspace_id',
         'status',
         'due_date',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -40,5 +47,10 @@ class Task extends Model
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function workspace()
+    {
+        return $this->belongsTo(Workspace::class);
     }
 }

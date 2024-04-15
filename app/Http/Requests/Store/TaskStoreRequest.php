@@ -4,10 +4,7 @@ namespace App\Http\Requests\Store;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Store Request to validate the User fields
- */
-class   UserStoreRequest extends FormRequest
+class TaskStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,18 +15,18 @@ class   UserStoreRequest extends FormRequest
     }
 
     /**
-     * Sets validation rules to apply to the request
+     * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'name' => 'required|max:25|min:4|string',
-            'last_name' => 'required|max:60|min:4|string',
-            'email' => 'required|max:100|email|unique:users,email',
-            'password' => 'required|min:8|max:30',
-            'birthdate' => 'required|date',
+            'title' => 'required|string|min:8|max:40',
+            'description' => 'required|min:8|max:245',
+            'workspace_id' => 'required',
+            'priority_id' => 'required|integer',
+            'due_date' => 'required|date',
         ];
     }
 }

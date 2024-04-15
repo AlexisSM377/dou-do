@@ -20,6 +20,11 @@ class Workspace extends Model
         'advance',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * Relation function Workspace-User
      *
@@ -28,5 +33,10 @@ class Workspace extends Model
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }

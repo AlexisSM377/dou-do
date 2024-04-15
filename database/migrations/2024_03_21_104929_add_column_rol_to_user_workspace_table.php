@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_workspace', function (Blueprint $table) {
-            $table->foreignId('user_id');
-            $table->foreignId('workspace_id');
-            $table->timestamps();
+        Schema::table('user_workspace', function (Blueprint $table) {
+            $table->foreignId('rol_id')->default(1)->after('workspace_id')->nullable();
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_worskpace');
+        Schema::table('user_workspace', function (Blueprint $table) {
+            //
+        });
     }
 };

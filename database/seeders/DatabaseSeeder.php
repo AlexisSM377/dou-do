@@ -19,15 +19,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
         Profession::factory(5)->create();
-        Summary::factory(10)->create();
-        Task::factory(30)->create();
-        Workspace::factory(10)->create();
         $this->call([
             ErrorTypesSeeder::class,
             TokenTypesSeeder::class,
-            AvatarSeeder::class
+            AvatarSeeder::class,
+            PrioritySeeder::class
         ]);
     }
 }

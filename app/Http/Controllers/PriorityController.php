@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Collections\PriorityCollection;
 use App\Http\Resources\PriorityResource;
 use App\Models\Priority;
 
@@ -17,6 +18,7 @@ class PriorityController extends Controller
      */
     public function index()
     {
-        // TODO: Not used
+        $priorities = Priority::all();
+        return new PriorityCollection($priorities);
     }
 }

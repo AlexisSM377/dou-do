@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\CollaborationRequestController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\FriendRequestController;
 use App\Http\Controllers\NotificationController;
@@ -10,8 +11,10 @@ use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserWorkspaceController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\WorkspaceController;
+use App\Models\CollaborationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +35,7 @@ use Illuminate\Support\Facades\Route;
  */
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth.api' ], function(){
     Route::resource('users', UserController::class);
+    Route::resource('user-workspace', UserWorkspaceController::class);
     Route::resource('workspaces', WorkspaceController::class);
     Route::resource('tasks', TaskController::class);
     Route::resource('notifications', NotificationController::class);
@@ -40,6 +44,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers', 'middlewa
     Route::resource('summaries', SummaryController::class);
     Route::resource('friends', FriendController::class);
     Route::resource('friend-request', FriendRequestController::class);
+    Route::resource('collaboration-request', CollaborationRequestController::class);
     Route::resource('avatars', AvatarController::class);
 });
 
