@@ -100,5 +100,4 @@ class WorkspaceController extends Controller
             return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
         }
     }
-
 }

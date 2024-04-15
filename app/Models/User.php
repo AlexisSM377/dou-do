@@ -133,7 +133,7 @@ class User extends Authenticatable
      */
     public function friendRequests()
     {
-        return $this->belongsToMany(FriendRequest::class, 'friend_requests', 'origin_user_id', 'target_user_id');
+        return $this->belongsTo(FriendRequest::class, 'friend_requests', 'origin_user_id', 'target_user_id');
     }
 
     /**
@@ -164,5 +164,10 @@ class User extends Authenticatable
     public function scopeGetLastFriendRequestSent()
     {
         return FriendRequest::where('origin_user_id', $this->id)->latest()->first();
+    }
+
+    public function collaborationRequest()
+    {
+        return $this->belongsTo(CollaborationRequest::class, 'collaboration_requests', 'user_id');
     }
 }
