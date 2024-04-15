@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('collaboration_requests', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id');
             $table->foreignId('collaborator_id');
             $table->foreignId('workspace_id');
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }

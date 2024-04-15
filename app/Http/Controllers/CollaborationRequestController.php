@@ -45,18 +45,20 @@ class CollaborationRequestController extends Controller
         NotificationPush::build($data);
     }
 
-    /*
-    public function store(Request $request)
+    public function update(Request $request, $collaboratorRequest)
     {
         try {
-            $collaborator = User::where('external_identifier', $request->member)->first();
-            $workspace = Workspace::where('id', $request->workspace)->first();
+            $col_re = CollaborationRequest::find($collaboratorRequest);
+            $col_re->update([
+                'status' => 1
+            ]);
+            $collaborator = User::where('id', $col_re->user_id)->first();
+            $workspace = Workspace::where('id', $col_re->workspace_id)->first();
             $collaborator->workspaces()->attach($workspace->id, ['rol_id' => 2]);
-            return response()->json(['message' => 'Solicitud de colaboración enviada exitosamente.']);
+            return response()->json(['message' => 'Solicitud de colaboración aceptada.']);
         } catch (\Throwable $th) {
             BuildError::saveError($th, 1);
             return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
         }
     }
-    */
 }
