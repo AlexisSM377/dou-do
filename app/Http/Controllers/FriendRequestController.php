@@ -53,19 +53,23 @@ class FriendRequestController extends Controller
 
     public function friendRequestGenerate($origin_user, $target_user, $currentDate)
     {
-        $origin_user->friendRequests()->attach($target_user->id, ['created_at' => $currentDate->format('Y-m-d H:i:s')]);
-        $this->sendNotification($origin_user, $target_user);
+        $friend_request = FriendRequest::create([
+            'origin_user_id' => $origin_user->id,
+            'target_user_id' => $target_user->id,
+        ]);
+        $this->sendNotification($origin_user, $target_user, $friend_request);
         return response()->json(['message' => 'Solicitud enviada']);
     }
 
-    public function sendNotification($origin_user, $target_user)
+    public function sendNotification($origin_user, $target_user, $friend_request)
     {
         $data = [
             'type' => 'friend-request',
             'body' => [
                 'user_name' => $origin_user->name . " " . $origin_user->last_name,
             ],
-            'target_user' => $target_user
+            'target_user' => $target_user,
+            'friend_request' => $friend_request->id
         ];
         NotificationPush::build($data);
     }

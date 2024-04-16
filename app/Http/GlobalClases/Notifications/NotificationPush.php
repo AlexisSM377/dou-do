@@ -27,6 +27,7 @@ class NotificationPush
                         'title' => 'Solicitud de amistad.',
                         'body' => $data->body->user_name . ' te ha enviado una solicitud de amistad. 🤝',
                         'data' => [
+                            'friend_request' => $data->friend_request,
                             'type' => 'friend-request'
                         ]
                     ];
