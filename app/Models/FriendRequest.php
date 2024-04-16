@@ -13,5 +13,5 @@ class FriendRequest extends Model
     use HasFactory;
 
     //* Fillable
-    protected $fillable = ['origin_user_id', 'target_user_id'];
+    protected $fillable = ['origin_user_id', 'target_user_id', 'status'];
 }
