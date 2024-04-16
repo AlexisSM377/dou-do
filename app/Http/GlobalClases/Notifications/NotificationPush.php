@@ -28,6 +28,7 @@ class NotificationPush
                         'body' => $data->body->user_name . ' te ha enviado una solicitud de amistad. 🤝',
                         'data' => [
                             'friend_request' => $data->friend_request,
+                            'friend_name' => $data->body->user_name,
                             'type' => 'friend-request'
                         ]
                     ];
@@ -47,6 +48,7 @@ class NotificationPush
                         'body' => $data->body->user_name . ' te ha invitado a colaborar en: ' . $data->body->workspace_name . ' 💼',
                         'data' => [
                             'workspace' => $data->workspace,
+                            'workspace_name' => $data->body->workspace_name,
                             'type' => 'workspace-invite'
                         ]
                     ];
