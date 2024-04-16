@@ -84,8 +84,8 @@ class FriendRequestController extends Controller
     public function update(Request $request, $friend_request)
     {
         try {
-            $friend_res = FriendRequest::find($friend_request);
-            $friend_request->update([
+            $friend_res = FriendRequest::where('id', $friend_request)->first();
+            $friend_res->update([
                 'status' => 1
             ]);
             $user = User::where('id', $friend_res->origin_user_id)->first();
