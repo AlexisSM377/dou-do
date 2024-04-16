@@ -9,6 +9,7 @@ use App\Models\FriendRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use ExponentPhpSDK\Expo;
+use Illuminate\Http\Request;
 
 /**
  * Controller class to friend requests actions
@@ -78,5 +79,22 @@ class FriendRequestController extends Controller
     {
         $user = User::where('external_identifier', $external_identifier)->first();
         return !empty($user->id) ? $user : false;
+    }
+
+    public function update(Request $request, $friend_request)
+    {
+        try {
+            $friend_res = FriendRequest::find($friend_request);
+            $friend_request->update([
+                'status' => 1
+            ]);
+            $user = User::where('id', $friend_res->origin_user_id)->first();
+            $friend = User::where('id', $friend_res->target_user_id)->first();
+            $user->friends()->attach($friend->id);
+            return response()->json(['message' => 'Solicitud de amistad aceptada.']);
+        } catch (\Throwable $th) {
+            BuildError::saveError($th, 1);
+            return response()->json(['message', 'Se ha generado un error interno, por favor, comunícate con el soporte.'], 500);
+        }
     }
 }
