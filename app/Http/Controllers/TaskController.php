@@ -25,9 +25,9 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         try {
-            if (!empty($request->user)) {
-                $tasks = Task::where('user_id',
-                    User::where('external_identifier', $request->user)->first()->id
+            if (!empty($request->user_id)) {
+                $tasks = Task::where('responsable_id',
+                    User::where('external_identifier', $request->user_id)->first()->id
                 )->get();
                 return new TaskCollecion($tasks);
             }
